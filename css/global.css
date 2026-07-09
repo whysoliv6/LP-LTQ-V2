@@ -189,6 +189,7 @@ a {
   }
 
   .hero__wrapper {
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 64px;
