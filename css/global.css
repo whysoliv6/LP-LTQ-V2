@@ -72,22 +72,17 @@ a {
 }
 
 /* DESIGN TOKENS
-   (portados do design system do projeto — global.css.txt)
+   (cores extraídas diretamente do arquivo Figma — node 620:226)
    -------------------------------------------------------------------------- */
 :root {
   --background: oklch(0.9711 0.0074 80.7211);
   --foreground: oklch(0.2660 0.0650 152.9340);
-  --card: oklch(0.9711 0.0074 80.7211);
-  --card-foreground: oklch(0.2660 0.0650 152.9340);
-  --primary: oklch(0.3930 0.0950 152.5350);
-  --primary-foreground: oklch(1.0000 0 0);
-  --secondary: oklch(0.9050 0.0930 164.1500);
-  --secondary-foreground: oklch(0.3930 0.0950 152.5350);
-  --muted: oklch(0.9370 0.0142 74.4218);
-  --muted-foreground: oklch(0.2660 0.0650 152.9340);
-  --accent: oklch(0.8952 0.0504 146.0366);
-  --accent-foreground: oklch(0.4254 0.1159 144.3078);
-  --border: oklch(0.9620 0.0440 156.7430);
+  --verde: #0E4137;
+  --verde-accent: #34C759;
+  --verde-accent-dark: #266055;
+  --hero-heading: #F7F7F5;
+  --hero-text: #FDFCFA;
+  --hero-badge-text: #F9FFFE;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --radius: 0.5rem;
   --tracking-normal: -0.025em;
@@ -109,30 +104,25 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  background-color: var(--primary);
-  padding: 20px;
-}
-
-.hero__card {
-  position: relative;
-  z-index: 1;
-  background-color: var(--card);
-  border: 2px solid var(--foreground);
-  border-radius: 14px 14px 64px 64px;
-  box-shadow: 0 30px 50px -20px rgb(0 0 0 / 0.30);
-  padding-block: 40px;
-  padding-inline: 24px;
+  background-color: var(--verde);
+  border-radius: 0 0 56px 56px;
+  box-shadow: 0 4px 25px rgb(0 0 0 / 0.35);
+  padding: 32px 24px 56px;
 }
 
 .hero__badge {
-  display: inline-block;
-  background-color: var(--foreground);
-  color: var(--primary-foreground);
-  font-size: 0.75rem;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  background-color: var(--verde-accent);
+  color: var(--hero-badge-text);
+  font-size: 0.7rem;
   font-weight: 600;
   font-style: italic;
+  text-align: center;
   letter-spacing: 0.01em;
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 999px;
 }
 
@@ -141,6 +131,7 @@ body {
   grid-template-columns: 1fr;
   align-items: center;
   gap: 40px;
+  margin-top: 40px;
 }
 
 .hero__content {
@@ -150,115 +141,129 @@ body {
 }
 
 .hero__title {
-  margin-top: 60px;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hero-heading);
 }
 
 .hero__title-highlight {
   text-decoration: underline;
-  text-decoration-color: var(--foreground);
+  text-decoration-color: var(--verde-accent);
   text-decoration-thickness: 3px;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .hero__subtitle {
-  margin-top: 36px;
-  max-width: 60%;
-  font-size: 0.95rem;
+  margin-top: 20px;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--foreground);
-  opacity: 0.6;
+  line-height: 1.5;
+  color: var(--hero-text);
 }
 
 .hero__media {
+  position: relative;
   width: 100%;
 }
 
+.hero__media-blob {
+  position: absolute;
+  inset: 18% 6% 0 auto;
+  width: 78%;
+  height: 62%;
+  border-radius: 25px;
+  background: linear-gradient(180deg, var(--verde-accent) 0%, var(--verde-accent-dark) 100%);
+  z-index: 0;
+}
+
 .hero__image {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   margin-inline: auto;
 }
 
-.hero__watermark {
-  margin-top: -40px;
-  text-align: center;
-  font-size: clamp(3rem, 16vw, 9rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--primary-foreground);
-  opacity: 0.12;
-  white-space: nowrap;
-  user-select: none;
-}
-
 /* Tablet refinements (still stacked) */
 @media (min-width: 768px) {
   .hero {
-    padding: 32px;
-  }
-
-  .hero__card {
-    padding-block: 56px;
-    padding-inline: 48px;
+    padding: 40px 40px 72px;
   }
 
   .hero__title {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
   }
 
   .hero__subtitle {
     font-size: 1.05rem;
+    max-width: 480px;
   }
 }
 
-/* Desktop: two-column layout
-   Font-size e padding-inline do card são calibrados por breakpoint para que
-   a headline quebre exatamente nas linhas do wireframe dentro da coluna de 45%. */
+/* Desktop: two-column layout (proporção e valores calibrados a partir do
+   frame de referência do Figma, 1440x763 — node 620:226) */
 @media (min-width: 1024px) {
   .hero {
-    padding: 40px;
-  }
-
-  .hero__card {
-    border-radius: 16px 16px 100px 100px;
-    padding-block: 96px;
-    padding-inline: 49px;
+    padding: 56px 64px 88px;
+    border-radius: 0 0 130px 130px;
   }
 
   .hero__grid {
-    grid-template-columns: 45fr 55fr;
-    gap: 100px;
+    grid-template-columns: minmax(0, 460px) 1fr;
+    align-items: center;
+    gap: 64px;
+    margin-top: 56px;
   }
 
   .hero__title {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.05rem;
+    max-width: 460px;
   }
 }
 
 @media (min-width: 1280px) {
-  .hero__card {
-    padding-block: 128px;
-    padding-inline: 84px;
+  .hero {
+    padding: 64px 96px 96px;
+    border-radius: 0 0 150px 150px;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 520px) 1fr;
+    gap: 76px;
   }
 
   .hero__title {
-    font-size: 2.1875rem;
+    font-size: 2.6rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.15rem;
+    max-width: 490px;
   }
 }
 
 @media (min-width: 1440px) {
-  .hero__card {
-    padding-block: 155px;
-    padding-inline: 110px;
+  .hero {
+    padding: 72px 112px 96px;
+    border-radius: 0 0 170px 170px;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 600px) 1fr;
   }
 
   .hero__title {
-    font-size: 2.375rem;
+    font-size: 3rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.25rem;
+    max-width: 514px;
   }
 }
