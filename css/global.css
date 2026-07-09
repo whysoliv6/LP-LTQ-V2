@@ -1,18 +1,10 @@
 /* ==========================================================================
    LTQ EDUCAÇÃO — Planilha de Controle Financeiro
-   Global stylesheet — mobile first
+   Implementação fiel ao Figma (node 620:226)
    ========================================================================== */
 
 /* FONTS
    -------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 @font-face {
   font-family: "Poppins";
   src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
@@ -22,26 +14,18 @@
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-Bold.ttf") format("truetype");
-  font-weight: 700;
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-ExtraBold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -60,6 +44,14 @@ html {
   text-size-adjust: 100%;
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f5f0;
+  color: #1a1a1a;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -71,110 +63,86 @@ a {
   text-decoration: none;
 }
 
-/* DESIGN TOKENS
-   (cores extraídas diretamente do arquivo Figma — node 620:226)
-   -------------------------------------------------------------------------- */
-:root {
-  --background: oklch(0.9711 0.0074 80.7211);
-  --foreground: oklch(0.2660 0.0650 152.9340);
-  --verde: #0E4137;
-  --verde-accent: #34C759;
-  --verde-accent-dark: #266055;
-  --hero-heading: #F7F7F5;
-  --hero-text: #FDFCFA;
-  --hero-badge-text: #F9FFFE;
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --radius: 0.5rem;
-  --tracking-normal: -0.025em;
-}
-
-/* BASE
-   -------------------------------------------------------------------------- */
-body {
-  font-family: var(--font-sans);
-  color: var(--foreground);
-  background-color: var(--background);
-  line-height: 1.5;
-  letter-spacing: var(--tracking-normal);
-  -webkit-font-smoothing: antialiased;
-}
-
 /* HERO
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
   overflow: hidden;
-  background-color: var(--verde);
-  border-radius: 0 0 56px 56px;
-  box-shadow: 0 4px 25px rgb(0 0 0 / 0.35);
-  padding: 32px 24px 56px;
+  background-color: #0E4137;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 0 0 160px 160px;
+  padding: 32px 20px 48px;
 }
 
 .hero__badge {
-  display: block;
-  width: max-content;
-  max-width: 100%;
-  margin-inline: auto;
-  background-color: var(--verde-accent);
-  color: var(--hero-badge-text);
-  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 40px;
+  width: 335px;
+  height: 42px;
+  background-color: #34C759;
+  color: #F9FFFE;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
   font-weight: 600;
   font-style: italic;
   text-align: center;
   letter-spacing: 0.01em;
-  padding: 8px 18px;
+  text-transform: uppercase;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
+.hero__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   gap: 40px;
-  margin-top: 40px;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  gap: 22px;
 }
 
 .hero__title {
-  font-size: 1.75rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
   font-weight: 600;
   line-height: 1.15;
+  color: #F7F7F5;
+  max-width: 609px;
   letter-spacing: -0.01em;
-  color: var(--hero-heading);
 }
 
 .hero__title-highlight {
-  text-decoration: underline;
-  text-decoration-color: var(--verde-accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 4px;
+  border-bottom: 4px solid #34C759;
+  padding-bottom: 2px;
 }
 
 .hero__subtitle {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--hero-text);
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  color: #FDFCFA;
+  max-width: 514px;
 }
 
 .hero__media {
   position: relative;
   width: 100%;
+  max-width: 725px;
 }
 
 .hero__media-blob {
   position: absolute;
-  inset: 18% 6% 0 auto;
-  width: 78%;
-  height: 62%;
+  width: 594px;
+  height: 268px;
   border-radius: 25px;
-  background: linear-gradient(180deg, var(--verde-accent) 0%, var(--verde-accent-dark) 100%);
+  background: linear-gradient(to bottom, #34C759 0%, #266055 100%);
   z-index: 0;
 }
 
@@ -183,87 +151,89 @@ body {
   z-index: 1;
   width: 100%;
   height: auto;
-  margin-inline: auto;
+  object-fit: cover;
+  display: block;
 }
 
-/* Tablet refinements (still stacked) */
+/* TABLET
+   -------------------------------------------------------------------------- */
 @media (min-width: 768px) {
   .hero {
-    padding: 40px 40px 72px;
+    padding: 40px 32px 56px;
+    border-radius: 0 0 180px 180px;
   }
 
   .hero__title {
-    font-size: 2.25rem;
+    font-size: 56px;
   }
 
   .hero__subtitle {
-    font-size: 1.05rem;
-    max-width: 480px;
+    font-size: 20px;
+  }
+
+  .hero__media {
+    max-width: 100%;
   }
 }
 
-/* Desktop: two-column layout (proporção e valores calibrados a partir do
-   frame de referência do Figma, 1440x763 — node 620:226) */
+/* DESKTOP (1024px - frame de referência do Figma)
+   -------------------------------------------------------------------------- */
 @media (min-width: 1024px) {
   .hero {
-    padding: 56px 64px 88px;
-    border-radius: 0 0 130px 130px;
+    padding: 52px 112px 64px;
+    border-radius: 0 0 160px 160px;
   }
 
-  .hero__grid {
-    grid-template-columns: minmax(0, 460px) 1fr;
-    align-items: center;
+  .hero__badge {
+    margin-bottom: 56px;
+  }
+
+  .hero__wrapper {
+    flex-direction: row;
+    align-items: flex-start;
     gap: 64px;
-    margin-top: 56px;
+  }
+
+  .hero__content {
+    flex-shrink: 0;
+    width: 600px;
   }
 
   .hero__title {
-    font-size: 2.25rem;
+    font-size: 48px;
+    max-width: 609px;
   }
 
-  .hero__subtitle {
-    font-size: 1.05rem;
-    max-width: 460px;
+  .hero__media {
+    flex: 1;
+    max-width: 725px;
+  }
+
+  .hero__media-blob {
+    position: absolute;
+    bottom: auto;
+    left: auto;
+    right: calc(100% - 594px);
+    top: 160px;
+    width: 594px;
+    height: 268px;
   }
 }
 
+/* DESKTOP XL (1280px+)
+   -------------------------------------------------------------------------- */
 @media (min-width: 1280px) {
   .hero {
-    padding: 64px 96px 96px;
-    border-radius: 0 0 150px 150px;
-  }
-
-  .hero__grid {
-    grid-template-columns: minmax(0, 520px) 1fr;
-    gap: 76px;
-  }
-
-  .hero__title {
-    font-size: 2.6rem;
-  }
-
-  .hero__subtitle {
-    font-size: 1.15rem;
-    max-width: 490px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .hero {
-    padding: 72px 112px 96px;
+    padding: 60px 120px 72px;
     border-radius: 0 0 170px 170px;
   }
 
-  .hero__grid {
-    grid-template-columns: minmax(0, 600px) 1fr;
+  .hero__wrapper {
+    gap: 80px;
   }
 
-  .hero__title {
-    font-size: 3rem;
-  }
-
-  .hero__subtitle {
-    font-size: 1.25rem;
-    max-width: 514px;
+  .hero__media-blob {
+    right: calc(100% - 594px);
+    top: 160px;
   }
 }
