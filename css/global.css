@@ -123,7 +123,7 @@ a {
 
 .hero__title-highlight {
   border-bottom: 4px solid #34C759;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 }
 
 .hero__subtitle {
@@ -143,6 +143,8 @@ a {
 
 .hero__media-blob {
   position: absolute;
+  bottom: 0;
+  left: 0;
   width: 594px;
   height: 268px;
   border-radius: 25px;
@@ -165,10 +167,6 @@ a {
   .hero {
     padding: 40px 32px 56px;
     border-radius: 0 0 180px 180px;
-  }
-
-  .hero__title {
-    font-size: 56px;
   }
 
   .hero__subtitle {
@@ -201,7 +199,7 @@ a {
 
   .hero__content {
     flex-shrink: 0;
-    width: 600px;
+    width: auto;
   }
 
   .hero__title {
