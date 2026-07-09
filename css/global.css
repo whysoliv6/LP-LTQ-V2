@@ -199,7 +199,7 @@ a {
 
   .hero__content {
     flex-shrink: 0;
-    width: auto;
+    width: 600px;
   }
 
   .hero__title {
