@@ -240,3 +240,157 @@ a {
     top: 160px;
   }
 }
+
+/* SECTION 2: DEVELOPED
+   -------------------------------------------------------------------------- */
+.developed {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.developed__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.developed__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #262626;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Imagens circulares */
+.developed__images {
+  position: relative;
+  width: 100%;
+  max-width: 548px;
+  height: 532px;
+  margin-bottom: 40px;
+}
+
+.developed__image {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.developed__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.developed__image--large {
+  width: 343px;
+  height: 343px;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.developed__image--medium {
+  width: 294px;
+  height: 294px;
+  left: 254px;
+  top: 124px;
+  z-index: 2;
+}
+
+.developed__image--small {
+  width: 223px;
+  height: 223px;
+  left: 149px;
+  top: 309px;
+  z-index: 3;
+}
+
+/* Checklist */
+.developed__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 566px;
+}
+
+.developed__item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 94px;
+  align-items: flex-start;
+}
+
+.developed__item:last-child {
+  margin-bottom: 0;
+}
+
+.developed__check {
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.developed__text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #606060;
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+  .developed {
+    padding: 80px 32px;
+  }
+
+  .developed__title {
+    font-size: 36px;
+    margin-bottom: 80px;
+  }
+
+  .developed__container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  .developed__title {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+  }
+
+  .developed__images {
+    flex: 0 0 auto;
+  }
+
+  .developed__checklist {
+    flex: 1;
+  }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+  .developed {
+    padding: 100px 112px;
+  }
+
+  .developed__title {
+    font-size: 40px;
+    margin-bottom: 120px;
+  }
+}
+
+/* DESKTOP XL (1280px+) */
+@media (min-width: 1280px) {
+  .developed {
+    padding: 120px 120px;
+  }
+}
