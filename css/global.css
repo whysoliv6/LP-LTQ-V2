@@ -73,8 +73,28 @@ a {
   align-items: center;
   background-color: #0E4137;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
-  border-radius: 0 0 160px 160px;
+  border-radius: 0 0 100px 100px;
   padding: 32px 20px 48px;
+}
+
+/* Mobile styles (base - no media query needed as this is mobile first) */
+.hero__content {
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 32px;
+  max-width: 100%;
+}
+
+.hero__subtitle {
+  font-size: 14px;
+  max-width: 100%;
+}
+
+.hero__wrapper {
+  flex-direction: column;
+  gap: 40px;
 }
 
 .hero__badge {
