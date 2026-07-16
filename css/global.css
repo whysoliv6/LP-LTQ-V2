@@ -74,29 +74,10 @@ a {
   background-color: #0E4137;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
   border-radius: 0 0 100px 100px;
-  padding: 32px 20px 48px;
+  padding: 10px 20px 48px;
 }
 
 /* Mobile styles (base - no media query needed as this is mobile first) */
-.hero__content {
-  text-align: center;
-}
-
-.hero__title {
-  font-size: 32px;
-  max-width: 100%;
-}
-
-.hero__subtitle {
-  font-size: 14px;
-  max-width: 100%;
-}
-
-.hero__wrapper {
-  flex-direction: column;
-  gap: 40px;
-}
-
 .hero__badge {
   display: flex;
   align-items: center;
@@ -109,11 +90,11 @@ a {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 600;
-  font-style: italic;
+  font-style: normal;
   text-align: center;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  border-radius: 999px;
+  letter-spacing: normal;
+  text-transform: none;
+  border-radius: 0 0 11px 11px;
   white-space: nowrap;
 }
 
@@ -122,22 +103,24 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 40px;
+  gap: 24px;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
+  text-align: center;
 }
 
 .hero__title {
   font-family: "Poppins", sans-serif;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1.15;
   color: #F7F7F5;
-  max-width: 609px;
+  max-width: 304px;
+  margin: 0 auto;
   letter-spacing: -0.01em;
 }
 
@@ -148,17 +131,19 @@ a {
 
 .hero__subtitle {
   font-family: "Open Sans", sans-serif;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   line-height: normal;
   color: #FDFCFA;
-  max-width: 514px;
+  max-width: 315px;
+  margin: 0 auto;
 }
 
 .hero__media {
   position: relative;
   width: 100%;
-  max-width: 725px;
+  max-width: 410px;
+  margin: 0 auto;
 }
 
 .hero__media-blob {
@@ -170,15 +155,17 @@ a {
   border-radius: 25px;
   background: linear-gradient(to bottom, #34C759 0%, #266055 100%);
   z-index: 0;
+  display: none;
 }
 
 .hero__image {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: auto;
+  width: 410px;
+  height: 269px;
   object-fit: cover;
   display: block;
+  aspect-ratio: 125 / 82;
 }
 
 /* TABLET
