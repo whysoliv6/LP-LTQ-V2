@@ -394,3 +394,79 @@ a {
     column-gap: 60px;
   }
 }
+
+/* SECTION 4: PROBLEMS (Por acaso você passa ou já passou...) - reflow real via flex-direction
+   -------------------------------------------------------------------------- */
+.problems {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.problems-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.problems__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(44.8px, 40.31px + 1.0895vw, 56px);
+  margin-bottom: 60px;
+}
+
+.problems__list {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+}
+
+.problems__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.problems__icon-box {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.problems__icon {
+  color: #34C759;
+  font-size: 37px;
+}
+
+.problems__text {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: coluna centralizada -> linha horizontal (mudança real de topologia) */
+@media (min-width: 768px) {
+  .problems__item {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 39px;
+  }
+
+  .problems__text {
+    text-align: left;
+  }
+}
