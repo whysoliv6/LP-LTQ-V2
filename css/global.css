@@ -58,17 +58,17 @@ a {
   height: 719px;
   margin: 0 auto;
   background-color: #0E4137;
-  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
   border-radius: 20px;
-  border: 4px solid #34C759;
   overflow: visible;
 }
 
 /* Mobile styles (base - no media query needed as this is mobile first) */
 .hero__badge {
   position: absolute;
-  left: 38px;
+  left: 50%;
   top: 0;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,9 +189,8 @@ a {
     height: 723px;
     margin: 0 auto;
     background-color: #0E4137;
-    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
     border-radius: 20px;
-    border: 4px solid #34C759;
     overflow: visible;
   }
 
