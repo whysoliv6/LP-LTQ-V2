@@ -3,31 +3,9 @@
    Implementação fiel ao Figma (node 620:226)
    ========================================================================== */
 
-/* FONTS
+/* FONTS - Google Fonts via CDN
+   (Linked in HTML via <link> tag in <head>)
    -------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/OpenSans-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
 
 /* RESET
    -------------------------------------------------------------------------- */
@@ -45,7 +23,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f5f5f0;
   color: #1a1a1a;
   line-height: 1.5;
@@ -63,11 +41,23 @@ a {
   text-decoration: none;
 }
 
-/* HERO
+/* HERO CONTAINER - "Palco" para posicionamento absoluto
+   -------------------------------------------------------------------------- */
+.hero-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* HERO - Mobile-first (base)
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
-  width: 404px;
+  width: 100%;
+  max-width: 404px;
   height: 719px;
   margin: 0 auto;
   background-color: #0E4137;
@@ -116,7 +106,7 @@ a {
 }
 
 .hero__title {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 32px;
   font-weight: 600;
   line-height: 36.80px;
@@ -125,15 +115,26 @@ a {
   text-align: center;
   letter-spacing: -0.01em;
   margin: 0;
+  position: relative;
 }
 
 .hero__title-highlight {
-  border-bottom: 4px solid #34C759;
-  padding-bottom: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+.hero__title-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #34C759;
 }
 
 .hero__subtitle {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: normal;
@@ -159,12 +160,15 @@ a {
   height: 151.51px;
   border-radius: 25px;
   background: linear-gradient(180deg, #34C759 0%, #266055 100%);
-  z-index: 0;
+  z-index: 1;
+  display: none;
 }
 
 .hero__image {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 360px;
+  z-index: 2;
   width: 410.21px;
   height: 269.10px;
   object-fit: cover;
@@ -201,13 +205,16 @@ a {
     height: 42px;
     background-color: #34C759;
     color: #F9FFFE;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
     font-style: italic;
     text-align: center;
     border-radius: 0 0 11px 11px;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero__wrapper {
@@ -228,7 +235,7 @@ a {
   }
 
   .hero__title {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 48px;
     font-weight: 600;
     line-height: 55.20px;
@@ -237,10 +244,11 @@ a {
     text-align: left;
     letter-spacing: -0.01em;
     margin: 0;
+    position: relative;
   }
 
   .hero__subtitle {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 600;
     line-height: normal;
@@ -266,7 +274,19 @@ a {
     height: 268px;
     border-radius: 25px;
     background: linear-gradient(180deg, #34C759 0%, #266055 100%);
-    z-index: 0;
+    z-index: 1;
+    display: none;
+  }
+
+  .hero__image {
+    position: absolute;
+    left: 668px;
+    top: 92px;
+    z-index: 2;
+    width: 725px;
+    height: 476px;
+    object-fit: cover;
+    display: block;
   }
 
   .hero__image {
