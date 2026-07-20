@@ -45,11 +45,9 @@ a {
    -------------------------------------------------------------------------- */
 .hero-container {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
   position: relative;
   overflow: hidden;
-  padding: 20px;
+  padding: 0;
 }
 
 /* HERO - Mobile-first (base)
@@ -57,7 +55,6 @@ a {
 .hero {
   position: relative;
   width: 100%;
-  max-width: 404px;
   height: 719px;
   margin: 0 auto;
   background-color: #0E4137;
@@ -145,9 +142,6 @@ a {
 }
 
 .hero__media {
-  position: absolute;
-  left: 0;
-  top: 360px;
   width: 410.21px;
   height: 269.10px;
 }
@@ -190,7 +184,8 @@ a {
 
   .hero {
     position: relative;
-    width: 1435px;
+    width: 100%;
+    max-width: 1435px;
     height: 723px;
     margin: 0 auto;
     background-color: #0E4137;
@@ -266,9 +261,6 @@ a {
   }
 
   .hero__media {
-    position: absolute;
-    left: 668px;
-    top: 92px;
     width: 725px;
     height: 476px;
   }
