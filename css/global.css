@@ -470,3 +470,123 @@ a {
     text-align: left;
   }
 }
+
+/* SECTION 5: STEPS (O seu financeiro organizado em 3 simples passos) - reflow real via flex-direction
+   -------------------------------------------------------------------------- */
+.steps {
+  background-color: #f5f5f0;
+  padding: 60px 0;
+}
+
+.steps-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.steps-card {
+  position: relative;
+  background-color: #0E4137;
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: 60px clamp(28px, 15px + 2vw, 90px);
+}
+
+.steps__title {
+  text-align: center;
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(43.65px, 38.7px + 1.2014vw, 56px);
+  margin-bottom: 60px;
+}
+
+.steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  background-color: #CAFFD8;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.step__media {
+  padding: 24px 16px 0;
+}
+
+.step__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.step__content {
+  padding: 24px 28px 32px;
+}
+
+/* PENDENTE: font-size do número/título/texto (desktop) são estimativas —
+   Figma exportou o texto como formas vetorizadas, sem font-size exato.
+   Confirmar visualmente contra o design real e ajustar os bounds max do clamp() abaixo. */
+.step__number {
+  display: block;
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(40px, 36.79px + 0.7782vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.step__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 16.4px + 0.3891vw, 22px);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.step__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 15.2px + 0.1946vw, 18px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado (mudança real de topologia) */
+@media (min-width: 768px) {
+  .step {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .step__media {
+    flex: 0 0 42%;
+    padding: 0;
+  }
+
+  .step__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .step__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 48px;
+  }
+}
