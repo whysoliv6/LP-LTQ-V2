@@ -128,7 +128,7 @@ a {
   position: absolute;
   bottom: -4px;
   left: 0;
-  right: 0;
+  width: 115px;
   height: 3px;
   background-color: #34C759;
 }
@@ -245,6 +245,10 @@ a {
     letter-spacing: -0.01em;
     margin: 0;
     position: relative;
+  }
+
+  .hero__title-highlight::after {
+    width: 171.1px;
   }
 
   .hero__subtitle {
