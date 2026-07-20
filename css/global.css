@@ -314,3 +314,83 @@ a {
 @media (min-width: 768px) {
   .developed__images-img--desktop { display: block; }
 }
+
+/* SECTION 3: TOOLS (O que a Ferramenta possui) - grid real, único breakpoint estrutural
+   -------------------------------------------------------------------------- */
+.tools {
+  background-color: #f5f5f0;
+}
+
+.tools-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tools-card {
+  position: relative;
+  background-color: #0E4137;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: clamp(67px, 53.37px + 3.3074vw, 101px) clamp(28px, 15px + 2vw, 90px);
+}
+
+.tools__title {
+  text-align: center;
+  color: #F7F7F5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin-bottom: clamp(60px, 50px + 2vw, 100px);
+}
+
+.tools__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 80px;
+  column-gap: 40px;
+}
+
+.tools__item {
+  text-align: center;
+}
+
+.tools__number {
+  display: block;
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 144px;
+  margin-bottom: 8px;
+}
+
+.tools__item-title {
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(24px, 20.79px + 0.7782vw, 32px);
+  line-height: clamp(36px, 31.19px + 1.1673vw, 48px);
+  margin-bottom: 16px;
+}
+
+.tools__item-text {
+  color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: clamp(32px, 29.44px + 0.6226vw, 38.4px);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Único breakpoint estrutural: 1 coluna -> 2 colunas (mudança real de topologia) */
+@media (min-width: 768px) {
+  .tools__grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 120px;
+    column-gap: 60px;
+  }
+}
