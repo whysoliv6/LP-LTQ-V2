@@ -60,7 +60,7 @@ a {
   background-color: #0E4137;
   box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
   border-radius: 20px;
-  outline: 4px solid #34C759;
+  border: 4px solid #34C759;
   overflow: visible;
 }
 
@@ -125,7 +125,7 @@ a {
   position: absolute;
   bottom: -4px;
   left: 0;
-  width: 132px;
+  width: 115px;
   height: 3px;
   background-color: #34C759;
 }
@@ -191,14 +191,15 @@ a {
     background-color: #0E4137;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
     border-radius: 20px;
-    outline: 4px solid #34C759;
+    border: 4px solid #34C759;
     overflow: visible;
   }
 
   .hero__badge {
     position: absolute;
-    left: 552px;
+    left: 50%;
     top: 0;
+    transform: translateX(-50%);
     width: 335px;
     height: 42px;
     background-color: #34C759;
@@ -246,7 +247,7 @@ a {
   }
 
   .hero__title-highlight::after {
-    width: 198.5px;
+    width: 171.1px;
   }
 
   .hero__subtitle {
@@ -261,14 +262,14 @@ a {
   }
 
   .hero__media {
-    width: 725px;
-    height: 476px;
+    width: 650px;
+    height: 427px;
   }
 
   .hero__media-blob {
     position: absolute;
-    left: 733px;
-    top: 270px;
+    left: 776px;
+    top: 290px;
     width: 594px;
     height: 268px;
     border-radius: 25px;
@@ -278,11 +279,11 @@ a {
 
   .hero__image {
     position: absolute;
-    left: 668px;
-    top: 92px;
+    left: 718px;
+    top: 130px;
     z-index: 2;
-    width: 725px;
-    height: 476px;
+    width: 650px;
+    height: 427px;
     object-fit: cover;
     display: block;
   }
