@@ -128,7 +128,7 @@ a {
   position: absolute;
   bottom: -4px;
   left: 0;
-  width: 115px;
+  width: 132px;
   height: 3px;
   background-color: #34C759;
 }
@@ -161,7 +161,6 @@ a {
   border-radius: 25px;
   background: linear-gradient(180deg, #34C759 0%, #266055 100%);
   z-index: 1;
-  display: none;
 }
 
 .hero__image {
@@ -185,6 +184,10 @@ a {
 /* DESKTOP (1024px - frame de referência do Figma)
    -------------------------------------------------------------------------- */
 @media (min-width: 1024px) {
+  .hero-container {
+    padding: 0;
+  }
+
   .hero {
     position: relative;
     width: 1435px;
@@ -248,7 +251,7 @@ a {
   }
 
   .hero__title-highlight::after {
-    width: 171.1px;
+    width: 198.5px;
   }
 
   .hero__subtitle {
@@ -279,7 +282,6 @@ a {
     border-radius: 25px;
     background: linear-gradient(180deg, #34C759 0%, #266055 100%);
     z-index: 1;
-    display: none;
   }
 
   .hero__image {
@@ -291,17 +293,6 @@ a {
     height: 476px;
     object-fit: cover;
     display: block;
-  }
-
-  .hero__image {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 725px;
-    height: 476px;
-    object-fit: cover;
-    display: block;
-    z-index: 1;
   }
 }
 
