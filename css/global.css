@@ -1282,3 +1282,40 @@ a {
   max-height: 500px;
   padding: 0 20px 16px;
 }
+
+/* SECTION 12: FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  position: relative;
+  background-color: #0E4137;
+  border-top: 4px solid #34C759;
+  padding: 60px 20px 40px;
+  overflow: visible;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__logo {
+  width: 110px;
+  height: 91px;
+  margin-top: -60px;
+  margin-bottom: 24px;
+  object-fit: contain;
+}
+
+.footer__text {
+  color: white;
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 11.39px + 0.8755vw, 24px);
+  line-height: clamp(22.5px, 17.09px + 1.3132vw, 36px);
+  margin: 0;
+}
