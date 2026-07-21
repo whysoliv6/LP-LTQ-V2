@@ -940,3 +940,182 @@ a {
     min-width: 0;
   }
 }
+
+/* SECTION 9: CTA-OFFER (Transforme a gestão financeira da sua empresa completamente!)
+   -------------------------------------------------------------------------- */
+.cta-offer {
+  background-color: #f5f5f0;
+  padding: 60px 0;
+}
+
+.cta-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cta-card {
+  position: relative;
+  background-color: #0E4137;
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: 60px clamp(24px, 15px + 2vw, 90px);
+  text-align: center;
+}
+
+.cta__title {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(41.6px, 35.83px + 1.4008vw, 56px);
+  margin: 0 0 40px 0;
+}
+
+.offer-box {
+  background: linear-gradient(180deg, #34C759 0%, #266055 100%);
+  border-radius: 15px;
+  padding: 32px clamp(16px, 8px + 2.5vw, 32px);
+  max-width: 962px;
+  margin: 0 auto;
+}
+
+.offer-badge {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  margin: 0 0 24px 0;
+}
+
+.benefits-checklist {
+  list-style: none;
+  margin: 0 0 32px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  text-align: left;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.benefit-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #F7F7F5;
+  border-radius: 6px;
+  color: #F7F7F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.benefit-text {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 20px);
+  line-height: clamp(25.6px, 23.04px + 0.6226vw, 32px);
+}
+
+.offer-price-card {
+  background-color: #F9FFFE;
+  border-radius: 15px;
+  padding: 32px clamp(16px, 8px + 2.5vw, 24px);
+  text-align: center;
+}
+
+.offer__heading {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(32px, 30.4px + 0.3891vw, 36px);
+  line-height: clamp(48px, 45.6px + 0.5837vw, 54px);
+  margin: 0;
+}
+
+.offer__tag {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+}
+
+.offer__old-price {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-decoration: line-through;
+  margin: 0 0 8px 0;
+}
+
+.offer__label {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+.offer__price {
+  margin: 0 0 4px 0;
+}
+
+.offer__price-value {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.offer__price-term {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.offer__alt {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 0 24px 0;
+}
+
+.cta-button {
+  width: clamp(275px, 211.28px + 15.4669vw, 434px);
+  max-width: 100%;
+  height: 52px;
+  background-color: #17EB4C;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Único breakpoint estrutural: checklist 1 coluna -> 2 colunas + ajuste de cor do preço */
+@media (min-width: 768px) {
+  .benefits-checklist {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
+  }
+
+  .offer__price-value,
+  .offer__price-term {
+    color: #262626;
+  }
+}
