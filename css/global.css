@@ -705,3 +705,133 @@ a {
   .benefit--tutorial { order: 3; }
   .benefit--brinde   { order: 4; }
 }
+
+/* SECTION 7: TESTIMONIALS (Ainda com dúvidas se é para você?) - reflow via flex-direction
+   -------------------------------------------------------------------------- */
+.testimonials {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonials__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin: 0 0 12px 0;
+}
+
+.testimonials__subtitle {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 11.98px + 1.9455vw, 40px);
+  margin: 0 0 40px 0;
+}
+
+.stats {
+  display: inline-flex;
+  gap: 60px;
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 15px;
+  padding: 20px 40px;
+  margin: 0 auto 60px;
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats__number {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.stats__label {
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+}
+
+.testimonials__grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.testimonial-card {
+  width: clamp(352px, 293.09px + 14.2996vw, 499px);
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-align: left;
+}
+
+.testimonial__video {
+  width: 100%;
+  aspect-ratio: 301.21 / 514;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.testimonial__video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.testimonial__quote {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 20px);
+  line-height: clamp(25.6px, 23.04px + 0.6226vw, 32px);
+  margin: 0 0 24px 0;
+}
+
+.testimonial__author {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testimonial__name {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.testimonial__role {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado (mudança real de topologia) */
+@media (min-width: 768px) {
+  .testimonials__grid {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
