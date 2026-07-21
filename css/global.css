@@ -1123,3 +1123,54 @@ a {
     color: #262626;
   }
 }
+
+/* SECTION 10: GUARANTEE (Garantia de 7 Dias)
+   -------------------------------------------------------------------------- */
+.guarantee {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.guarantee-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.guarantee__badge {
+  width: clamp(139px, 128.18px + 2.6265vw, 166px);
+  height: clamp(139px, 128.18px + 2.6265vw, 166px);
+  flex-shrink: 0;
+}
+
+.guarantee__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(25px, 22.19px + 0.6809vw, 32px);
+  margin: 0 0 12px 0;
+}
+
+.guarantee__text {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado */
+@media (min-width: 768px) {
+  .guarantee-container {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 40px;
+  }
+}
