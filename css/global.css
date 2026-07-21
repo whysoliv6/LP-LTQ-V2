@@ -738,25 +738,29 @@ a {
 
 .stats {
   display: inline-flex;
-  gap: 60px;
+  max-width: 100%;
+  gap: clamp(16px, -1.63px + 4.28vw, 60px);
   background-color: #0E4137;
   border: 4px solid #34C759;
   border-radius: 15px;
-  padding: 20px 40px;
+  padding: clamp(12px, 8.8px + 0.778vw, 20px) clamp(16px, 6.4px + 2.33vw, 40px);
   margin: 0 auto 60px;
+  box-sizing: border-box;
 }
 
 .stats__item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
 }
 
 .stats__number {
   color: #34C759;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 40px;
+  font-size: clamp(28px, 23.19px + 1.1673vw, 40px);
+  white-space: nowrap;
 }
 
 .stats__label {
