@@ -839,3 +839,104 @@ a {
     align-items: flex-start;
   }
 }
+
+/* SECTION 8: ABOUT (Quem somos nós) - coluna centralizada em ambos breakpoints,
+   apenas os thumbnails de mídia mudam de topologia
+   -------------------------------------------------------------------------- */
+.about {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about__title, .press__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin: 0 0 16px 0;
+}
+
+.about__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: clamp(32px, 29.43px + 0.6226vw, 38.4px);
+  width: clamp(344px, 81.09px + 63.8132vw, 1000px);
+  max-width: 100%;
+  margin: 0 0 40px 0;
+}
+
+.about__photo-wrapper {
+  margin-bottom: 60px;
+  max-width: 100%;
+}
+
+.about__photo {
+  display: none;
+  width: clamp(342px, 210.94px + 31.8093vw, 669px);
+  max-width: 100%;
+  height: clamp(215px, 132.44px + 20.0389vw, 421px);
+  object-fit: cover;
+  border-radius: 20px;
+}
+.about__photo--mobile { display: block; }
+
+.press__logos-wrapper {
+  margin-bottom: 40px;
+  max-width: 100%;
+}
+
+.press__logos {
+  display: none;
+  width: clamp(294px, 120.86px + 42.0233vw, 726px);
+  max-width: 100%;
+  height: clamp(34px, 14.76px + 4.6693vw, 82px);
+  object-fit: contain;
+}
+.press__logos--mobile { display: block; }
+
+.press__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: center;
+}
+
+.press__thumb {
+  width: 316px;
+  max-width: 100%;
+  aspect-ratio: 316 / 177;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Único breakpoint estrutural: troca de imagem (mobile/desktop) + thumbnails em linha */
+@media (min-width: 768px) {
+  .about__photo--mobile, .press__logos--mobile { display: none; }
+  .about__photo--desktop, .press__logos--desktop { display: block; }
+
+  .press__grid {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* Thumbnail width recalculado para a topologia de 3 colunas (referência 768px->1440px,
+     não 412px->1440px, pois só existe nesta configuração a partir do breakpoint estrutural) */
+  .press__thumb {
+    width: clamp(226px, 8.89px + 28.27vw, 416px);
+    min-width: 0;
+  }
+}
