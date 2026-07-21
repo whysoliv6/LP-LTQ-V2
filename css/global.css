@@ -590,3 +590,118 @@ a {
     padding: 40px 48px;
   }
 }
+
+/* SECTION 6: BENEFITS (Adquirindo a planilha agora, você receberá) - reflow + reordenação via CSS order
+   -------------------------------------------------------------------------- */
+.benefits {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.benefits-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.benefits__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin-bottom: 40px;
+}
+
+.benefits__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.benefits__illustration {
+  order: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.benefits__illustration-img {
+  display: none;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+.benefits__illustration-img--mobile { display: block; }
+
+.benefits__grid {
+  order: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.benefit {
+  flex: 1 1 280px;
+  min-width: 280px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.benefit__arrow {
+  color: #34C759;
+  font-size: 20px;
+  padding-top: 7px;
+  flex-shrink: 0;
+}
+
+.benefit__title {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 21.6px + 0.5837vw, 30px);
+  line-height: clamp(28px, 23.99px + 0.9728vw, 38px);
+  margin: 0 0 10px 0;
+}
+
+.benefit__text {
+  color: #555A65;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+/* Reordenação mobile (ordem visual diferente da ordem do DOM) */
+.benefit--aulas    { order: 1; }
+.benefit--suporte  { order: 2; }
+.benefit--brinde   { order: 3; }
+.benefit--tutorial { order: 4; }
+
+/* Único breakpoint estrutural: coluna empilhada -> linha lado a lado (mudança real de topologia + ordem) */
+@media (min-width: 768px) {
+  .benefits__content {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .benefits__illustration {
+    order: 1;
+    flex: 0 0 auto;
+    max-width: 500px;
+  }
+  .benefits__illustration-img--mobile { display: none; }
+  .benefits__illustration-img--desktop { display: block; }
+
+  .benefits__grid {
+    order: 0;
+    flex: 1 1 0;
+  }
+
+  .benefit--suporte  { order: 1; }
+  .benefit--aulas    { order: 2; }
+  .benefit--tutorial { order: 3; }
+  .benefit--brinde   { order: 4; }
+}
