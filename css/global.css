@@ -318,7 +318,7 @@ a {
 /* SECTION 3: TOOLS (O que a Ferramenta possui) - grid real, único breakpoint estrutural
    -------------------------------------------------------------------------- */
 .tools {
-  background-color: #f5f5f0;
+  background-color: #E7FFE5;
 }
 
 .tools-container {
@@ -474,7 +474,7 @@ a {
 /* SECTION 5: STEPS (O seu financeiro organizado em 3 simples passos) - reflow real via flex-direction
    -------------------------------------------------------------------------- */
 .steps {
-  background-color: #f5f5f0;
+  background-color: #E7FFE5;
   padding: 60px 0;
 }
 
@@ -944,7 +944,7 @@ a {
 /* SECTION 9: CTA-OFFER (Transforme a gestão financeira da sua empresa completamente!)
    -------------------------------------------------------------------------- */
 .cta-offer {
-  background-color: #f5f5f0;
+  background-color: #E7FFE5;
   padding: 60px 0;
 }
 
