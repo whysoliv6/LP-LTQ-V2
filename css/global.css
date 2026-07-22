@@ -1283,6 +1283,67 @@ a {
   padding: 0 20px 16px;
 }
 
+/* SECTION 13: NEXT-STEPS (Comprei a Planilha, e agora?) - coluna única, sem breakpoint estrutural
+   -------------------------------------------------------------------------- */
+.next-steps {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.next-steps-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.next-steps__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 24px + 1.5vw, 36px);
+  margin: 0 0 40px 0;
+}
+
+.next-steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.next-steps-card {
+  background-color: #CAFFD8;
+  border-radius: 15px;
+  padding: 24px 28px;
+}
+
+.next-steps-card__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: #0E4137;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 16px + 0.8vw, 22px);
+  margin: 0 0 10px 0;
+}
+
+.next-steps-card__number {
+  color: #34C759;
+  font-weight: 700;
+  font-size: clamp(20px, 18px + 0.8vw, 24px);
+  flex-shrink: 0;
+}
+
+.next-steps-card__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 14px + 0.4vw, 17px);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* SECTION 12: FOOTER
    -------------------------------------------------------------------------- */
 .site-footer {
