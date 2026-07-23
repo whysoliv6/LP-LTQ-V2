@@ -46,8 +46,7 @@ a {
    -------------------------------------------------------------------------- */
 .hero-container {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  background-color: #E7FFE5;
   position: relative;
   overflow: hidden;
   padding: 0;
