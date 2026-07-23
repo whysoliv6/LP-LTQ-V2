@@ -3,31 +3,9 @@
    Implementação fiel ao Figma (node 620:226)
    ========================================================================== */
 
-/* FONTS
+/* FONTS - Google Fonts via CDN
+   (Linked in HTML via <link> tag in <head>)
    -------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Poppins";
-  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/OpenSans-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/OpenSans-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
 
 /* RESET
    -------------------------------------------------------------------------- */
@@ -45,11 +23,12 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f5f5f0;
   color: #1a1a1a;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img {
@@ -63,27 +42,39 @@ a {
   text-decoration: none;
 }
 
-/* HERO
+/* HERO CONTAINER - "Palco" para posicionamento absoluto (fluido, clamp-based)
    -------------------------------------------------------------------------- */
-.hero {
+.hero-container {
+  width: 100%;
+  background-color: #E7FFE5;
   position: relative;
   overflow: hidden;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+}
+
+.hero {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(404px, -9.2px + 100.2918vw, 1435px);
+  height: clamp(719px, 717.4px + 0.3891vw, 723px);
+  margin: 0;
   background-color: #0E4137;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
-  border-radius: 0 0 160px 160px;
-  padding: 32px 20px 48px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35), inset 0 0 0 4px #34C759;
+  border-radius: 20px;
+  overflow: visible;
 }
 
 .hero__badge {
+  position: absolute;
+  left: clamp(38px, -168.0px + 50.0vw, 552px);
+  top: 0;
+  width: 335px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 40px;
-  width: 335px;
-  height: 42px;
   background-color: #34C759;
   color: #F9FFFE;
   font-family: "Open Sans", sans-serif;
@@ -91,154 +82,1300 @@ a {
   font-weight: 600;
   font-style: italic;
   text-align: center;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  white-space: nowrap;
+  border-radius: 0 0 11px 11px;
+  z-index: 10;
 }
 
 .hero__wrapper {
-  position: relative;
+  position: absolute;
+  left: clamp(53px, 29.35px + 5.7393vw, 112px);
+  top: clamp(89px, 44.51px + 10.7977vw, 200px);
+  width: clamp(304px, 185.37px + 28.7938vw, 600px);
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 40px;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: clamp(11px, 6.59px + 1.07vw, 22px);
+  text-align: center;
 }
 
 .hero__title {
-  font-family: "Poppins", sans-serif;
-  font-size: 48px;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 25.59px + 1.5564vw, 48px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: clamp(36.8px, 29.43px + 1.7899vw, 55.2px);
   color: #F7F7F5;
-  max-width: 609px;
+  width: clamp(304px, 181.76px + 29.6693vw, 609px);
+  text-align: center;
   letter-spacing: -0.01em;
+  margin: 0;
+  position: relative;
 }
 
 .hero__title-highlight {
-  border-bottom: 4px solid #34C759;
-  padding-bottom: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.hero__title-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: clamp(115px, 92.52px + 5.4572vw, 171.1px);
+  height: 3px;
+  background-color: #34C759;
 }
 
 .hero__subtitle {
-  font-family: "Open Sans", sans-serif;
-  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 11.6px + 0.5837vw, 20px);
   font-weight: 600;
   line-height: normal;
   color: #FDFCFA;
-  max-width: 514px;
+  width: clamp(315px, 235.25px + 19.358vw, 514px);
+  text-align: center;
+  margin: 0 auto;
 }
 
 .hero__media {
-  position: relative;
-  width: 100%;
-  max-width: 725px;
+  width: clamp(410.21px, 284.05px + 30.6216vw, 725px);
+  height: clamp(269.1px, 186.18px + 20.1265vw, 476px);
 }
 
 .hero__media-blob {
   position: absolute;
-  width: 594px;
-  height: 268px;
+  left: clamp(36.75px, -242.29px + 67.7286vw, 733px);
+  top: clamp(270px, 537.03px + -18.5438vw, 460.63px);
+  width: clamp(335.81px, 232.33px + 25.1158vw, 594px);
+  height: clamp(151.51px, 104.82px + 11.3317vw, 268px);
   border-radius: 25px;
-  background: linear-gradient(to bottom, #34C759 0%, #266055 100%);
-  z-index: 0;
+  background: linear-gradient(180deg, #34C759 0%, #266055 100%);
+  z-index: 1;
 }
 
 .hero__image {
+  position: absolute;
+  left: clamp(0px, -267.72px + 64.9805vw, 668px);
+  top: clamp(92px, 467.41px + -26.07vw, 360px);
+  width: clamp(410.21px, 284.05px + 30.6216vw, 725px);
+  height: clamp(269.1px, 186.18px + 20.1265vw, 476px);
+  object-fit: cover;
+  display: block;
+  z-index: 2;
+}
+
+/* Único breakpoint restante da Hero: decisões binárias de alinhamento */
+@media (min-width: 768px) {
+  .hero__content { text-align: left; }
+  .hero__title { text-align: left; }
+  .hero__subtitle { text-align: left; margin: 0; }
+}
+
+/* SECTION 2: DEVELOPED - fluido, clamp-based
+   -------------------------------------------------------------------------- */
+.developed {
+  background-color: #E7FFE5;
+}
+
+.developed-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   position: relative;
-  z-index: 1;
+  overflow: hidden;
+  height: clamp(860px, 958.05px + -6.809vw, 930px);
+}
+
+.developed__title {
+  position: absolute;
+  width: clamp(363px, 193.87px + 41.0506vw, 785px);
+  max-width: calc(100vw - 56px);
+  left: clamp(28px, -92.23px + 29.1829vw, 328px);
+  top: clamp(51px, 10.92px + 9.7276vw, 151px);
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  font-weight: 600;
+  line-height: clamp(36.16px, 28.21px + 1.93vw, 56px);
+}
+
+.developed__images {
+  position: absolute;
+  left: clamp(59px, 45.77px + 3.2101vw, 92px);
+  top: clamp(182px, 152.74px + 7.1012vw, 255px);
+  width: clamp(289.45px, 185.83px + 25.1508vw, 548px);
+  height: clamp(281px, 180.4px + 24.4163vw, 532px);
+}
+
+.developed__images-img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.developed__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.developed__item {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.developed__check {
+  flex-shrink: 0;
+  width: clamp(22px, 20.4px + 0.3891vw, 26px);
+  height: clamp(22px, 20.4px + 0.3891vw, 26px);
+  border: 3px solid #34C759;
+  border-radius: 6px;
+  position: relative;
+  margin-top: 2px;
+}
+
+.developed__check::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 7px;
+  width: 9px;
+  height: 6px;
+  border-left: 3px solid #34C759;
+  border-bottom: 3px solid #34C759;
+  transform: rotate(-45deg);
+}
+
+.developed__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(16px, 13.6px + 0.5837vw, 22px);
+  font-weight: 600;
+  line-height: clamp(25.6px, 21.75px + 0.9339vw, 35.2px);
+  max-width: calc(100vw - 76px);
+}
+
+.developed__item:nth-child(1) {
+  left: clamp(28px, -239.72px + 64.9805vw, 696px);
+  top: clamp(305px, 559.94px + -17.7043vw, 487px);
+}
+.developed__item:nth-child(1) .developed__text {
+  width: clamp(253.7px, 144.17px + 26.5856vw, 527px);
+}
+
+.developed__item:nth-child(2) {
+  left: clamp(30.29px, -237.19px + 64.9212vw, 697.68px);
+  top: clamp(401.17px, 628.1px + -15.7588vw, 563.17px);
+}
+.developed__item:nth-child(2) .developed__text {
+  width: clamp(256.69px, 148.36px + 26.2947vw, 527px);
+}
+
+.developed__item:nth-child(3) {
+  left: clamp(29.86px, -237.79px + 64.963vw, 697.68px);
+  top: clamp(495.17px, 694.08px + -13.8132vw, 637.17px);
+}
+.developed__item:nth-child(3) .developed__text {
+  width: clamp(285px, 188.01px + 23.5409vw, 527px);
+}
+
+.developed__item:nth-child(4) {
+  left: clamp(29.86px, -237.79px + 64.963vw, 697.68px);
+  top: clamp(589.17px, 760.06px + -11.8677vw, 711.17px);
+}
+.developed__item:nth-child(4) .developed__text {
+  width: clamp(338px, 262.25px + 18.3852vw, 527px);
+}
+
+.developed__item:nth-child(5) {
+  left: clamp(29.86px, -237.79px + 64.963vw, 697.68px);
+  top: clamp(683.17px, 826.05px + -9.9222vw, 796px);
+}
+.developed__item:nth-child(5) .developed__text {
+  width: clamp(327.74px, 247.88px + 19.3833vw, 527px);
+}
+
+/* Único breakpoint restante da Section 2: qual imagem mostrar + quebra manual do título */
+@media (max-width: 767px) {
+  .developed__images-img--mobile { display: block; }
+  .developed__title br.desktop-br { display: none; }
+}
+@media (min-width: 768px) {
+  .developed__images-img--desktop { display: block; }
+}
+
+/* SECTION 3: TOOLS (O que a Ferramenta possui) - grid real, único breakpoint estrutural
+   -------------------------------------------------------------------------- */
+.tools {
+  background-color: #E7FFE5;
+}
+
+.tools-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tools-card {
+  position: relative;
+  background-color: #0E4137;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.35);
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: clamp(67px, 53.37px + 3.3074vw, 101px) clamp(28px, 15px + 2vw, 90px);
+}
+
+.tools__title {
+  text-align: center;
+  color: #F7F7F5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin-bottom: clamp(60px, 50px + 2vw, 100px);
+}
+
+.tools__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 80px;
+  column-gap: 40px;
+}
+
+.tools__item {
+  text-align: center;
+}
+
+.tools__number {
+  display: block;
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 144px;
+  margin-bottom: 8px;
+}
+
+.tools__item-title {
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(24px, 20.79px + 0.7782vw, 32px);
+  line-height: clamp(36px, 31.19px + 1.1673vw, 48px);
+  margin-bottom: 16px;
+}
+
+.tools__item-text {
+  color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: clamp(32px, 29.44px + 0.6226vw, 38.4px);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Único breakpoint estrutural: 1 coluna -> 2 colunas (mudança real de topologia) */
+@media (min-width: 768px) {
+  .tools__grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 120px;
+    column-gap: 60px;
+  }
+}
+
+/* SECTION 4: PROBLEMS (Por acaso você passa ou já passou...) - reflow real via flex-direction
+   -------------------------------------------------------------------------- */
+.problems {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.problems-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.problems__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(44.8px, 40.31px + 1.0895vw, 56px);
+  margin-bottom: 60px;
+}
+
+.problems__list {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+}
+
+.problems__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.problems__icon-box {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.problems__icon {
+  color: #34C759;
+  font-size: 37px;
+}
+
+.problems__text {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: coluna centralizada -> linha horizontal (mudança real de topologia) */
+@media (min-width: 768px) {
+  .problems__item {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 39px;
+  }
+
+  .problems__text {
+    text-align: left;
+  }
+}
+
+/* SECTION 5: STEPS (O seu financeiro organizado em 3 simples passos) - reflow real via flex-direction
+   -------------------------------------------------------------------------- */
+.steps {
+  background-color: #E7FFE5;
+  padding: 60px 0;
+}
+
+.steps-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.steps-card {
+  position: relative;
+  background-color: #0E4137;
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: 60px clamp(28px, 15px + 2vw, 90px);
+}
+
+.steps__title {
+  text-align: center;
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(43.65px, 38.7px + 1.2014vw, 56px);
+  margin-bottom: 60px;
+}
+
+.steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  background-color: #CAFFD8;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.step__media {
+  padding: 24px 16px 0;
+}
+
+.step__media img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.step__content {
+  padding: 24px 28px 32px;
+}
+
+/* PENDENTE: font-size do número/título/texto (desktop) são estimativas —
+   Figma exportou o texto como formas vetorizadas, sem font-size exato.
+   Confirmar visualmente contra o design real e ajustar os bounds max do clamp() abaixo. */
+.step__number {
+  display: block;
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(40px, 36.79px + 0.7782vw, 48px);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.step__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 16.4px + 0.3891vw, 22px);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.step__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 15.2px + 0.1946vw, 18px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado (mudança real de topologia) */
+@media (min-width: 768px) {
+  .step {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .step__media {
+    flex: 0 0 42%;
+    padding: 0;
+  }
+
+  .step__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .step__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 48px;
+  }
+}
+
+/* SECTION 6: BENEFITS (Adquirindo a planilha agora, você receberá) - reflow + reordenação via CSS order
+   -------------------------------------------------------------------------- */
+.benefits {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.benefits-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.benefits__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin-bottom: 40px;
+}
+
+.benefits__content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.benefits__illustration {
+  order: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.benefits__illustration-img {
+  display: none;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+}
+.benefits__illustration-img--mobile { display: block; }
+
+.benefits__grid {
+  order: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.benefit {
+  flex: 1 1 280px;
+  min-width: 280px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.benefit__arrow {
+  color: #34C759;
+  font-size: 20px;
+  padding-top: 7px;
+  flex-shrink: 0;
+}
+
+.benefit__title {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 21.6px + 0.5837vw, 30px);
+  line-height: clamp(28px, 23.99px + 0.9728vw, 38px);
+  margin: 0 0 10px 0;
+}
+
+.benefit__text {
+  color: #555A65;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+/* Reordenação mobile (ordem visual diferente da ordem do DOM) */
+.benefit--aulas    { order: 1; }
+.benefit--suporte  { order: 2; }
+.benefit--brinde   { order: 3; }
+.benefit--tutorial { order: 4; }
+
+/* Único breakpoint estrutural: coluna empilhada -> linha lado a lado (mudança real de topologia + ordem) */
+@media (min-width: 768px) {
+  .benefits__content {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .benefits__illustration {
+    order: 1;
+    flex: 0 0 auto;
+    max-width: 500px;
+  }
+  .benefits__illustration-img--mobile { display: none; }
+  .benefits__illustration-img--desktop { display: block; }
+
+  .benefits__grid {
+    order: 0;
+    flex: 1 1 0;
+  }
+
+  .benefit--suporte  { order: 1; }
+  .benefit--aulas    { order: 2; }
+  .benefit--tutorial { order: 3; }
+  .benefit--brinde   { order: 4; }
+}
+
+/* SECTION 7: TESTIMONIALS (Ainda com dúvidas se é para você?) - reflow via flex-direction
+   -------------------------------------------------------------------------- */
+.testimonials {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonials__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin: 0 0 12px 0;
+}
+
+.testimonials__subtitle {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 11.98px + 1.9455vw, 40px);
+  margin: 0 0 40px 0;
+}
+
+.stats {
+  display: inline-flex;
+  max-width: 100%;
+  gap: clamp(16px, -1.63px + 4.28vw, 60px);
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 15px;
+  padding: clamp(12px, 8.8px + 0.778vw, 20px) clamp(16px, 6.4px + 2.33vw, 40px);
+  margin: 0 auto 60px;
+  box-sizing: border-box;
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.stats__number {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 23.19px + 1.1673vw, 40px);
+  white-space: nowrap;
+}
+
+.stats__label {
+  color: #F8F8F8;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+}
+
+.testimonials__grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.testimonial-card {
+  width: clamp(352px, 293.09px + 14.2996vw, 499px);
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-align: left;
+}
+
+.testimonial__video {
+  width: 100%;
+  aspect-ratio: 301.21 / 514;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.testimonial__video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
   display: block;
 }
 
-/* TABLET
-   -------------------------------------------------------------------------- */
+.testimonial__quote {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 20px);
+  line-height: clamp(25.6px, 23.04px + 0.6226vw, 32px);
+  margin: 0 0 24px 0;
+}
+
+.testimonial__author {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testimonial__name {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.testimonial__role {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado (mudança real de topologia) */
 @media (min-width: 768px) {
-  .hero {
-    padding: 40px 32px 56px;
-    border-radius: 0 0 180px 180px;
-  }
-
-  .hero__title {
-    font-size: 56px;
-  }
-
-  .hero__subtitle {
-    font-size: 20px;
-  }
-
-  .hero__media {
-    max-width: 100%;
+  .testimonials__grid {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
   }
 }
 
-/* DESKTOP (1024px - frame de referência do Figma)
+/* SECTION 8: ABOUT (Quem somos nós) - coluna centralizada em ambos breakpoints,
+   apenas os thumbnails de mídia mudam de topologia
    -------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
-  .hero {
-    padding: 52px 112px 64px;
-    border-radius: 0 0 160px 160px;
+.about {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about__title, .press__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  margin: 0 0 16px 0;
+}
+
+.about__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: clamp(32px, 29.43px + 0.6226vw, 38.4px);
+  width: clamp(344px, 81.09px + 63.8132vw, 1000px);
+  max-width: 100%;
+  margin: 0 0 40px 0;
+}
+
+.about__photo-wrapper {
+  margin-bottom: 60px;
+  max-width: 100%;
+}
+
+.about__photo {
+  display: none;
+  width: clamp(342px, 210.94px + 31.8093vw, 669px);
+  max-width: 100%;
+  height: clamp(215px, 132.44px + 20.0389vw, 421px);
+  object-fit: cover;
+  border-radius: 20px;
+}
+.about__photo--mobile { display: block; }
+
+.press__logos-wrapper {
+  margin-bottom: 40px;
+  max-width: 100%;
+}
+
+.press__logos {
+  display: none;
+  width: clamp(294px, 120.86px + 42.0233vw, 726px);
+  max-width: 100%;
+  height: clamp(34px, 14.76px + 4.6693vw, 82px);
+  object-fit: contain;
+}
+.press__logos--mobile { display: block; }
+
+.press__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: center;
+}
+
+.press__thumb {
+  width: 316px;
+  max-width: 100%;
+  aspect-ratio: 316 / 177;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Único breakpoint estrutural: troca de imagem (mobile/desktop) + thumbnails em linha */
+@media (min-width: 768px) {
+  .about__photo--mobile, .press__logos--mobile { display: none; }
+  .about__photo--desktop, .press__logos--desktop { display: block; }
+
+  .press__grid {
+    flex-direction: row;
+    justify-content: center;
   }
 
-  .hero__badge {
-    margin-bottom: 56px;
+  /* Thumbnail width recalculado para a topologia de 3 colunas (referência 768px->1440px,
+     não 412px->1440px, pois só existe nesta configuração a partir do breakpoint estrutural) */
+  .press__thumb {
+    width: clamp(226px, 8.89px + 28.27vw, 416px);
+    min-width: 0;
+  }
+}
+
+/* SECTION 9: CTA-OFFER (Transforme a gestão financeira da sua empresa completamente!)
+   -------------------------------------------------------------------------- */
+.cta-offer {
+  background-color: #E7FFE5;
+  padding: 60px 0;
+}
+
+.cta-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cta-card {
+  position: relative;
+  background-color: #0E4137;
+  border-radius: clamp(50px, 9.92px + 9.7276vw, 150px);
+  outline: 4px solid #34C759;
+  padding: 60px clamp(24px, 15px + 2vw, 90px);
+  text-align: center;
+}
+
+.cta__title {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 28.79px + 0.7782vw, 40px);
+  line-height: clamp(41.6px, 35.83px + 1.4008vw, 56px);
+  margin: 0 0 40px 0;
+}
+
+.offer-box {
+  background: linear-gradient(180deg, #34C759 0%, #266055 100%);
+  border-radius: 15px;
+  padding: 32px clamp(16px, 8px + 2.5vw, 32px);
+  max-width: 962px;
+  margin: 0 auto;
+}
+
+.offer-badge {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  margin: 0 0 24px 0;
+}
+
+.benefits-checklist {
+  list-style: none;
+  margin: 0 0 32px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  text-align: left;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.benefit-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #F7F7F5;
+  border-radius: 6px;
+  color: #F7F7F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.benefit-text {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 20px);
+  line-height: clamp(25.6px, 23.04px + 0.6226vw, 32px);
+}
+
+.offer-price-card {
+  background-color: #F9FFFE;
+  border-radius: 15px;
+  padding: 32px clamp(16px, 8px + 2.5vw, 24px);
+  text-align: center;
+}
+
+.offer__heading {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(32px, 30.4px + 0.3891vw, 36px);
+  line-height: clamp(48px, 45.6px + 0.5837vw, 54px);
+  margin: 0;
+}
+
+.offer__tag {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+}
+
+.offer__old-price {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-decoration: line-through;
+  margin: 0 0 8px 0;
+}
+
+.offer__label {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+.offer__price {
+  margin: 0 0 4px 0;
+}
+
+.offer__price-value {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.offer__price-term {
+  color: #34C759;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.offer__alt {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 0 24px 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(275px, 211.28px + 15.4669vw, 434px);
+  max-width: 100%;
+  height: 52px;
+  background-color: #17EB4C;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Único breakpoint estrutural: checklist 1 coluna -> 2 colunas + ajuste de cor do preço */
+@media (min-width: 768px) {
+  .benefits-checklist {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
   }
 
-  .hero__wrapper {
-    display: flex;
+  .offer__price-value,
+  .offer__price-term {
+    color: #262626;
+  }
+}
+
+/* SECTION 10: GUARANTEE (Garantia de 7 Dias)
+   -------------------------------------------------------------------------- */
+.guarantee {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.guarantee-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.guarantee__badge {
+  width: clamp(139px, 128.18px + 2.6265vw, 166px);
+  height: clamp(139px, 128.18px + 2.6265vw, 166px);
+  flex-shrink: 0;
+}
+
+.guarantee__title {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(25px, 22.19px + 0.6809vw, 32px);
+  margin: 0 0 12px 0;
+}
+
+.guarantee__text {
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 18.4px + 0.3891vw, 24px);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Único breakpoint estrutural: empilhado -> lado a lado */
+@media (min-width: 768px) {
+  .guarantee-container {
     flex-direction: row;
     align-items: flex-start;
-    gap: 64px;
-  }
-
-  .hero__content {
-    flex-shrink: 0;
-    width: 600px;
-  }
-
-  .hero__title {
-    font-size: 48px;
-    max-width: 609px;
-  }
-
-  .hero__media {
-    flex: 1;
-    max-width: 725px;
-  }
-
-  .hero__media-blob {
-    position: absolute;
-    bottom: auto;
-    left: auto;
-    right: calc(100% - 594px);
-    top: 160px;
-    width: 594px;
-    height: 268px;
+    text-align: left;
+    gap: 40px;
   }
 }
 
-/* DESKTOP XL (1280px+)
+/* SECTION 11: FAQ (Perguntas frequentes) - acordeão interativo, escala fluida sem breakpoint estrutural
    -------------------------------------------------------------------------- */
-@media (min-width: 1280px) {
-  .hero {
-    padding: 60px 120px 72px;
-    border-radius: 0 0 170px 170px;
-  }
+.faq {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
 
-  .hero__wrapper {
-    gap: 80px;
-  }
+.faq-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  .hero__media-blob {
-    right: calc(100% - 594px);
-    top: 160px;
-  }
+.faq__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(30px, 25.99px + 0.9728vw, 40px);
+  margin: 0 0 40px 0;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background-color: #0E4137;
+  border: 4px solid #34C759;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border: none;
+  padding: 16px 20px;
+  cursor: pointer;
+  text-align: left;
+  color: #F7F7F5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 20px);
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  position: relative;
+}
+
+.faq-item__icon::before,
+.faq-item__icon::after {
+  content: '';
+  position: absolute;
+  background-color: #34C759;
+}
+
+.faq-item__icon::before {
+  width: 12px;
+  height: 3px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.faq-item__icon::after {
+  width: 3px;
+  height: 12px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  transition: opacity 0.2s ease;
+}
+
+.faq-item.is-open .faq-item__icon::after {
+  opacity: 0;
+}
+
+.faq-item__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.faq-item__answer p {
+  color: #F7F7F5;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 14.4px + 0.3891vw, 18px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.faq-item.is-open .faq-item__answer {
+  max-height: 500px;
+  padding: 0 20px 16px;
+}
+
+/* SECTION 13: NEXT-STEPS (Comprei a Planilha, e agora?) - coluna única, sem breakpoint estrutural
+   -------------------------------------------------------------------------- */
+.next-steps {
+  background-color: #E7FFE5;
+  padding: 60px 20px;
+}
+
+.next-steps-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.next-steps__title {
+  text-align: center;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 24px + 1.5vw, 36px);
+  margin: 0 0 40px 0;
+}
+
+.next-steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.next-steps-card {
+  background-color: #CAFFD8;
+  border-radius: 15px;
+  padding: 24px 28px;
+}
+
+.next-steps-card__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: #0E4137;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 16px + 0.8vw, 22px);
+  margin: 0 0 10px 0;
+}
+
+.next-steps-card__number {
+  color: #34C759;
+  font-weight: 700;
+  font-size: clamp(20px, 18px + 0.8vw, 24px);
+  flex-shrink: 0;
+}
+
+.next-steps-card__text {
+  color: #606060;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 14px + 0.4vw, 17px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* SECTION 12: FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  position: relative;
+  background-color: #0E4137;
+  border-top: 4px solid #34C759;
+  padding: 60px 20px 40px;
+  overflow: visible;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__logo {
+  width: 110px;
+  height: 91px;
+  margin-top: -60px;
+  margin-bottom: 24px;
+  object-fit: contain;
+}
+
+.footer__text {
+  color: white;
+  opacity: 0.9;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 11.39px + 0.8755vw, 24px);
+  line-height: clamp(22.5px, 17.09px + 1.3132vw, 36px);
+  margin: 0;
 }
