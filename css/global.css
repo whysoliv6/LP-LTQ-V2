@@ -3,9 +3,52 @@
    Implementação fiel ao Figma (node 620:226)
    ========================================================================== */
 
-/* FONTS - Google Fonts via CDN
-   (Linked in HTML via <link> tag in <head>)
+/* FONTES AUTO-HOSPEDADAS — subset latin (cobre todos os acentos do português)
+   --------------------------------------------------------------------------
+   Ficavam em fonts/fonts.css, mas as duas folhas bloqueavam a renderização.
+   Unificadas aqui para o navegador buscar um arquivo só.
+   Origem: Google Fonts (Poppins v24, Open Sans v44), licença OFL.
    -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/poppins-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/poppins-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/poppins-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/poppins-700.woff2') format('woff2');
+}
+
+/* Open Sans é fonte variável: um único arquivo cobre os pesos 400 a 700 */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/open-sans-var.woff2') format('woff2');
+}
 
 /* RESET
    -------------------------------------------------------------------------- */
@@ -35,6 +78,12 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* <picture> é apenas um seletor de fonte: não deve criar caixa de layout.
+   Assim o <img> interno continua herdando o posicionamento do container pai. */
+picture {
+  display: contents;
 }
 
 a {
@@ -75,8 +124,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #34C759;
-  color: #F9FFFE;
+  /* Verde escurecido para contraste AA (4.8:1) — o #34C759 dava apenas 2.19:1 */
+  background-color: #157F3A;
+  color: #FFFFFF;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -214,7 +264,6 @@ a {
 }
 
 .developed__images-img {
-  display: none;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -305,13 +354,10 @@ a {
   width: clamp(327.74px, 247.88px + 19.3833vw, 527px);
 }
 
-/* Único breakpoint restante da Section 2: qual imagem mostrar + quebra manual do título */
+/* Único breakpoint restante da Section 2: quebra manual do título.
+   (A troca mobile/desktop da imagem agora é feita pelo <picture> no HTML.) */
 @media (max-width: 767px) {
-  .developed__images-img--mobile { display: block; }
   .developed__title br.desktop-br { display: none; }
-}
-@media (min-width: 768px) {
-  .developed__images-img--desktop { display: block; }
 }
 
 /* SECTION 3: TOOLS (O que a Ferramenta possui) - grid real, único breakpoint estrutural
@@ -443,9 +489,11 @@ a {
   justify-content: center;
 }
 
+/* Ícones SVG inline — substituem a fonte Material Symbols (313KB para 4 ícones) */
 .problems__icon {
-  color: #34C759;
-  font-size: 37px;
+  width: 37px;
+  height: 37px;
+  fill: #34C759;
 }
 
 .problems__text {
@@ -625,12 +673,10 @@ a {
 }
 
 .benefits__illustration-img {
-  display: none;
   width: 100%;
   max-width: 380px;
   height: auto;
 }
-.benefits__illustration-img--mobile { display: block; }
 
 .benefits__grid {
   order: 0;
@@ -691,9 +737,6 @@ a {
     flex: 0 0 auto;
     max-width: 500px;
   }
-  .benefits__illustration-img--mobile { display: none; }
-  .benefits__illustration-img--desktop { display: block; }
-
   .benefits__grid {
     order: 0;
     flex: 1 1 0;
@@ -882,28 +925,23 @@ a {
 }
 
 .about__photo {
-  display: none;
   width: clamp(342px, 210.94px + 31.8093vw, 669px);
   max-width: 100%;
   height: clamp(215px, 132.44px + 20.0389vw, 421px);
   object-fit: cover;
   border-radius: 20px;
 }
-.about__photo--mobile { display: block; }
-
 .press__logos-wrapper {
   margin-bottom: 40px;
   max-width: 100%;
 }
 
 .press__logos {
-  display: none;
   width: clamp(294px, 120.86px + 42.0233vw, 726px);
   max-width: 100%;
   height: clamp(34px, 14.76px + 4.6693vw, 82px);
   object-fit: contain;
 }
-.press__logos--mobile { display: block; }
 
 .press__grid {
   display: flex;
@@ -922,11 +960,9 @@ a {
   object-fit: cover;
 }
 
-/* Único breakpoint estrutural: troca de imagem (mobile/desktop) + thumbnails em linha */
+/* Único breakpoint estrutural: thumbnails da imprensa em linha.
+   (A troca mobile/desktop das imagens agora é feita pelo <picture> no HTML.) */
 @media (min-width: 768px) {
-  .about__photo--mobile, .press__logos--mobile { display: none; }
-  .about__photo--desktop, .press__logos--desktop { display: block; }
-
   .press__grid {
     flex-direction: row;
     justify-content: center;
@@ -1078,7 +1114,8 @@ a {
 }
 
 .offer__price-term {
-  color: #34C759;
+  /* Texto pequeno sobre fundo claro: precisa de 4.5:1 (o #34C759 dava 2.19:1) */
+  color: #157F3A;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 20px;
@@ -1099,7 +1136,9 @@ a {
   width: clamp(275px, 211.28px + 15.4669vw, 434px);
   max-width: 100%;
   height: 52px;
-  background-color: #17EB4C;
+  /* Verde escurecido para contraste AA (5.1:1) — o #17EB4C dava apenas 1.61:1,
+     deixando o texto branco quase ilegível no botão mais importante da página */
+  background-color: #0E8B36;
   border: none;
   border-radius: 7px;
   color: white;
