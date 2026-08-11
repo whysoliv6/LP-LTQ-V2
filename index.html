@@ -39,30 +39,36 @@
 
   <link rel="stylesheet" href="css/global.css">
 
-  <!-- Tags de tráfego LTQ — Meta + TikTok + Google Ads + Clarity -->
+  <!-- Meta Pixel — carrega de imediato, fora do bloco adiado abaixo. Com o
+       lazy-load o PageView só saía 2-3,5s depois do load: quem abandonava antes
+       disso não era contabilizado, e as ferramentas de diagnóstico do Meta, que
+       inspecionam a página uma única vez no carregamento, não achavam o pixel.
+       O fbevents.js é injetado como async, então não bloqueia a renderização. -->
+  <script>
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;
+    n=f.fbq=function(){
+      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+    };
+    if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+    t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+  }(window, document, 'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '1020100699335661');
+  fbq('track', 'PageView');
+  </script>
+
+  <!-- Demais tags de tráfego LTQ — TikTok + Google Ads + Clarity -->
   <script>
   (function () {
     var started = false;
 
     function boot() {
       if (started) return; started = true;
-
-      /* ---- Meta Pixel ---- */
-      !function(f,b,e,v,n,t,s){
-        if(f.fbq)return;
-        n=f.fbq=function(){
-          n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-        };
-        if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-        t=b.createElement(e);t.async=!0;t.src=v;
-        s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)
-      }(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-
-      fbq('init', '1020100699335661');
-      fbq('track', 'PageView');
 
       /* ---- TikTok Pixel ---- */
       !function(w,d,t){
