@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada | LTQ Educação</title>
+  <meta name="theme-color" content="#0E4137">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="fonts/fonts.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background-color: #0E4137;
+      font-family: 'Open Sans', sans-serif;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .box { max-width: 520px; }
+
+    .box__code {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(72px, 18vw, 120px);
+      font-weight: 700;
+      line-height: 1;
+      color: #34C759;
+    }
+
+    .box__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .box__text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #E7FFE5;
+      margin-top: 14px;
+    }
+
+    /* Mesmo verde do .cta-button da LP: escolhido por contraste AA com texto
+       branco (5.1:1). Não trocar por um verde mais claro. */
+    .box__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 32px;
+      margin-top: 32px;
+      background-color: #0E8B36;
+      border-radius: 7px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color .2s ease;
+    }
+
+    .box__button:hover,
+    .box__button:focus-visible { background-color: #157F3A; }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <p class="box__code">404</p>
+    <h1 class="box__title">Esta página não existe</h1>
+    <p class="box__text">
+      O endereço que você tentou acessar pode ter sido movido ou digitado
+      incorretamente. Volte para a página principal para conhecer a Planilha
+      de Controle Financeiro.
+    </p>
+    <a class="box__button" href="/">Voltar para a página inicial</a>
+  </main>
+</body>
+</html>
