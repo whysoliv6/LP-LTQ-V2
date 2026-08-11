@@ -1,0 +1,40 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # O Pages publica a pasta inteira, então os arquivos que não fazem parte
+      # do site vão para uma pasta de staging antes de subir. Sem isso iriam ao
+      # ar: as fontes .ttf (nenhuma é usada — o fonts.css só referencia .woff2)
+      # e as páginas internas de teste.
+      # A pasta de destino fica FORA do repositório, senão o cp copiaria ela
+      # dentro de si mesma.
+      - name: Montar pasta de publicação
+        run: |
+          SITE="${{ runner.temp }}/_site"
+          rm -rf "$SITE"; mkdir -p "$SITE"
+          cp -r ./. "$SITE"/
+          rm -rf "$SITE/.git" "$SITE/.github" "$SITE/.claude"
+          rm -f  "$SITE/.gitignore" "$SITE/.nojekyll"
+          rm -f  "$SITE"/fonts/*.ttf
+          rm -f  "$SITE/probe.html" "$SITE/yt-ab.html" "$SITE/og-template.html"
+          echo "Arquivos a publicar: $(find "$SITE" -type f | wc -l)"
+          test -f "$SITE/index.html" || { echo "ERRO: index.html ausente"; exit 1; }
+          test -f "$SITE/404.html"   || { echo "ERRO: 404.html ausente";   exit 1; }
+
+      - name: Publicar no Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{ runner.temp }}/_site --project-name=ltq-lp --branch=main
