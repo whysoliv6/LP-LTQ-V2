@@ -1,0 +1,95 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # O Pages publica a pasta inteira, então os arquivos que não fazem parte
+      # do site vão para uma pasta de staging antes de subir. Sem isso iriam ao
+      # ar: as fontes .ttf (nenhuma é usada — o fonts.css só referencia .woff2)
+      # e as páginas internas de teste.
+      # A pasta de destino fica FORA do repositório, senão o cp copiaria ela
+      # dentro de si mesma.
+      #
+      # O site inteiro vai para dentro de v1/, para que a LP tenha um endereço
+      # com nome de versão (lp.ltqeducacao.com/v1/) e o teste contra uma /v2/
+      # futura fique separado no Pixel, no Clarity e no GA. Todos os caminhos
+      # dentro do index.html são relativos, então nada quebra ao descer um
+      # nível. Os arquivos que o navegador e os buscadores procuram na raiz do
+      # domínio — _redirects, robots.txt, sitemap.xml e a 404 — sobem de volta.
+      #
+      # 31/08/2026: entrou `variante-b/`, o build da outra LP do teste, que sobe
+      # para a raiz como /v2/ e /v3/ com os ativos dela. Detalhes no comentário
+      # do próprio passo, junto do `mv`.
+      - name: Montar pasta de publicação
+        run: |
+          SITE="${{ runner.temp }}/_site"
+          rm -rf "$SITE"; mkdir -p "$SITE/v1"
+          cp -r ./. "$SITE/v1"/
+          rm -rf "$SITE/v1/.git" "$SITE/v1/.github" "$SITE/v1/.claude"
+          rm -f  "$SITE/v1/.gitignore" "$SITE/v1/.nojekyll"
+          rm -f  "$SITE/v1"/fonts/*.ttf
+          rm -f  "$SITE/v1/probe.html" "$SITE/v1/yt-ab.html" "$SITE/v1/og-template.html"
+          mv "$SITE/v1/_redirects"  "$SITE/_redirects"
+          mv "$SITE/v1/robots.txt"  "$SITE/robots.txt"
+          mv "$SITE/v1/sitemap.xml" "$SITE/sitemap.xml"
+          # A 404 do Pages é a da raiz; a cópia em v1/ atende quem errar o
+          # caminho dentro da versão.
+          cp "$SITE/v1/404.html" "$SITE/404.html"
+          # ---- A VARIANTE B DO TESTE: /v2/ e /v3/ ----
+          #
+          # `variante-b/` é o build do repo `ltq-lp-controle-financeiro-b`,
+          # trazido para cá pelo `scripts/publicar-em-lp.sh` de lá. Ele está
+          # neste repositório por um motivo de infra: o Cloudflare Pages não
+          # monta um projeto dentro do caminho de outro, então as três versões
+          # que dividem lp.ltqeducacao.com têm de sair do MESMO deploy.
+          #
+          # O conteúdo dele pertence à RAIZ do domínio, e não a /v1/: as duas
+          # rotas (v2/ e v3/), os ativos que elas compartilham (images/, fonts/,
+          # favicons) e o `_headers`.
+          #
+          # Esse `_headers` prende as regras dele a `/v2/*` e `/v3/*`, e isso
+          # NÃO é detalhe: ele carrega `X-Robots-Tag: noindex`, e um `/*` ali
+          # poria noindex na v1 — que indexa, tem histórico e é a que paga o
+          # tráfego hoje.
+          mv "$SITE/v1/variante-b"/* "$SITE"/
+          rmdir "$SITE/v1/variante-b"
+          echo "Arquivos a publicar: $(find "$SITE" -type f | wc -l)"
+          test -f "$SITE/v1/index.html" || { echo "ERRO: v1/index.html ausente"; exit 1; }
+          test -f "$SITE/404.html"      || { echo "ERRO: 404.html ausente";      exit 1; }
+          test -f "$SITE/_redirects"    || { echo "ERRO: _redirects ausente";    exit 1; }
+          test ! -f "$SITE/index.html"  || { echo "ERRO: sobrou index.html na raiz"; exit 1; }
+          test -f "$SITE/v2/index.html" || { echo "ERRO: v2/index.html ausente"; exit 1; }
+          test -f "$SITE/v3/index.html" || { echo "ERRO: v3/index.html ausente"; exit 1; }
+          test -f "$SITE/_headers"      || { echo "ERRO: _headers ausente";      exit 1; }
+          # O noindex das rotas do teste nunca pode valer para a v1.
+          grep -q '^/v2/\*' "$SITE/_headers" || { echo "ERRO: _headers sem bloco /v2/*"; exit 1; }
+          if grep -q '^/\*' "$SITE/_headers"; then
+            echo "ERRO: _headers com bloco /* — o noindex vazaria para a v1"; exit 1
+          fi
+          # Padrao repetido no _headers do Cloudflare NAO soma: o ultimo bloco
+          # substitui o anterior. Ja aconteceu (31/08/2026): /v2/* escrito duas
+          # vezes fez a rota subir com Cache-Control e SEM CSP e SEM noindex.
+          for rota in '/v2/\*' '/v3/\*'; do
+            n=$(grep -c "^$rota$" "$SITE/_headers" || true)
+            if [ "$n" != "1" ]; then
+              echo "ERRO: _headers tem $n blocos $rota (tem de ser exatamente 1)"; exit 1
+            fi
+          done
+          test ! -d "$SITE/v1/variante-b" || { echo "ERRO: variante-b ficou dentro de v1/"; exit 1; }
+
+      - name: Publicar no Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{ runner.temp }}/_site --project-name=ltq-lp --branch=main

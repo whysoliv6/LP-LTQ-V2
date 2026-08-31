@@ -1,0 +1,107 @@
+# =====================================================================
+# ESTE ARQUIVO VAI PARA A RAIZ DO DOMINIO, E O DOMINIO NAO E SO DESTA
+# PAGINA (31/08/2026)
+#
+# lp.ltqeducacao.com serve TRES sites: /v1 (a LP que ja estava no ar, de
+# outro repositorio) e /v2 e /v3, que sao as duas rotas daqui. Por isso as
+# regras abaixo estao presas a `/v2/*` e `/v3/*`, e NAO a `/*`.
+#
+# Isto e o oposto de um detalhe: um `/*` aqui poria X-Robots-Tag: noindex na
+# LP v1, que indexa, ja tem historico e e a que paga o trafego hoje. Um
+# noindex acidental nela e a pior coisa que este arquivo pode causar.
+#
+# OS DOIS BLOCOS TEM DE FICAR IDENTICOS. O `_headers` do Cloudflare nao tem
+# como incluir um bloco no outro; se mexer em um, mexa no outro na mesma
+# edicao — senao as duas rotas do teste passam a diferir por um motivo que
+# nao e o teste.
+#
+# E CADA ROTA APARECE UMA VEZ SO. Verificado no ar em 31/08/2026, e custou um
+# deploy: com `/v2/*` escrito em dois blocos (um de seguranca, outro de cache),
+# o Cloudflare aplicou SO O ULTIMO. A pagina subiu com Cache-Control e sem CSP
+# e sem X-Robots-Tag — ou seja, a variante B indexavel ao lado da v1, que e
+# exatamente o acidente que este arquivo existe para impedir. Padrao repetido
+# nao soma: substitui. Tudo que valer para uma rota vai no bloco dela.
+# =====================================================================
+
+/v2/*
+  X-Robots-Tag: noindex
+
+  # ---- CABECALHOS DE SEGURANCA (12/08/2026) ----
+  #
+  # Entraram a partir do relatorio do Lighthouse. Nenhum deles muda o que a
+  # pagina faz: ela e estatica, sem formulario, sem cookie e sem terceiro.
+  #
+  # CSP: a pagina tem MUITO script inline (reveal, parallax, counter,
+  # simulador, listas que acendem) por decisao de arquitetura, entao
+  # 'unsafe-inline' e obrigatorio em `script-src` — sem ele a pagina para de
+  # funcionar inteira. O que a CSP entrega aqui e o resto: nenhuma origem
+  # externa de script, nenhum frame, nenhum objeto, e `form-action 'none'`
+  # porque nao existe formulario. `img-src` aceita data: por causa dos
+  # gradientes e do favicon inline.
+  #
+  # 27/08/2026: entrou o Microsoft Clarity (e SO ele — segue sem pixel de
+  # conversao). Por isso `script-src` e `connect-src` deixaram de ser 'self'
+  # puro. As origens sao as documentadas pela Microsoft: o tag script vem de
+  # www.clarity.ms e o upload de sessao vai para *.clarity.ms e c.bing.com.
+  #
+  # 28/08/2026: entrou `frame-src` para os dois depoimentos em video da secao
+  # `DepoimentosVideo`. A pagina segue SEM terceiro na primeira pintura: o card
+  # e uma fachada (poster nosso, de 13 KB) e o <iframe> do youtube-nocookie so
+  # e criado quando alguem clica no play. `default-src 'self'` sozinho barraria
+  # esse iframe, e o bloqueio e SILENCIOSO — o play simplesmente nao faz nada.
+  #
+  # 31/08/2026: ENTRARAM META, TIKTOK E GOOGLE ADS, com os mesmos IDs da LP v1.
+  # A pagina sai do dominio de preview e vai para lp.ltqeducacao.com/v2 e /v3,
+  # no mesmo trafego pago da v1 — variante que nao reporta os mesmos eventos
+  # que a outra nao e comparavel. Ver src/components/Tracking.astro.
+  #
+  # POR QUE `img-src` E `connect-src` VIRARAM `https:` GENERICO, e isso e uma
+  # decisao, nao preguica: tag de campanha ENTREGA evento por imagem e por
+  # fetch, e o caminho da entrega muda por pais, por leilao e por versao do SDK
+  # (o Google Ads sozinho passeia por googleadservices, doubleclick, google.com
+  # e google.<pais>). Enumerar isso e assinar uma lista que envelhece sem avisar
+  # — e o modo de falha e o pior que existe aqui: o evento some EM SILENCIO, a
+  # pagina continua perfeita e o painel fica vazio. Entre uma CSP exata que
+  # quebra a medicao calada e uma CSP larga nesses dois eixos, esta pagina
+  # escolhe medir. Nao ha formulario, nao ha cookie proprio e nao ha dado do
+  # usuario para vazar por `connect-src`.
+  #
+  # `script-src` NAO foi afrouxado: origem de script continua sendo lista
+  # fechada, e e ela que importa contra injecao. Terceiro novo que nao esteja
+  # nessa lista e bloqueado — e o bloqueio e SILENCIOSO para quem so olha a
+  # pagina. Se um painel secar, olhe esta linha ANTES do componente.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  # O HTML e curto de proposito: e ele que muda a cada deploy.
+  Cache-Control: public, max-age=600
+
+# IDENTICO ao bloco /v2/* acima — o porque de cada linha esta la.
+/v3/*
+  X-Robots-Tag: noindex
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  # O HTML e curto de proposito: e ele que muda a cada deploy.
+  Cache-Control: public, max-age=600
+
+# As fontes sao self-hosted e nunca mudam de conteudo sem mudar de nome.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# O cache do HTML mora DENTRO dos blocos /v2/* e /v3/* la de cima, e nao aqui.
+# Ver a nota sobre padrao repetido no cabecalho deste arquivo.

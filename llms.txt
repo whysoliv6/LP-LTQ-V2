@@ -1,0 +1,31 @@
+# Planilha de Controle Financeiro Empresarial — LTQ Educação
+
+> Página de vendas da Planilha de Controle Financeiro da LTQ Educação: uma
+> ferramenta em Excel que permite ao pequeno empreendedor controlar receitas,
+> despesas e fluxo de caixa da empresa sem precisar saber usar planilhas.
+
+A LTQ Educação ajuda pequenos empreendedores a gerenciar suas empresas por meio
+de ferramentas simples e educação financeira. O produto desta página inclui a
+planilha, aulas tutoriais, o treinamento "ABC das Finanças" com mais de 20 aulas,
+suporte por WhatsApp, comunidade VIP e acesso vitalício.
+
+## Detalhes do produto
+
+- Formato: planilha em Microsoft Excel (usa VBA)
+- Compatibilidade: Excel 2013 ou superior, no Windows e no macOS
+- Não funciona no Google Planilhas nem em celular, por depender de VBA
+- Preço: R$ 157,00 à vista ou 12x de R$ 16,24
+- Garantia: 7 dias, com devolução integral
+- Suporte: WhatsApp, de segunda a sexta, das 10h às 17h (horário de Brasília)
+
+## Seções da página
+
+- [Início](https://lp.ltqeducacao.com/v1/#hero): apresentação da ferramenta
+- [Recursos](https://lp.ltqeducacao.com/v1/#tools): o que a planilha oferece
+- [Como funciona](https://lp.ltqeducacao.com/v1/#steps): os 3 passos de uso
+- [O que está incluso](https://lp.ltqeducacao.com/v1/#benefits): bônus e materiais
+- [Depoimentos](https://lp.ltqeducacao.com/v1/#testimonials): relatos de clientes
+- [Quem somos](https://lp.ltqeducacao.com/v1/#about): sobre a LTQ Educação
+- [Oferta](https://lp.ltqeducacao.com/v1/#cta-offer): preço e condições
+- [Garantia](https://lp.ltqeducacao.com/v1/#guarantee): política de reembolso
+- [Perguntas frequentes](https://lp.ltqeducacao.com/v1/#faq): dúvidas comuns
