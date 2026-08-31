@@ -26,6 +26,10 @@ jobs:
       # dentro do index.html são relativos, então nada quebra ao descer um
       # nível. Os arquivos que o navegador e os buscadores procuram na raiz do
       # domínio — _redirects, robots.txt, sitemap.xml e a 404 — sobem de volta.
+      #
+      # 31/08/2026: entrou `variante-b/`, o build da outra LP do teste, que sobe
+      # para a raiz como /v2/ e /v3/ com os ativos dela. Detalhes no comentário
+      # do próprio passo, junto do `mv`.
       - name: Montar pasta de publicação
         run: |
           SITE="${{ runner.temp }}/_site"
@@ -41,11 +45,38 @@ jobs:
           # A 404 do Pages é a da raiz; a cópia em v1/ atende quem errar o
           # caminho dentro da versão.
           cp "$SITE/v1/404.html" "$SITE/404.html"
+          # ---- A VARIANTE B DO TESTE: /v2/ e /v3/ ----
+          #
+          # `variante-b/` é o build do repo `ltq-lp-controle-financeiro-b`,
+          # trazido para cá pelo `scripts/publicar-em-lp.sh` de lá. Ele está
+          # neste repositório por um motivo de infra: o Cloudflare Pages não
+          # monta um projeto dentro do caminho de outro, então as três versões
+          # que dividem lp.ltqeducacao.com têm de sair do MESMO deploy.
+          #
+          # O conteúdo dele pertence à RAIZ do domínio, e não a /v1/: as duas
+          # rotas (v2/ e v3/), os ativos que elas compartilham (images/, fonts/,
+          # favicons) e o `_headers`.
+          #
+          # Esse `_headers` prende as regras dele a `/v2/*` e `/v3/*`, e isso
+          # NÃO é detalhe: ele carrega `X-Robots-Tag: noindex`, e um `/*` ali
+          # poria noindex na v1 — que indexa, tem histórico e é a que paga o
+          # tráfego hoje.
+          mv "$SITE/v1/variante-b"/* "$SITE"/
+          rmdir "$SITE/v1/variante-b"
           echo "Arquivos a publicar: $(find "$SITE" -type f | wc -l)"
           test -f "$SITE/v1/index.html" || { echo "ERRO: v1/index.html ausente"; exit 1; }
           test -f "$SITE/404.html"      || { echo "ERRO: 404.html ausente";      exit 1; }
           test -f "$SITE/_redirects"    || { echo "ERRO: _redirects ausente";    exit 1; }
           test ! -f "$SITE/index.html"  || { echo "ERRO: sobrou index.html na raiz"; exit 1; }
+          test -f "$SITE/v2/index.html" || { echo "ERRO: v2/index.html ausente"; exit 1; }
+          test -f "$SITE/v3/index.html" || { echo "ERRO: v3/index.html ausente"; exit 1; }
+          test -f "$SITE/_headers"      || { echo "ERRO: _headers ausente";      exit 1; }
+          # O noindex das rotas do teste nunca pode valer para a v1.
+          grep -q '^/v2/\*' "$SITE/_headers" || { echo "ERRO: _headers sem bloco /v2/*"; exit 1; }
+          if grep -q '^/\*' "$SITE/_headers"; then
+            echo "ERRO: _headers com bloco /* — o noindex vazaria para a v1"; exit 1
+          fi
+          test ! -d "$SITE/v1/variante-b" || { echo "ERRO: variante-b ficou dentro de v1/"; exit 1; }
 
       - name: Publicar no Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
