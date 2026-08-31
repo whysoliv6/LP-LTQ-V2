@@ -19,18 +19,33 @@ jobs:
       # e as páginas internas de teste.
       # A pasta de destino fica FORA do repositório, senão o cp copiaria ela
       # dentro de si mesma.
+      #
+      # O site inteiro vai para dentro de v1/, para que a LP tenha um endereço
+      # com nome de versão (lp.ltqeducacao.com/v1/) e o teste contra uma /v2/
+      # futura fique separado no Pixel, no Clarity e no GA. Todos os caminhos
+      # dentro do index.html são relativos, então nada quebra ao descer um
+      # nível. Os arquivos que o navegador e os buscadores procuram na raiz do
+      # domínio — _redirects, robots.txt, sitemap.xml e a 404 — sobem de volta.
       - name: Montar pasta de publicação
         run: |
           SITE="${{ runner.temp }}/_site"
-          rm -rf "$SITE"; mkdir -p "$SITE"
-          cp -r ./. "$SITE"/
-          rm -rf "$SITE/.git" "$SITE/.github" "$SITE/.claude"
-          rm -f  "$SITE/.gitignore" "$SITE/.nojekyll"
-          rm -f  "$SITE"/fonts/*.ttf
-          rm -f  "$SITE/probe.html" "$SITE/yt-ab.html" "$SITE/og-template.html"
+          rm -rf "$SITE"; mkdir -p "$SITE/v1"
+          cp -r ./. "$SITE/v1"/
+          rm -rf "$SITE/v1/.git" "$SITE/v1/.github" "$SITE/v1/.claude"
+          rm -f  "$SITE/v1/.gitignore" "$SITE/v1/.nojekyll"
+          rm -f  "$SITE/v1"/fonts/*.ttf
+          rm -f  "$SITE/v1/probe.html" "$SITE/v1/yt-ab.html" "$SITE/v1/og-template.html"
+          mv "$SITE/v1/_redirects"  "$SITE/_redirects"
+          mv "$SITE/v1/robots.txt"  "$SITE/robots.txt"
+          mv "$SITE/v1/sitemap.xml" "$SITE/sitemap.xml"
+          # A 404 do Pages é a da raiz; a cópia em v1/ atende quem errar o
+          # caminho dentro da versão.
+          cp "$SITE/v1/404.html" "$SITE/404.html"
           echo "Arquivos a publicar: $(find "$SITE" -type f | wc -l)"
-          test -f "$SITE/index.html" || { echo "ERRO: index.html ausente"; exit 1; }
-          test -f "$SITE/404.html"   || { echo "ERRO: 404.html ausente";   exit 1; }
+          test -f "$SITE/v1/index.html" || { echo "ERRO: v1/index.html ausente"; exit 1; }
+          test -f "$SITE/404.html"      || { echo "ERRO: 404.html ausente";      exit 1; }
+          test -f "$SITE/_redirects"    || { echo "ERRO: _redirects ausente";    exit 1; }
+          test ! -f "$SITE/index.html"  || { echo "ERRO: sobrou index.html na raiz"; exit 1; }
 
       - name: Publicar no Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

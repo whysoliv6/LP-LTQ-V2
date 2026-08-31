@@ -1,0 +1,7 @@
+# A LP passou a morar em /v1/ para dar nome à versão nos testes.
+# A raiz redireciona para lá, senão os anúncios e links já publicados
+# apontando para lp.ltqeducacao.com cairiam em 404.
+# 302 (temporário) de propósito: quando existir uma /v2/, ou quando a raiz
+# virar o sorteio entre versões, um 301 já estaria cacheado no navegador
+# de quem entrou uma vez.
+/    /v1/    302

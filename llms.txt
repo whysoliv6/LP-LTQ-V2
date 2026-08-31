@@ -20,12 +20,12 @@ suporte por WhatsApp, comunidade VIP e acesso vitalício.
 
 ## Seções da página
 
-- [Início](https://lp.ltqeducacao.com/#hero): apresentação da ferramenta
-- [Recursos](https://lp.ltqeducacao.com/#tools): o que a planilha oferece
-- [Como funciona](https://lp.ltqeducacao.com/#steps): os 3 passos de uso
-- [O que está incluso](https://lp.ltqeducacao.com/#benefits): bônus e materiais
-- [Depoimentos](https://lp.ltqeducacao.com/#testimonials): relatos de clientes
-- [Quem somos](https://lp.ltqeducacao.com/#about): sobre a LTQ Educação
-- [Oferta](https://lp.ltqeducacao.com/#cta-offer): preço e condições
-- [Garantia](https://lp.ltqeducacao.com/#guarantee): política de reembolso
-- [Perguntas frequentes](https://lp.ltqeducacao.com/#faq): dúvidas comuns
+- [Início](https://lp.ltqeducacao.com/v1/#hero): apresentação da ferramenta
+- [Recursos](https://lp.ltqeducacao.com/v1/#tools): o que a planilha oferece
+- [Como funciona](https://lp.ltqeducacao.com/v1/#steps): os 3 passos de uso
+- [O que está incluso](https://lp.ltqeducacao.com/v1/#benefits): bônus e materiais
+- [Depoimentos](https://lp.ltqeducacao.com/v1/#testimonials): relatos de clientes
+- [Quem somos](https://lp.ltqeducacao.com/v1/#about): sobre a LTQ Educação
+- [Oferta](https://lp.ltqeducacao.com/v1/#cta-offer): preço e condições
+- [Garantia](https://lp.ltqeducacao.com/v1/#guarantee): política de reembolso
+- [Perguntas frequentes](https://lp.ltqeducacao.com/v1/#faq): dúvidas comuns
