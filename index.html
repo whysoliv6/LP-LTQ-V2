@@ -19,9 +19,22 @@
        o apple-touch-icon e o que o iOS grava quando alguem adiciona a pagina
        a tela de inicio. Caminhos RELATIVOS, como todo o resto deste arquivo:
        o site inteiro e publicado dentro de /v1/. -->
-  <link rel="icon" href="favicon.ico" sizes="32x32">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- O `?v=2` NAO e decoracao. O favicon anterior (o quadrado verde
+       provisorio) foi servido nesta MESMA URL com
+       `Cache-Control: max-age=14400` — padrao do Cloudflare Pages para ativo
+       estatico. Quem abriu a /v1/ antes da troca tem o arquivo velho marcado
+       como fresco por 4 horas, e o navegador nem pergunta ao servidor nesse
+       intervalo. Trocar o conteudo do arquivo nao resolve; trocar a URL sim.
+
+       Favicon ainda e pior que o resto: o Chrome guarda um banco proprio de
+       icones, com validade que nao acompanha o cache HTTP. Versionar a URL e
+       a unica forma de acertar todo mundo de uma vez, e nao so quem limpar o
+       cache na mao.
+
+       Ao trocar o desenho de novo, INCREMENTE o numero. -->
+  <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 
   <!-- Open Graph / compartilhamento em WhatsApp, Facebook e Instagram -->
   <meta property="og:type" content="website">
