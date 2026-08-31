@@ -76,6 +76,15 @@ jobs:
           if grep -q '^/\*' "$SITE/_headers"; then
             echo "ERRO: _headers com bloco /* — o noindex vazaria para a v1"; exit 1
           fi
+          # Padrao repetido no _headers do Cloudflare NAO soma: o ultimo bloco
+          # substitui o anterior. Ja aconteceu (31/08/2026): /v2/* escrito duas
+          # vezes fez a rota subir com Cache-Control e SEM CSP e SEM noindex.
+          for rota in '/v2/\*' '/v3/\*'; do
+            n=$(grep -c "^$rota$" "$SITE/_headers" || true)
+            if [ "$n" != "1" ]; then
+              echo "ERRO: _headers tem $n blocos $rota (tem de ser exatamente 1)"; exit 1
+            fi
+          done
           test ! -d "$SITE/v1/variante-b" || { echo "ERRO: variante-b ficou dentro de v1/"; exit 1; }
 
       - name: Publicar no Cloudflare Pages
