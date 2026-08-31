@@ -8,8 +8,20 @@
   <meta name="theme-color" content="#0E4137">
   <link rel="canonical" href="https://lp.ltqeducacao.com/v1/">
 
-  <!-- Favicon -->
+  <!-- Favicon: o SELO DA LTQ, o mesmo que /v2, /v3, os dois upsells e o link
+       in bio ja usam. Era um quadrado verde com um traco de grafico, desenhado
+       como provisorio e nunca trocado — a v1 era a unica pagina da casa que
+       nao mostrava a marca na aba.
+
+       Os tres formatos existem porque nem todo lugar le SVG: o .ico atende
+       navegador antigo e o atalho de area de trabalho do Windows, o .svg e o
+       que o Chrome e o Firefox usam de fato (nitido em qualquer densidade), e
+       o apple-touch-icon e o que o iOS grava quando alguem adiciona a pagina
+       a tela de inicio. Caminhos RELATIVOS, como todo o resto deste arquivo:
+       o site inteiro e publicado dentro de /v1/. -->
+  <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <!-- Open Graph / compartilhamento em WhatsApp, Facebook e Instagram -->
   <meta property="og:type" content="website">
