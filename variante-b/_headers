@@ -10,10 +10,14 @@
 # LP v1, que indexa, ja tem historico e e a que paga o trafego hoje. Um
 # noindex acidental nela e a pior coisa que este arquivo pode causar.
 #
-# OS DOIS BLOCOS TEM DE FICAR IDENTICOS. O `_headers` do Cloudflare nao tem
-# como incluir um bloco no outro; se mexer em um, mexa no outro na mesma
-# edicao — senao as duas rotas do teste passam a diferir por um motivo que
-# nao e o teste.
+# 17/09/2026: SOBROU UM BLOCO SO. Havia dois, /v2/* e /v3/*, que tinham de
+# ficar identicos na mao. A rota /v2 foi desligada e quem atende ela agora e o
+# `_redirects` do repo LP-LTQ-V2, com 302 para /v3/ — entao nao existe mais
+# nada para manter em sincronia aqui.
+#
+# >>> E O REDIRECT SO FUNCIONA PORQUE O BUILD NAO EMITE MAIS `v2/index.html`.
+# >>> Se a rota voltar, este bloco tem de voltar junto: rota servindo HTML sem
+# >>> `X-Robots-Tag: noindex` e a variante B indexavel ao lado da v1.
 #
 # E CADA ROTA APARECE UMA VEZ SO. Verificado no ar em 31/08/2026, e custou um
 # deploy: com `/v2/*` escrito em dois blocos (um de seguranca, outro de cache),
@@ -22,9 +26,6 @@
 # exatamente o acidente que este arquivo existe para impedir. Padrao repetido
 # nao soma: substitui. Tudo que valer para uma rota vai no bloco dela.
 # =====================================================================
-
-/v2/*
-  X-Robots-Tag: noindex
 
   # ---- CABECALHOS DE SEGURANCA (12/08/2026) ----
   #
@@ -70,17 +71,7 @@
   # fechada, e e ela que importa contra injecao. Terceiro novo que nao esteja
   # nessa lista e bloqueado — e o bloqueio e SILENCIOSO para quem so olha a
   # pagina. Se um painel secar, olhe esta linha ANTES do componente.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Cross-Origin-Opener-Policy: same-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   # O HTML e curto de proposito: e ele que muda a cada deploy.
-  Cache-Control: public, max-age=600
-
-# IDENTICO ao bloco /v2/* acima — o porque de cada linha esta la.
 /v3/*
   X-Robots-Tag: noindex
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
