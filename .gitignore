@@ -1,3 +1,9 @@
 .claude/
 .DS_Store
 Thumbs.db
+
+# Segredos - nunca versionar
+.env
+.env.*
+*.env
+.dev.vars

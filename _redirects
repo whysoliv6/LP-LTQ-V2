@@ -1,0 +1,26 @@
+# A LP passou a morar em /v1/ para dar nome à versão nos testes.
+# A raiz redireciona para lá, senão os anúncios e links já publicados
+# apontando para lp.ltqeducacao.com cairiam em 404.
+# 302 (temporário) de propósito: quando existir uma /v2/, ou quando a raiz
+# virar o sorteio entre versões, um 301 já estaria cacheado no navegador
+# de quem entrou uma vez.
+/    /v1/    302
+
+# ---- A /v2 SAIU DO AR EM 18/09/2026 ----
+#
+# Ela e a /v3 eram a mesma pagina: depois que o trilho de scroll do simulador
+# saiu da /v2, o HTML das duas era identico byte a byte fora o canonical. Duas
+# URLs com a mesma oferta e conteudo duplicado esperando o `noindex` cair.
+#
+# E 302, e nao 301, pela MESMA razao do redirect da raiz logo acima: se a /v2
+# voltar um dia para um teste novo, um 301 ja estaria cacheado no navegador de
+# quem entrou uma vez, e nao ha como pedir de volta.
+#
+# >>> ELE SO FUNCIONA PORQUE `variante-b/v2/` DEIXOU DE EXISTIR. <<<
+# O build do repo `ltq-lp-controle-financeiro-b` nao emite mais aquela rota. Se
+# um arquivo estatico voltar a ocupar esse caminho, o Pages pode servi-lo antes
+# de olhar para este arquivo — e o redirect passa a nao fazer nada, em silencio.
+#
+# `:splat` preserva o que vier depois, entao /v2/qualquer-coisa tambem cai
+# no lugar certo em vez de dar 404 para quem tem um link antigo mais fundo.
+/v2/*    /v3/:splat    302
