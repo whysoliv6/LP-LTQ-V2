@@ -53,11 +53,12 @@ jobs:
           # monta um projeto dentro do caminho de outro, então as três versões
           # que dividem lp.ltqeducacao.com têm de sair do MESMO deploy.
           #
-          # O conteúdo dele pertence à RAIZ do domínio, e não a /v1/: as duas
-          # rotas (v2/ e v3/), os ativos que elas compartilham (images/, fonts/,
-          # favicons) e o `_headers`.
+          # O conteúdo dele pertence à RAIZ do domínio, e não a /v1/: a rota
+          # v3/, os ativos dela (images/, fonts/, favicons) e o `_headers`.
+          # Eram DUAS rotas até 18/09/2026; a /v2 foi desligada e virou um
+          # redirect 302 no `_redirects`.
           #
-          # Esse `_headers` prende as regras dele a `/v2/*` e `/v3/*`, e isso
+          # Esse `_headers` prende as regras dele a `/v3/*`, e isso
           # NÃO é detalhe: ele carrega `X-Robots-Tag: noindex`, e um `/*` ali
           # poria noindex na v1 — que indexa, tem histórico e é a que paga o
           # tráfego hoje.
@@ -68,18 +69,31 @@ jobs:
           test -f "$SITE/404.html"      || { echo "ERRO: 404.html ausente";      exit 1; }
           test -f "$SITE/_redirects"    || { echo "ERRO: _redirects ausente";    exit 1; }
           test ! -f "$SITE/index.html"  || { echo "ERRO: sobrou index.html na raiz"; exit 1; }
-          test -f "$SITE/v2/index.html" || { echo "ERRO: v2/index.html ausente"; exit 1; }
           test -f "$SITE/v3/index.html" || { echo "ERRO: v3/index.html ausente"; exit 1; }
           test -f "$SITE/_headers"      || { echo "ERRO: _headers ausente";      exit 1; }
+          # ---- A /v2 SAIU DO AR EM 18/09/2026 ----
+          #
+          # Estas tres linhas exigiam v2/index.html e um bloco /v2/* no
+          # _headers. Elas BARRARAM o primeiro deploy sem a rota, que e o que
+          # deviam fazer — guard que nao trava quando a premissa muda nao e
+          # guard. Viraram o inverso: agora exigem que a rota NAO exista.
+          #
+          # O redirect /v2/* -> /v3/ vive no `_redirects`, e ele so funciona
+          # porque nao ha arquivo estatico naquele caminho: o Pages pode servir
+          # o arquivo antes de olhar o redirect, e o redirect passa a nao fazer
+          # nada em silencio. E por isso que isto e verificado aqui, e nao
+          # confiado ao build do outro repo.
+          test ! -e "$SITE/v2"          || { echo "ERRO: v2/ voltou a ser publicado — o redirect para /v3 para de valer"; exit 1; }
+          grep -q '^/v2/\*' "$SITE/_redirects" || { echo "ERRO: _redirects sem a regra /v2/*"; exit 1; }
           # O noindex das rotas do teste nunca pode valer para a v1.
-          grep -q '^/v2/\*' "$SITE/_headers" || { echo "ERRO: _headers sem bloco /v2/*"; exit 1; }
           if grep -q '^/\*' "$SITE/_headers"; then
             echo "ERRO: _headers com bloco /* — o noindex vazaria para a v1"; exit 1
           fi
+          grep -q '^/v3/\*' "$SITE/_headers" || { echo "ERRO: _headers sem bloco /v3/*"; exit 1; }
           # Padrao repetido no _headers do Cloudflare NAO soma: o ultimo bloco
           # substitui o anterior. Ja aconteceu (31/08/2026): /v2/* escrito duas
           # vezes fez a rota subir com Cache-Control e SEM CSP e SEM noindex.
-          for rota in '/v2/\*' '/v3/\*'; do
+          for rota in '/v3/\*'; do
             n=$(grep -c "^$rota$" "$SITE/_headers" || true)
             if [ "$n" != "1" ]; then
               echo "ERRO: _headers tem $n blocos $rota (tem de ser exatamente 1)"; exit 1
