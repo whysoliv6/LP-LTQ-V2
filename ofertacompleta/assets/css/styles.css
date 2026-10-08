@@ -516,30 +516,52 @@ h4, .h4 {
 /* As três fotos têm proporções diferentes (613x860, 618x860,
    593x860). Sem faixa de altura fixa, cada cartão começa o texto
    numa altura e a fileira desalinha. */
+/* A banda e o campo de cor atras do recorte. Altura por `aspect-ratio`,
+   e `position: relative` porque a foto dentro dela e ABSOLUTA. */
 .segment__photo {
+  position: relative;
   background: var(--menta);
-  display: grid; place-items: end center;
-  /* Banda QUADRADA. Era 4/3.1, deitada, e com `cover` isso quebrava no
-     celular: ali o cartao ocupa a largura toda, a banda fica bem mais
-     larga que alta, e `cover` amplia o recorte ate caber na largura —
-     sobrava testa e cabelo, a pessoa saia pelos quatro lados. No
-     desktop, com o cartao a um terco, o mesmo calculo dava um
-     enquadramento aceitavel, e por isso o defeito so aparecia no
-     telefone. */
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
-/* `contain`, e nao `cover`: estas tres fotos sao RECORTES com fundo
-   transparente, nao fotografias de cena. Recorte pede a pessoa inteira
-   pousada no campo de cor; cortar um recorte na altura do peito e o que
-   fazia a imagem parecer bugada. Ancorado embaixo, a pessoa fica em pe
-   na base do cartao e a menta aparece em volta, que e como os recortes
-   sao usados na home da LTQ, de onde eles vieram. */
+
+/* A FOTO E ABSOLUTA, E ISSO NAO E ESTILO: E O CONSERTO.
+   Medido a 375px em 08/10/2026, com a foto em fluxo normal:
+   banda 333x333, caixa da imagem 333x467, TRANSBORDANDO 134px.
+
+   O `height: 100%` nao resolvia. A altura da banda vem de
+   `aspect-ratio`, e contra isso a porcentagem do filho nao acha um
+   valor definido: ela cai para `auto`, e entao a imagem passa a medir a
+   altura do proprio formato (613x860 esticado para 333 de largura da
+   467). Com `object-position: bottom`, o conteudo ia para o fim dessa
+   caixa transbordada, ou seja, para FORA da area visivel — sobrava o
+   alto da cabeca encostado na borda de baixo. Foi o que apareceu no
+   iPhone, e nao aparecia no meu teste porque o Chrome headless nao
+   desce de 500px de viewport: a 500px o estrago era pequeno demais para
+   eu notar.
+
+   Tirar o `place-items` para devolver o `stretch` do grid NAO resolveu:
+   medido, a caixa continuou 467. Com `position: absolute` e `inset: 0`
+   a caixa passa a ser exatamente a da banda, sem porcentagem nenhuma no
+   meio, e o `object-fit` volta a mandar.
+
+   `contain`, e nao `cover`, porque sao RECORTES com fundo transparente:
+   recorte pede a pessoa inteira pousada no campo de cor. */
 .segment__photo img {
-  width: 100%; height: 100%;
+  position: absolute;
+  inset: 0;
+  /* `inset: 0` SOZINHO nao estica uma <img>: elemento substituido com
+     left/right/top/bottom a zero e largura `auto` fica no tamanho
+     intrinseco, porque o `auto` do substituido e o formato dele, nao o
+     espaco disponivel. Medido: a caixa continuava 333x467. Com largura e
+     altura explicitas, a porcentagem resolve contra a caixa do bloco
+     que o contem, que aqui tem altura definida pelo `aspect-ratio`. */
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: bottom center;
 }
+
 .segment__body { padding: var(--space-lg) var(--space-xl) var(--space-xl); }
 .segment__body p { color: var(--tinta-suave); margin-top: var(--space-xs); }
 
