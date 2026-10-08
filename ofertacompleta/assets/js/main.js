@@ -10,23 +10,19 @@
 
   /* -----------------------------------------------------------
      1 · CHECKOUT
-     ÚNICO lugar da página onde o link de compra é definido.
-     Enquanto estiver vazio, todo CTA rola para a seção da oferta.
-     Assim que a direção passar o link da oferta combinada, cole
-     aqui e todos os botões passam a apontar para ele.
-     ----------------------------------------------------------- */
-  var CHECKOUT_URL = "";
+     O link de compra SAIU DAQUI em 08/10/2026 e foi para o `href`
+     dos três botões no HTML (`grep -n js-checkout index.html`).
 
-  if (CHECKOUT_URL) {
-    document.querySelectorAll(".js-checkout").forEach(function (a) {
-      a.href = CHECKOUT_URL;
-      a.removeAttribute("data-checkout-pending");
-    });
-  } else {
-    document.querySelectorAll(".js-checkout").forEach(function (a) {
-      a.setAttribute("data-checkout-pending", "true");
-    });
-  }
+     Enquanto não existia link, morar numa constante aqui fazia
+     sentido: era um lugar só para preencher. Agora que a página
+     vende de verdade, botão de compra que depende de JavaScript é
+     risco que não se paga — se o script falhar ou demorar, o
+     clique não leva a lugar nenhum e ninguém fica sabendo. No
+     `href` ele funciona antes de qualquer script rodar.
+
+     Para trocar a URL: são três ocorrências no HTML, e o `&` ali
+     precisa estar escrito `&amp;`, senão o parser come o `utm_source`.
+     ----------------------------------------------------------- */
 
   /* -----------------------------------------------------------
      2 · ABAS DAS TRILHAS

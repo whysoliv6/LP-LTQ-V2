@@ -519,10 +519,27 @@ h4, .h4 {
 .segment__photo {
   background: var(--menta);
   display: grid; place-items: end center;
-  aspect-ratio: 4 / 3.1;
+  /* Banda QUADRADA. Era 4/3.1, deitada, e com `cover` isso quebrava no
+     celular: ali o cartao ocupa a largura toda, a banda fica bem mais
+     larga que alta, e `cover` amplia o recorte ate caber na largura —
+     sobrava testa e cabelo, a pessoa saia pelos quatro lados. No
+     desktop, com o cartao a um terco, o mesmo calculo dava um
+     enquadramento aceitavel, e por isso o defeito so aparecia no
+     telefone. */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
-.segment__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+/* `contain`, e nao `cover`: estas tres fotos sao RECORTES com fundo
+   transparente, nao fotografias de cena. Recorte pede a pessoa inteira
+   pousada no campo de cor; cortar um recorte na altura do peito e o que
+   fazia a imagem parecer bugada. Ancorado embaixo, a pessoa fica em pe
+   na base do cartao e a menta aparece em volta, que e como os recortes
+   sao usados na home da LTQ, de onde eles vieram. */
+.segment__photo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
 .segment__body { padding: var(--space-lg) var(--space-xl) var(--space-xl); }
 .segment__body p { color: var(--tinta-suave); margin-top: var(--space-xs); }
 
@@ -762,15 +779,6 @@ h4, .h4 {
 }
 .warranty__body > * + * { margin-top: var(--space-md); }
 
-/* =============================================================
-   11 · DEPOIMENTOS
-   ============================================================= */
-.testimonial { display: flex; flex-direction: column; gap: var(--space-lg); height: 100%; }
-.testimonial blockquote { font-size: var(--font-size-body-lg); line-height: var(--line-height-body-lg); color: var(--tinta); }
-.testimonial figcaption { display: flex; align-items: center; gap: var(--space-sm); margin-top: auto; }
-.testimonial img { width: 48px; height: 48px; border-radius: var(--radius-pill); object-fit: cover; flex: none; }
-.testimonial cite { font-style: normal; display: block; font-weight: var(--font-weight-bold); color: var(--tinta); }
-.testimonial small { color: var(--tinta-suave); font-size: var(--font-size-sm); }
 
 /* -------------------------------------------------------------
    MURAL DE PRINTS   (pedido 10 do PDF de 07/10/2026)
