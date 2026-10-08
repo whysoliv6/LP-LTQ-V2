@@ -584,11 +584,6 @@ h4, .h4 {
   font-variant-numeric: tabular-nums;
 }
 
-/* =============================================================
-   7 · COMUNIDADE
-   ============================================================= */
-.shots { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
-.shots img { width: 100%; border-radius: var(--raio-caixa); box-shadow: var(--elevacao); }
 
 /* =============================================================
    8 · É PARA QUEM   (primeiro bloco inserido)
