@@ -64,6 +64,23 @@ jobs:
           # tráfego hoje.
           mv "$SITE/v1/variante-b"/* "$SITE"/
           rmdir "$SITE/v1/variante-b"
+          # ---- A LP DA OFERTA COMPLETA: /ofertacompleta/ ----
+          #
+          # 08/10/2026. Mesma razao de infra da variante-b: o Pages nao monta
+          # um projeto dentro do caminho de outro, entao a rota tem de sair
+          # DESTE deploy. A fonte dela e
+          # `4-institucional/ltq-lp-oferta-completa` (repo proprio,
+          # whysoliv6/ltq-lp-oferta-completa); esta pasta e uma copia do que
+          # vai para o ar, sem README e sem ativo que o HTML nao referencia.
+          #
+          # O `_headers-bloco` e ANEXADO ao `_headers` da raiz e some antes de
+          # publicar. Ele nao e escrito direto naquele arquivo porque o
+          # `_headers` mora em `variante-b/`, que o outro repo sobrescreve: um
+          # bloco escrito la sumiria no proximo sync, em silencio, e a rota
+          # perderia o noindex. O porque completo esta no proprio arquivo.
+          mv "$SITE/v1/ofertacompleta" "$SITE/ofertacompleta"
+          cat "$SITE/ofertacompleta/_headers-bloco" >> "$SITE/_headers"
+          rm  "$SITE/ofertacompleta/_headers-bloco"
           echo "Arquivos a publicar: $(find "$SITE" -type f | wc -l)"
           test -f "$SITE/v1/index.html" || { echo "ERRO: v1/index.html ausente"; exit 1; }
           test -f "$SITE/404.html"      || { echo "ERRO: 404.html ausente";      exit 1; }
@@ -71,6 +88,9 @@ jobs:
           test ! -f "$SITE/index.html"  || { echo "ERRO: sobrou index.html na raiz"; exit 1; }
           test -f "$SITE/v3/index.html" || { echo "ERRO: v3/index.html ausente"; exit 1; }
           test -f "$SITE/_headers"      || { echo "ERRO: _headers ausente";      exit 1; }
+          test -f "$SITE/ofertacompleta/index.html" || { echo "ERRO: ofertacompleta/index.html ausente"; exit 1; }
+          test ! -e "$SITE/ofertacompleta/_headers-bloco" || { echo "ERRO: o _headers-bloco ia para o ar"; exit 1; }
+          test ! -d "$SITE/v1/ofertacompleta" || { echo "ERRO: ofertacompleta ficou dentro de v1/"; exit 1; }
           # ---- A /v2 SAIU DO AR EM 18/09/2026 ----
           #
           # Estas tres linhas exigiam v2/index.html e um bloco /v2/* no
@@ -93,7 +113,7 @@ jobs:
           # Padrao repetido no _headers do Cloudflare NAO soma: o ultimo bloco
           # substitui o anterior. Ja aconteceu (31/08/2026): /v2/* escrito duas
           # vezes fez a rota subir com Cache-Control e SEM CSP e SEM noindex.
-          for rota in '/v3/\*'; do
+          for rota in '/v3/\*' '/ofertacompleta/\*'; do
             n=$(grep -c "^$rota$" "$SITE/_headers" || true)
             if [ "$n" != "1" ]; then
               echo "ERRO: _headers tem $n blocos $rota (tem de ser exatamente 1)"; exit 1
