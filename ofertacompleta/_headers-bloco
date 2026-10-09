@@ -25,13 +25,32 @@
   # proprio HTML diz o mesmo; este cabecalho e a segunda tranca, porque a
   # meta se perde se alguem servir o HTML por outro caminho.
   X-Robots-Tag: noindex
-  # CSP: a pagina e estatica, sem formulario, sem cookie e SEM pixel.
-  # 'unsafe-inline' em script-src e obrigatorio por causa do script do
-  # <head> que poe a classe `js` antes da primeira pintura. O resto e
-  # fechado: nenhuma origem externa de script, nenhum frame, nenhum
-  # objeto, e form-action 'none' porque nao existe formulario.
-  # As duas origens do Google atendem a fonte (Archivo e Inter Tight).
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-src 'none'; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  # CSP. ABERTA EM 09/10/2026 PARA AS QUATRO TAGS DE TRAFEGO.
+  #
+  # Ate aqui a pagina nao media nada e a CSP era fechada em 'self'. Com
+  # Meta, TikTok, Google Ads e Clarity entrando, cada origem precisa
+  # estar listada: o bloqueio de CSP e SILENCIOSO, a pagina funciona
+  # igual e os quatro paineis ficam vazios para sempre.
+  #
+  # 'unsafe-inline' em script-src continua obrigatorio: os snippets das
+  # tags sao inline, e tambem o script do <head> que poe a classe `js`.
+  #
+  # POR QUE `img-src` E `connect-src` SAO `https:` GENERICO, e isso e
+  # decisao e nao preguica: tag de campanha ENTREGA evento por imagem e
+  # por fetch, e o caminho muda por pais, por leilao e por versao do SDK
+  # (o Google Ads sozinho passeia por googleadservices, doubleclick,
+  # google.com e google.<pais>). Enumerar isso e assinar uma lista que
+  # envelhece sem avisar, e o modo de falha e o pior: o evento some EM
+  # SILENCIO. Mesma escolha ja feita na /v3 deste dominio.
+  #
+  # `script-src` NAO foi afrouxado: origem de script continua lista
+  # fechada, e e ela que importa contra injecao.
+  #
+  # `frame-src` deixou de ser 'none' por causa do Meta e do Google Ads,
+  # que abrem iframe de medicao.
+  #
+  # `form-action 'none'` continua: nao existe formulario nesta pagina.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.clarity.ms https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY

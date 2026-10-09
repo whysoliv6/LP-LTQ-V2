@@ -33,6 +33,132 @@
 <!-- Marca o documento antes da primeira pintura: todo estado inicial escondido
      mora atrás da classe .js. Sem JS, a página nasce visível. -->
 <script>document.documentElement.classList.add("js");</script>
+<!-- ============================================================
+     TAGS DE TRÁFEGO · entraram em 09/10/2026, a pedido do Thiago
+     ------------------------------------------------------------
+     As QUATRO da casa, com os IDs de conta (os mesmos de toda a LTQ):
+     Meta 1020100699335661 · TikTok CSPNDJ3C77U9T3GK0QHG ·
+     Google Ads AW-17490589345 · Clarity y4vyndnsr4.
+
+     Esta página é a única da fila de hoje que entra com as quatro, e
+     não só com o Clarity: ela VENDE. Sem pixel de conversão dá para
+     medir comportamento, mas não para otimizar campanha nem atribuir
+     venda. Os sites de parceira seguem só com Clarity, por decisão.
+
+     SÓ DISPARA EM lp.ltqeducacao.com. O repositório de origem também
+     publica um preview em `ltq-lp-oferta-completa.pages.dev`, e
+     PageView de preview caindo na conta real suja o número sem avisar.
+     A trava é por hostname porque esta página não tem build: não há
+     onde pôr variável de ambiente.
+
+     A ORDEM É A DO GUIA: Meta, TikTok, Google Ads, Clarity.
+
+     O META FICA FORA DO ADIAMENTO, de propósito, e isso DIVERGE do
+     guia (que manda adiar os quatro). O motivo é comparabilidade: a
+     /v1 deste mesmo domínio dispara o Meta imediato, e as duas páginas
+     recebem as mesmas campanhas. Se uma contasse PageView na primeira
+     pintura e a outra só na ociosidade, a diferença de bounce rápido
+     entraria no número e as duas deixariam de ser comparáveis.
+
+     >>> A CSP VIVE EM `_headers-bloco`, NO REPO LP-LTQ-V2, e foi
+     >>> aberta no mesmo commit. Sem as origens listadas lá o navegador
+     >>> bloqueia tudo isto SEM BARULHO NENHUM: a página funciona igual
+     >>> e os painéis ficam vazios para sempre.
+     ============================================================ -->
+<script>
+(function () {
+  if (location.hostname !== 'lp.ltqeducacao.com') return;
+
+  /* ---- Meta Pixel (imediato, ver nota acima) ---- */
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1020100699335661');
+  fbq('track', 'PageView');
+
+  /* ---- As outras três sobem na ociosidade ou na primeira interação,
+         para não disputar a primeira pintura. ---- */
+  var started = false;
+
+  function boot() {
+    if (started) return; started = true;
+
+    /* ---- TikTok Pixel ---- */
+    !function(w,d,t){
+      w.TiktokAnalyticsObject=t;
+      var ttq=w[t]=w[t]||[];
+      ttq.methods=["page","track","identify","instances","debug","on","off",
+        "once","ready","alias","group","enableCookie","disableCookie"];
+      ttq.setAndDefer=function(t,e){
+        t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};
+      };
+      for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+      ttq.instance=function(t){
+        for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)
+          ttq.setAndDefer(e,ttq.methods[n]);
+        return e;
+      };
+      ttq.load=function(e,n){
+        var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;
+        ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+        ttq._o=ttq._o||{};ttq._o[e]=n||{};
+        var o=d.createElement("script");
+        o.type="text/javascript";o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;
+        var a=d.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(o,a);
+      };
+    }(window, document, 'ttq');
+    ttq.load('CSPNDJ3C77U9T3GK0QHG');
+    ttq.page();
+
+    /* ---- Google Ads (gtag) ---- */
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17490589345';
+    document.head.appendChild(g);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'AW-17490589345');
+
+    /* ---- Microsoft Clarity ----
+       `y4vyndnsr4` é o projeto único da LTQ, que recebe a /v1, a /v3, os
+       dois upsells, o midoces e agora esta página. No painel a sessão
+       daqui chega misturada com a das outras: filtre por URL. */
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;
+      t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y4vyndnsr4");
+  }
+
+  function schedule() {
+    var fired = false;
+    function go(){ if (fired) return; fired = true; boot(); }
+    if ('requestIdleCallback' in window)
+      requestIdleCallback(go, { timeout: 3500 });
+    else setTimeout(go, 2000);
+    ['pointerdown','keydown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev, go, { once:true, passive:true });
+    });
+  }
+
+  if (document.readyState === 'complete') schedule();
+  else window.addEventListener('load', schedule, { once:true });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1020100699335661&amp;ev=PageView&amp;noscript=1"
+alt=""/></noscript>
 </head>
 
 <body>
