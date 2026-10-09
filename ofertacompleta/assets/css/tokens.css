@@ -1,0 +1,234 @@
+/* =============================================================
+   LTQ EDUCAÇÃO · LP DA OFERTA COMPLETA
+   tokens.css · fonte única de verdade do design system da página
+
+   -------------------------------------------------------------
+   REBRANDING 2026 · 07/10/2026
+   -------------------------------------------------------------
+   Até aqui esta página vestia o `_marca/ds-ltq-sites` (verde
+   #0ACE97, petróleo #0A2F28, Manrope). Agora ela veste o
+   REBRANDING:
+
+       _marca/ds-ltq-oficial-rebranding/
+         LTQ-design-system-rebranding-2026/tokens/tokens.css
+
+   O bloco 1 abaixo é CÓPIA LITERAL dos primitivos daquele
+   arquivo, com os mesmos nomes `--ltq-*`. Não edite valor nenhum
+   ali: edite no bundle da marca e recopie aqui.
+
+   O bloco 2 é a camada desta página: os nomes antigos
+   (--papel, --nevoa, --menta, --bloco, --tinta…) continuam de pé,
+   porque é por eles que o styles.css inteiro fala. O que mudou
+   foi para onde cada um aponta.
+
+   REGRA QUE NÃO MUDA: nenhum HEX solto no styles.css. Tudo sai
+   daqui.
+   ============================================================= */
+
+
+/* =============================================================
+   1 · PRIMITIVOS DA MARCA  (cópia do bundle do rebranding)
+   ============================================================= */
+:root {
+  --ltq-verde-noite: #08150F;
+  --ltq-verde-mata-profunda: #0B1C15;
+  --ltq-verde-mata-funda: #0D2018;
+  --ltq-verde-mata: #0F241B;        /* fundo principal */
+  --ltq-verde-musgo: #1B4030;       /* linhas */
+  --ltq-verde-pinho: #083B28;       /* verde de TEXTO sobre fundo claro */
+  --ltq-verde-vivo: #4ADD82;        /* verde da marca */
+  --ltq-verde-folha: #2FB964;
+  --ltq-verde-agua: #B9D2C7;
+  --ltq-neutro-branco: #FFFFFF;
+  --ltq-neutro-nevoa: #DDE6EA;
+  --ltq-produto-fd-verde: #28A445;
+  --ltq-produto-fd-petroleo: #0B2124;
+  --ltq-produto-pp-lima: #E1FF7D;
+  --ltq-produto-pp-grafite: #151C19;
+
+  /* Fontes do rebranding.
+     Display: Archivo no eixo de largura 62,5 (ExtraCondensed),
+     SEMPRE em caixa alta, entrelinha 96–102% — abaixo disso os
+     acentos do português encostam na linha de cima.
+     Texto: Inter Tight. */
+  --ltq-fonte-display: "Archivo", "Archivo Expanded", system-ui, sans-serif;
+  --ltq-fonte-texto: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+
+/* =============================================================
+   2 · A PÁGINA
+   -------------------------------------------------------------
+   A estrutura é a do site de referência (planilhadobreno.com.br):
+   página CLARA, faixa superior escura que acompanha a rolagem, e
+   o verde-mata entrando em BLOCOS INSERIDOS nas seções que
+   precisam parar a leitura.
+
+   O rebranding é escuro por padrão. Aqui ele roda no modo CLARO
+   do próprio DS (a tabela `[data-tema="claro"]` do bundle): fundo
+   branco, verde de texto no PINHO, verde vivo só como superfície.
+   ============================================================= */
+:root {
+
+  /* ---------- MARCA ---------- */
+  --color-brand-dark: var(--ltq-verde-mata);
+  --color-brand-accent: var(--ltq-verde-vivo);
+  --color-brand-accent-hover: var(--ltq-verde-folha);
+
+  /* ---------- SUPERFÍCIES, EM ORDEM DE PROFUNDIDADE ----------
+     Branco é o chão. Névoa e menta são tintas DERIVADAS de dois
+     primitivos (não são cores novas):
+       névoa = neutro/névoa #DDE6EA a 45% sobre branco
+       menta = verde/vivo   #4ADD82 a 14% sobre branco
+     Os dois valores estão escritos em HEX de propósito: faixa de
+     seção é fundo chapado, e color-mix() aqui só traria risco. */
+  --papel: var(--ltq-neutro-branco);  /* #FFFFFF */
+  --nevoa: #F0F4F6;                   /* a faixa alternada */
+  --menta: #E6FAEE;                   /* o hero e a garantia */
+  --bloco: var(--ltq-verde-mata);     /* #0F241B · o bloco inserido */
+
+  /* ---------- TINTA SOBRE CLARO ----------
+     Medido: mata 16,3:1 · noite 18,7:1 · suave 8,0:1 no branco. */
+  --tinta: var(--ltq-verde-mata);
+  --tinta-forte: var(--ltq-verde-noite);
+  --tinta-suave: #44544D;             /* mata a 78% sobre branco */
+
+  /* Verde para TEXTO sobre claro: é o PINHO, 12,6:1.
+     O verde vivo dá 1,8:1 no branco — o DS do rebranding proíbe
+     em letra, nos dois sentidos. Ele pinta superfície e só. */
+  --verde-tinta: var(--ltq-verde-pinho);
+
+  /* O X da coluna "não faz sentido". Não existe vermelho na
+     paleta do rebranding, e inventar um seria cor nova: o X vai
+     no verde-água, que sobre o bloco dá 10,2:1 e lê como
+     "ausência", não como erro. */
+  --color-no: var(--ltq-verde-agua);
+
+  /* ---------- TINTA SOBRE O BLOCO ESCURO ---------- */
+  --tinta-clara: var(--ltq-neutro-branco);        /* 16,3:1 */
+  --tinta-clara-suave: var(--ltq-verde-agua);     /* 10,2:1 */
+  --tinta-clara-muda: rgba(185, 210, 199, 0.62);
+
+  /* ---------- FIOS ---------- */
+  --color-border-neutral: rgba(15, 36, 27, 0.12);
+  --color-border-on-dark: var(--ltq-verde-musgo);
+  --border-neutral: 1px solid var(--color-border-neutral);
+  --border-on-dark: 1px solid var(--color-border-on-dark);
+  --fio: var(--color-border-neutral);
+  --fio-claro: var(--color-border-on-dark);
+
+  /* ---------- VÉUS ---------- */
+  --papel-veu: rgba(255, 255, 255, 0.88);
+  --bloco-veu: rgba(15, 36, 27, 0.92);   /* a faixa superior fixa */
+  --veu-claro: rgba(255, 255, 255, 0.06);
+  --acento-veu: rgba(74, 221, 130, 0.10);
+  --acento-veu-forte: rgba(74, 221, 130, 0.18);
+
+  /* ---------- O DISCO DE ÍCONE ----------
+     Chapado em verde vivo, glifo em verde-mata (9,3:1). No
+     rebranding o acento não tem gradiente: ele é chapado. */
+  --disco: var(--ltq-verde-vivo);
+
+  /* ---------- FORMA ----------
+     Raios do DS do rebranding: 12 / 24 / 40 / pílula. */
+  --radius-sm: 12px;
+  --radius-md: 24px;
+  --radius-lg: 40px;
+  --radius-pill: 999px;
+  --raio-bloco: var(--radius-lg);
+  --raio-caixa: var(--radius-md);
+  --raio-cta: var(--radius-pill);
+
+  /* ---------- ELEVAÇÃO ---------- */
+  --shadow-card: 0px 24px 48px -8px rgba(8, 21, 15, 0.10);
+  --shadow-accent-sm: 0px 4px 10px rgba(74, 221, 130, 0.28);  /* o halo do botão */
+  --elevacao: var(--shadow-card);
+  --elevacao-bloco: 0px 28px 64px -36px rgba(15, 36, 27, 0.32);
+
+  /* =============================================================
+     TIPOGRAFIA
+     -------------------------------------------------------------
+     Display condensado em caixa alta nos títulos (h1, h2, h3) e
+     nos números; Inter Tight em todo o resto.
+
+     A escala do DS (Herói 128 / H1 96 / H2 64) é de PEÇA, feita
+     para post e slide. Numa página de venda de duas colunas ela
+     não cabe. O que vem do DS e é inegociável é a PROPORÇÃO e a
+     entrelinha de 96–102%; os tamanhos abaixo são a escala do DS
+     trazida para a tela, e sobem mais do que a escala antiga
+     justamente porque a letra agora é condensada e ocupa ~62% da
+     largura.
+     ============================================================= */
+  --font-family-base: var(--ltq-fonte-texto);
+  --font-family-display: var(--ltq-fonte-display);
+  --font-family-ui: var(--ltq-fonte-texto);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* Largura do eixo wdth da Archivo. 62,5 é o ExtraCondensed que
+     o DS pede. */
+  --display-stretch: 62.5%;
+
+  --h1-pagina: clamp(2.375rem, 1.4rem + 4.3vw, 4.25rem);   /* 38px → 68px */
+  --line-height-h1: 0.98;
+  --letter-spacing-h1: 0.004em;      /* condensada em caixa alta quer AR, não aperto */
+
+  --h2-pagina: clamp(1.875rem, 1.3rem + 2.5vw, 3rem);      /* 30px → 48px */
+  --line-height-h2: 1.0;
+  --letter-spacing-h2: 0.006em;
+
+  --font-size-h3: clamp(1.5rem, 1.15rem + 1.5vw, 2.125rem);/* 24px → 34px */
+  --line-height-h3: 1.02;
+  --letter-spacing-h3: 0.008em;
+
+  /* h4 é título de cartão e NÃO é display: fica em Inter Tight,
+     caixa normal. Caixa alta em seis cartões seguidos vira grito. */
+  --font-size-h4: clamp(1.125rem, 1.03rem + 0.4vw, 1.3125rem);
+  --line-height-h4: 1.35;
+
+  --font-size-body-lg: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+  --line-height-body-lg: 1.55;
+
+  --font-size-body: 1rem;
+  --line-height-body: 1.5;           /* o DS pede 140–150% no texto */
+
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
+  --letter-spacing-label: 0.14em;
+
+  /* ---------- ESPAÇAMENTO (escala do DS: 4 → 96) ---------- */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  --section-padding-block: clamp(56px, 4vw + 40px, 112px);
+  --gutter: clamp(20px, 4vw, 40px);
+
+  /* ---------- MEDIDAS ---------- */
+  --container: 1216px;
+  --measure: 720px;
+  --nav-height: 56px;    /* a faixa superior; ver .topbar no styles.css */
+
+  /* ---------- MOVIMENTO ---------- */
+  --duration-fast: 200ms;
+  --duration-base: 280ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --reveal-shift: 14px;
+
+  /* ---------- TOQUE E FOCO ---------- */
+  --tap-target: 44px;
+  --focus-outline-width: 3px;
+  --focus-outline-offset: 3px;
+}

@@ -1,0 +1,969 @@
+/* =============================================================
+   LTQ EDUCAÇÃO · LP DA OFERTA COMPLETA
+   styles.css · layout e componentes
+
+   IDENTIDADE (v4, 07/10/2026) · REBRANDING 2026
+   A marca nova:
+   `_marca/ds-ltq-oficial-rebranding/LTQ-design-system-rebranding-2026`.
+   Verde-mata #0F241B, verde vivo #4ADD82, Archivo ExtraCondensed
+   em caixa alta nos títulos e Inter Tight no texto.
+
+   A v3 vestia o `ds-ltq-sites` (verde #0ACE97, petróleo #0A2F28,
+   Manrope) e a v2 era verde-escura de ponta a ponta. A estrutura
+   de seções continua sendo a de planilhadobreno.com.br; o que
+   mudou de novo foi a pele.
+
+   Seis coisas que definem o visual:
+   1. Quatro superfícies alternando: papel, névoa, menta, bloco.
+   2. O verde-mata aparece na FAIXA SUPERIOR e em blocos inseridos
+      de raio grande: é ele que dá o verde sem a página virar verde.
+   3. Rótulo de seção = fio de 16px no acento + caixa alta.
+   4. Ícone mora num DISCO chapado de verde vivo, nunca num quadrado.
+   5. Botão é pílula de verde vivo com texto ESCURO — o DS do
+      rebranding proíbe branco sobre verde vivo (1,8:1).
+   6. Título é display condensado em CAIXA ALTA, entrelinha ~100%.
+
+   REGRA: nenhum HEX e nenhum rgba() escrito aqui. Tudo sai de
+   tokens.css, sem exceção.
+   ============================================================= */
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* A faixa superior é fixa: sem isto, âncora como #oferta para
+     com o título debaixo dela. */
+  scroll-padding-top: calc(var(--nav-height) + var(--space-md));
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  /* Abre espaço para a faixa superior fixa, que é a primeira
+     coisa que a página mostra. */
+  padding-top: var(--nav-height);
+  background: var(--papel);
+  color: var(--tinta-suave);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: var(--focus-outline-width) solid var(--verde-tinta);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: var(--radius-sm);
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-md); top: -100px; z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bloco); color: var(--tinta-clara);
+  border-radius: var(--radius-sm); text-decoration: none;
+}
+.skip-link:focus { top: var(--space-md); }
+
+/* =============================================================
+   ESQUELETO
+   As quatro superfícies do template, nesta ordem de profundidade:
+   papel, névoa, menta, bloco.
+   ============================================================= */
+
+.section { padding-block: var(--section-padding-block); background: var(--papel); }
+.section--nevoa { background: var(--nevoa); }
+.section--menta { background: var(--menta); }
+
+/* =============================================================
+   FAIXA SUPERIOR   (pedidos 2, 3 e 4 do PDF de 07/10/2026)
+   -------------------------------------------------------------
+   O site de referência (planilhadobreno.com.br) tem uma faixa que
+   acompanha o site inteiro: marca à esquerda, um item só à
+   direita. Aqui ela é verde-mata, com o wordmark positivo à
+   esquerda e, à direita, a frase de preço por dia que antes
+   morava em cima do botão da headline.
+
+   Ela é a quarta aparição do verde-mata na página, e é de
+   propósito: é ela que dá o tom da marca nova desde o primeiro
+   pixel, antes mesmo de o hero carregar.
+
+   Não é menu: não tem link nenhum além da própria marca. Numa
+   página de venda todo link que não é o CTA é porta de saída —
+   a mesma decisão de 17/09/2026 que tirou a barra de navegação.
+   ============================================================= */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 70;
+  min-height: var(--nav-height);
+  display: flex; align-items: center;
+  background: var(--bloco-veu);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ltq-verde-musgo);
+}
+.topbar__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+}
+/* O wordmark é um SVG QUADRADO (viewBox 256×256, "LTQ" com
+   "educação" embaixo), não uma faixa horizontal: a altura aqui é
+   a altura do bloco inteiro, e abaixo de ~32px a palavra
+   "educação" some. Por isso 36 e não 24. */
+.topbar__brand { display: flex; align-items: center; }
+.topbar__brand img { height: 36px; width: auto; }
+
+/* O preço do lado direito. O número vai no VERDE VIVO sobre o
+   verde-mata (9,3:1) e a explicação no verde-água (10,2:1). Em
+   tela estreita a explicação sai: sobra o número, que é o que
+   precisa ser lido de relance. */
+.topbar__price {
+  display: flex; align-items: baseline; gap: var(--space-xs);
+  text-align: right;
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
+}
+.topbar__price b {
+  font-family: var(--font-family-display);
+  font-stretch: var(--display-stretch);
+  font-variation-settings: "wdth" 62.5;
+  font-weight: var(--font-weight-black);
+  font-synthesis: none;
+  text-transform: uppercase;
+  font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
+  letter-spacing: 0.01em;
+  color: var(--color-brand-accent);
+  white-space: nowrap;
+}
+.topbar__price span { color: var(--tinta-clara-suave); }
+@media (max-width: 720px) {
+  .topbar__price span { display: none; }
+  .topbar__brand img { height: 30px; }
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow { max-width: 920px; }
+
+/* ---------- Cabeça de seção ---------- */
+.section__head {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  max-width: var(--measure);
+  margin-inline: auto;
+  margin-bottom: var(--space-2xl);
+}
+.section__head p {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  color: var(--tinta-suave);
+}
+
+/* =============================================================
+   TIPOGRAFIA
+   ============================================================= */
+/* O DISPLAY DO REBRANDING.
+   Archivo no eixo wdth 62,5 (ExtraCondensed), caixa alta, peso
+   800. A entrelinha fica em 98–102% porque o DS avisa: abaixo
+   disso o Ç e o Ê do português encostam na linha de cima. O
+   `font-synthesis: none` evita o falso-negrito do navegador
+   quando a variável ainda não baixou. */
+h1, h2, h3, .h1, .h2, .h3, .display {
+  font-family: var(--font-family-display);
+  font-stretch: var(--display-stretch);
+  font-variation-settings: "wdth" 62.5;
+  font-weight: var(--font-weight-black);
+  font-synthesis: none;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+h1, .h1 {
+  font-size: var(--h1-pagina);
+  line-height: var(--line-height-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  color: var(--tinta-forte);
+}
+h2, .h2 {
+  font-size: var(--h2-pagina);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-h2);
+  color: var(--tinta-forte);
+}
+h3, .h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-h3);
+  color: var(--tinta);
+}
+/* h4 é título de CARTÃO e fica fora do display: seis cartões
+   seguidos em caixa alta condensada viram grito. */
+h4, .h4 {
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--tinta);
+}
+
+.lead {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  color: var(--tinta-suave);
+}
+/* Negrito no meio da frase. Sobre claro ele vai no VERDE DE TINTA,
+   nunca no acento: o acento não passa contraste como letra. */
+.lead b, .lead strong { color: var(--verde-tinta); font-weight: var(--font-weight-bold); }
+
+/* O rótulo do template: fio de 16px no acento, depois caixa alta. */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--verde-tinta);
+}
+.eyebrow::before {
+  content: "";
+  width: 16px; height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-accent);
+}
+
+/* Palavra destacada dentro do título. */
+.accent { color: var(--verde-tinta); }
+
+/* =============================================================
+   BOTÃO
+   Pílula de menta com texto escuro, como no template. Preto sobre
+   menta dá 10,2:1; branco sobre menta dá 2,1:1 e reprova. Isto
+   NÃO reabre a decisão dos cinco repos: aqui a regra é a do
+   template, que sempre foi escura sobre verde.
+   ============================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-xs);
+  min-height: var(--tap-target);
+  padding: 16px var(--space-xl);
+  border: 0;
+  border-radius: var(--raio-cta);
+  background: var(--color-brand-accent);
+  color: var(--color-brand-dark);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  text-decoration: none; cursor: pointer;
+  box-shadow: var(--shadow-accent-sm);
+  transition: background var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+.btn:hover { background: var(--color-brand-accent-hover); }
+.btn:active { transform: translateY(1px); }
+.btn--block { width: 100%; }
+.btn--lg { padding: 19px var(--space-2xl); font-size: var(--font-size-body-lg); }
+
+.btn-note {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--tinta-suave);
+}
+
+/* =============================================================
+   O DISCO DE ÍCONE
+   A assinatura do template: disco chapado de menta, glifo em
+   petróleo. Sem quadrado, sem véu, sem borda.
+   ============================================================= */
+.disco {
+  display: grid; place-items: center;
+  width: 52px; height: 52px; flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--disco);
+  color: var(--color-brand-dark);
+}
+.disco .icon { width: 24px; height: 24px; }
+.disco--g { width: 64px; height: 64px; }
+.disco--g .icon { width: 28px; height: 28px; }
+
+/* Lista de check: disco pequeno com o certo em petróleo dentro. */
+.check { display: flex; align-items: flex-start; gap: var(--space-sm); }
+.check__icon {
+  display: grid; place-items: center;
+  width: 22px; height: 22px; flex: none;
+  margin-top: 1px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-accent);
+  color: var(--color-brand-dark);
+  /* O traço de 2 do sprite, reduzido para 14px dentro do disco,
+     fica fino demais e o certo some no verde. */
+  stroke-width: 3;
+}
+
+/* =============================================================
+   CAIXA (o cartão claro)
+   ============================================================= */
+.panel {
+  background: var(--papel);
+  border: var(--border-neutral);
+  border-radius: var(--raio-caixa);
+  padding: var(--space-xl);
+}
+.panel > * + * { margin-top: var(--space-sm); }
+.panel p { color: var(--tinta-suave); }
+.panel__icon { margin-bottom: var(--space-md); }
+
+/* Sobre névoa e menta o cartão fica BRANCO, para destacar do
+   chão da seção; sobre papel ele ganha o fio. */
+.section--nevoa .panel, .section--menta .panel { border-color: transparent; }
+
+.grid { display: grid; gap: var(--space-lg); }
+.grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+@media (min-width: 620px) { .grid--2, .grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) {
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Moldura em volta das telas de produto. */
+.frame { background: var(--menta); border-radius: var(--raio-bloco); padding: clamp(12px, 2vw, 20px); }
+.frame img { border-radius: var(--radius-lg); width: 100%; }
+/* Dentro de uma seção que JÁ é menta, a moldura vira branca, senão
+   ela some no chão. */
+.section--menta .frame, .hero .frame { background: var(--papel); }
+
+/* =============================================================
+   1 · HERO
+   Faixa de menta sangrando de lado a lado, copy à esquerda e a
+   arte à direita. Sem barra de navegação, por decisão de
+   17/09/2026: numa página de venda todo link que não é o CTA é
+   porta de saída. A marca fica como assinatura.
+   ============================================================= */
+.hero {
+  background: var(--menta);
+  padding-block: clamp(28px, 4vw, 48px) clamp(48px, 5vw, 80px);
+  overflow: hidden;
+}
+/* 07/10/2026 · A marca saiu do hero e subiu para a faixa fixa
+   (pedidos 2 e 3). Duas assinaturas da mesma marca a 80px uma da
+   outra é repetição, não reforço — e a faixa já cumpre o papel em
+   todas as seções, não só nesta. */
+
+.hero__grid { display: grid; gap: var(--space-2xl); align-items: center; }
+@media (min-width: 900px) { .hero__grid { grid-template-columns: 1.05fr 0.95fr; } }
+
+.hero__content { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+.hero h1 { max-width: 18ch; }
+.hero__lead {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  color: var(--tinta-suave);
+  max-width: 48ch;
+}
+.hero__lead b { color: var(--tinta); font-weight: var(--font-weight-bold); }
+
+/* 07/10/2026 · O "R$ 1,64 por dia" que ficava aqui em cima do
+   botão foi para a faixa superior (pedido 4). */
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+
+/* =============================================================
+   2 · NÚMEROS
+   Sem cartão e sem campo de cor: respiram sobre o papel, cada um
+   com o disco do template.
+   ============================================================= */
+/* 07/10/2026 · A faixa estava alta demais (pedido 5 do PDF de
+   alterações). Ela encolheu em três frentes ao mesmo tempo, que
+   é o que de fato derruba a altura: o respiro da seção caiu pela
+   metade, o disco virou ícone ao LADO do número em vez de ficar
+   acima dele, e a linha de apoio passou a caber em duas linhas.
+   Em telas largas os três números ficam numa régua só. */
+.numbers { padding-block: clamp(32px, 2.5vw + 20px, 56px); }
+.numbers__grid {
+  display: grid; gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+@media (min-width: 720px) { .numbers__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); } }
+.numbers__item { display: grid; justify-items: center; gap: var(--space-2xs); }
+
+/* Número e disco lado a lado: tira ~70px de altura por item. */
+.numbers__top { display: flex; align-items: center; gap: var(--space-sm); }
+.numbers__icon { width: 40px; height: 40px; }
+.numbers__icon .icon { width: 20px; height: 20px; }
+.numbers dt {
+  font-family: var(--font-family-display);
+  font-stretch: var(--display-stretch);
+  font-variation-settings: "wdth" 62.5;
+  font-weight: var(--font-weight-black);
+  font-synthesis: none;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 2.875rem);
+  line-height: 1;
+  color: var(--tinta-forte);
+  font-variant-numeric: tabular-nums;
+}
+.numbers dd { margin: 0; max-width: 34ch; font-size: var(--font-size-sm); line-height: 1.4; color: var(--tinta-suave); }
+
+/* =============================================================
+   3 · PROPOSTA DE VALOR
+   ============================================================= */
+.valueprop { text-align: center; }
+.valueprop__stack {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: center; gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+.valueprop__chip {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  background: var(--papel);
+  border: var(--border-neutral);
+  font-size: var(--font-size-body-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--tinta);
+}
+.valueprop__plus { color: var(--verde-tinta); font-weight: var(--font-weight-bold); }
+@media (max-width: 760px) { .valueprop__plus { display: none; } }
+.valueprop__price {
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+  font-weight: var(--font-weight-semibold);
+  color: var(--tinta);
+}
+.valueprop__price strong { color: var(--verde-tinta); }
+.valueprop__checks {
+  display: grid; gap: var(--space-md); grid-template-columns: 1fr;
+  margin-top: var(--space-2xl); text-align: left;
+}
+@media (min-width: 620px) { .valueprop__checks { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .valueprop__checks { grid-template-columns: repeat(4, 1fr); } }
+
+/* =============================================================
+   4 · OS QUATRO PILARES
+   ============================================================= */
+.pillar {
+  display: grid; gap: var(--space-2xl); align-items: center;
+  grid-template-columns: 1fr;
+  padding-block: clamp(24px, 3vw, 40px);
+}
+.pillar + .pillar { border-top: var(--border-neutral); }
+@media (min-width: 880px) {
+  .pillar { grid-template-columns: 1fr 1fr; }
+  .pillar--flip .pillar__media { order: -1; }
+}
+.pillar__body > * + * { margin-top: var(--space-md); }
+.pillar__n {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--verde-tinta);
+}
+/* Print em pé (o marcador da comunidade tem 506×1102) estica a
+   linha inteira e deixa a coluna de texto boiando no meio de um
+   vazio. Aqui a arte fica em pé mas com teto de altura, centrada
+   na moldura. */
+.pillar__media--alto img { max-height: 520px; width: auto; margin-inline: auto; }
+
+.pillar__list { display: grid; gap: var(--space-sm); margin-top: var(--space-lg); }
+.pillar__list span { color: var(--tinta-suave); }
+
+/* A fileira de selinhos no pé do bloco. */
+.pillars__foot {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--space-md) var(--space-2xl);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: var(--border-neutral);
+}
+.pillars__foot li {
+  display: flex; align-items: center; gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--tinta);
+}
+
+/* =============================================================
+   5 · SEGMENTOS
+   Cartão claro com a foto pousada num campo de menta. Na v2 o
+   cartão era petróleo; aqui quem carrega o verde é só o campo
+   atrás da pessoa.
+   ============================================================= */
+.segments { display: grid; gap: var(--space-lg); grid-template-columns: 1fr; }
+@media (min-width: 720px) { .segments { grid-template-columns: repeat(3, 1fr); } }
+.segment {
+  background: var(--papel);
+  border: var(--border-neutral);
+  border-radius: var(--raio-bloco);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+/* As três fotos têm proporções diferentes (613x860, 618x860,
+   593x860). Sem faixa de altura fixa, cada cartão começa o texto
+   numa altura e a fileira desalinha. */
+/* A banda e o campo de cor atras do recorte. Altura por `aspect-ratio`,
+   e `position: relative` porque a foto dentro dela e ABSOLUTA. */
+.segment__photo {
+  position: relative;
+  background: var(--menta);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+/* A FOTO E ABSOLUTA, E ISSO NAO E ESTILO: E O CONSERTO.
+   Medido a 375px em 08/10/2026, com a foto em fluxo normal:
+   banda 333x333, caixa da imagem 333x467, TRANSBORDANDO 134px.
+
+   O `height: 100%` nao resolvia. A altura da banda vem de
+   `aspect-ratio`, e contra isso a porcentagem do filho nao acha um
+   valor definido: ela cai para `auto`, e entao a imagem passa a medir a
+   altura do proprio formato (613x860 esticado para 333 de largura da
+   467). Com `object-position: bottom`, o conteudo ia para o fim dessa
+   caixa transbordada, ou seja, para FORA da area visivel — sobrava o
+   alto da cabeca encostado na borda de baixo. Foi o que apareceu no
+   iPhone, e nao aparecia no meu teste porque o Chrome headless nao
+   desce de 500px de viewport: a 500px o estrago era pequeno demais para
+   eu notar.
+
+   Tirar o `place-items` para devolver o `stretch` do grid NAO resolveu:
+   medido, a caixa continuou 467. Com `position: absolute` e `inset: 0`
+   a caixa passa a ser exatamente a da banda, sem porcentagem nenhuma no
+   meio, e o `object-fit` volta a mandar.
+
+   `contain`, e nao `cover`, porque sao RECORTES com fundo transparente:
+   recorte pede a pessoa inteira pousada no campo de cor. */
+.segment__photo img {
+  position: absolute;
+  inset: 0;
+  /* `inset: 0` SOZINHO nao estica uma <img>: elemento substituido com
+     left/right/top/bottom a zero e largura `auto` fica no tamanho
+     intrinseco, porque o `auto` do substituido e o formato dele, nao o
+     espaco disponivel. Medido: a caixa continuava 333x467. Com largura e
+     altura explicitas, a porcentagem resolve contra a caixa do bloco
+     que o contem, que aqui tem altura definida pelo `aspect-ratio`. */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.segment__body { padding: var(--space-lg) var(--space-xl) var(--space-xl); }
+.segment__body p { color: var(--tinta-suave); margin-top: var(--space-xs); }
+
+.segments__note {
+  margin-top: var(--space-2xl); text-align: center;
+  font-size: var(--font-size-body-lg); color: var(--tinta-suave);
+}
+.segments__note b { color: var(--verde-tinta); }
+.segments__tags { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); margin-top: var(--space-lg); }
+.segments__tags li {
+  padding: 9px var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--acento-veu-forte);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--verde-tinta);
+}
+
+/* =============================================================
+   6 · TRILHAS
+   ============================================================= */
+.tabs__list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); margin-bottom: var(--space-2xl); }
+.tabs__tab {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  border: var(--border-neutral);
+  background: var(--papel);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--tinta);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+}
+.tabs__tab[aria-selected="true"] {
+  background: var(--bloco); color: var(--tinta-clara); border-color: var(--bloco);
+}
+.tabs__panel[hidden] { display: none; }
+.tabs__panel { display: grid; gap: var(--space-2xl); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 880px) { .tabs__panel { grid-template-columns: 0.9fr 1.1fr; } }
+.tabs__panel > div > * + * { margin-top: var(--space-md); }
+.trilha__aulas { display: grid; gap: var(--space-sm); }
+.trilha__aula {
+  display: flex; gap: var(--space-md); align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--papel);
+  border: var(--border-neutral);
+  border-radius: var(--raio-caixa);
+  color: var(--tinta);
+}
+/* O número da aula é o disco pequeno do template, em véu de acento. */
+.trilha__aula b {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--acento-veu-forte);
+  color: var(--verde-tinta);
+  font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =============================================================
+   8 · É PARA QUEM   (primeiro bloco inserido)
+   ============================================================= */
+/* 07/10/2026 · Pedido 12 do PDF: "ajustar o alinhamento com o
+   texto nesse quadro". Eram DOIS desalinhamentos somados.
+
+   1) ENTRE AS COLUNAS. "Não faz sentido se você" quebra em duas
+      linhas e "Faz sentido se você" em uma, então as duas listas
+      começavam em alturas diferentes. O subgrid resolve de vez:
+      título e lista viram duas faixas compartilhadas, e a altura
+      do título passa a ser a mesma nos dois lados, qualquer que
+      seja a quebra.
+   2) ENTRE O ÍCONE E A FRASE. O ícone de 22px apoiado no topo
+      ficava mais alto que a maiúscula da primeira linha. Agora
+      ele mora numa caixa com a ALTURA DA LINHA (24px = 16px ×
+      1,5) e 18px de largura; o preserveAspectRatio do SVG centra
+      o glifo nessa caixa, e ele cai exatamente no meio da
+      primeira linha de texto. */
+.fit { display: grid; gap: var(--space-lg); grid-template-columns: 1fr; }
+@media (min-width: 760px) {
+  .fit { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto 1fr; }
+  .fit__col { grid-row: span 2; display: grid; grid-template-rows: subgrid; }
+}
+.fit__col { padding: var(--space-xl); border-radius: var(--raio-caixa); }
+.fit__col--yes { background: var(--veu-claro); border: var(--border-on-dark); }
+.fit__col--no { background: var(--veu-claro); border: var(--border-on-dark); }
+.fit__col h3 { margin-bottom: var(--space-lg); align-self: start; }
+.fit__col li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: var(--space-sm);
+  align-items: start;
+}
+.fit__col li + li { margin-top: var(--space-md); }
+.fit__icon { width: 18px; height: calc(var(--font-size-body) * var(--line-height-body)); }
+.fit__col--yes .fit__icon { color: var(--color-brand-accent); }
+.fit__col--no .fit__icon { color: var(--color-no); }
+
+/* =============================================================
+   BLOCO INSERIDO
+   A assinatura do template: painel de petróleo, raio grande,
+   pousado dentro do container claro. É ele que dá o verde à
+   página sem a página virar verde. Aparece TRÊS vezes: "é para
+   quem", a oferta e o rodapé.
+   ============================================================= */
+.bloco {
+  border-radius: var(--raio-bloco);
+  background: var(--bloco);
+  color: var(--tinta-clara-suave);
+  padding: clamp(28px, 5vw, 64px);
+  box-shadow: var(--elevacao-bloco);
+}
+.bloco :is(h2, h3, h4) { color: var(--tinta-clara); }
+.bloco .section__head { margin-bottom: var(--space-xl); }
+.bloco .section__head p { color: var(--tinta-clara-suave); }
+.bloco .eyebrow { color: var(--color-brand-accent); }
+.bloco .lead { color: var(--tinta-clara-suave); }
+.bloco .lead b { color: var(--color-brand-accent); }
+.bloco .check span, .bloco li { color: var(--tinta-clara-suave); }
+.bloco .btn-note { color: var(--tinta-clara-muda); }
+.bloco .check__icon { background: var(--color-brand-accent); color: var(--color-brand-dark); }
+
+/* =============================================================
+   9 · OFERTA   (segundo bloco inserido)
+   ============================================================= */
+.offer { display: grid; gap: var(--space-2xl); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 920px) { .offer { grid-template-columns: 1.05fr 0.95fr; } }
+
+.stack-table { width: 100%; border-collapse: collapse; }
+.stack-table th, .stack-table td {
+  padding: var(--space-md) 0;
+  border-bottom: var(--border-on-dark);
+  text-align: left;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--tinta-clara-suave);
+}
+.stack-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.stack-table tfoot td, .stack-table tfoot th {
+  font-weight: var(--font-weight-bold); border-bottom: 0; padding-top: var(--space-lg);
+  color: var(--tinta-clara);
+}
+.stack-table s { color: var(--tinta-clara-muda); }
+/* As três linhas sem preço. Em itálico e um tom abaixo, para ficar
+   claro de relance que elas NÃO entram na soma. */
+.stack-table em { font-style: italic; color: var(--tinta-clara-muda); }
+
+/* O cartão de preço é BRANCO dentro do bloco escuro: é o ponto
+   mais claro da página inteira, e é onde a pessoa compra. */
+.pricecard {
+  background: var(--papel);
+  border-radius: var(--raio-bloco);
+  padding: var(--space-2xl);
+  text-align: center;
+  box-shadow: var(--elevacao);
+}
+.pricecard > * + * { margin-top: var(--space-md); }
+.pricecard__from { font-size: var(--font-size-sm); color: var(--tinta-suave); }
+.pricecard__value {
+  font-family: var(--font-family-display);
+  font-stretch: var(--display-stretch);
+  font-variation-settings: "wdth" 62.5;
+  font-weight: var(--font-weight-black);
+  font-synthesis: none;
+  font-size: clamp(3rem, 1.9rem + 4.6vw, 4.5rem);
+  line-height: 1;
+  color: var(--tinta-forte);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.005em;
+}
+.pricecard__value small {
+  display: block; font-size: 0.26em;
+  font-family: var(--font-family-base);
+  font-stretch: normal; font-variation-settings: normal;
+  font-weight: var(--font-weight-semibold);
+  text-transform: none;
+  color: var(--tinta-suave);
+  letter-spacing: 0; margin-bottom: var(--space-2xs);
+}
+.pricecard__cash { font-size: var(--font-size-body-lg); font-weight: var(--font-weight-semibold); color: var(--tinta); }
+.pricecard__items { display: grid; gap: var(--space-sm); text-align: left; margin-top: var(--space-lg); }
+.pricecard__items span { color: var(--tinta-suave); }
+.pricecard hr { border: 0; border-top: var(--border-neutral); margin-block: var(--space-lg); }
+
+/* O cartão é CLARO dentro de um bloco escuro, então as regras de
+   `.bloco` precisam ser desfeitas aqui dentro. `.bloco .check span`
+   tem especificidade (0,2,1) e ganha de `.pricecard__items span`
+   (0,1,1) venha ela onde vier: sem este reset o texto dos itens e a
+   nota do botão ficam brancos sobre branco e somem sem erro nenhum.
+   É o mesmo tombo da v2, de cabeça para baixo. */
+.bloco .pricecard :is(h2, h3, h4) { color: var(--tinta); }
+.bloco .pricecard .check span,
+.bloco .pricecard li { color: var(--tinta-suave); }
+.bloco .pricecard .btn-note { color: var(--tinta-suave); }
+.bloco .pricecard .check__icon { background: var(--color-brand-accent); color: var(--color-brand-dark); }
+
+/* =============================================================
+   10 · GARANTIA
+   ============================================================= */
+.warranty { display: grid; gap: var(--space-2xl); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 880px) { .warranty { grid-template-columns: 0.8fr 1.2fr; } }
+
+/* 07/10/2026 · O selo era um círculo de CSS com um "7" dentro, e
+   o pedido 14 do PDF era "uma imagem bonita de 7 dias". Virou um
+   SELO desenhado: roseta de 14 lobos em verde vivo, miolo em
+   verde-mata, o 7 no display condensado e a palavra GARANTIA
+   correndo na borda. É SVG inline, então não pesa requisição, não
+   embaça em tela retina e acompanha os tokens de cor. */
+.warranty__seal {
+  width: clamp(190px, 22vw, 240px);
+  margin-inline: auto;
+  filter: drop-shadow(var(--elevacao-bloco));
+}
+.warranty__seal svg { width: 100%; height: auto; }
+.warranty__seal .selo__roseta { fill: var(--color-brand-accent); }
+.warranty__seal .selo__miolo  { fill: var(--bloco); }
+.warranty__seal .selo__fio    { fill: none; stroke: var(--color-brand-accent); stroke-width: 2; opacity: 0.55; }
+.warranty__seal .selo__n {
+  fill: var(--color-brand-accent);
+  font-family: var(--font-family-display);
+  font-stretch: var(--display-stretch);
+  font-variation-settings: "wdth" 62.5;
+  font-weight: 800;
+  font-size: 86px;
+}
+.warranty__seal .selo__rotulo {
+  fill: var(--tinta-clara);
+  font-family: var(--font-family-base);
+  font-weight: 700; font-size: 15px; letter-spacing: 0.1em;
+}
+.warranty__seal .selo__borda {
+  fill: var(--bloco);
+  font-family: var(--font-family-base);
+  font-weight: 700; font-size: 13.5px; letter-spacing: 0.26em;
+}
+.warranty__body > * + * { margin-top: var(--space-md); }
+
+
+/* -------------------------------------------------------------
+   MURAL DE PRINTS   (pedido 10 do PDF de 07/10/2026)
+   -------------------------------------------------------------
+   "tras os depoimentos no estilo que já ate trabalhamos no outro
+   site, com muitos depoimentos e 1 botão para mostrar mais".
+
+   O outro site é a `2-controle-financeiro/LP-LTQ-V2`, variante B,
+   /v3. De lá vieram o padrão E os 36 arquivos: são prints reais
+   de Instagram, Facebook e WhatsApp sobre a planilha de controle
+   financeiro da LTQ, com o alt que já estava escrito lá. Nenhum
+   print foi recortado, reordenado por conveniência ou reescrito.
+
+   Layout em COLUNAS (column-count) e não em grid, porque os
+   prints têm alturas muito diferentes — de 179px a 1648px — e o
+   grid deixaria buracos. Colapsado, mostra nove e desbota o pé
+   com uma máscara; o botão flutua sobre a máscara.
+   ------------------------------------------------------------- */
+.mural { position: relative; margin-top: var(--space-2xl); }
+.mural__lista {
+  column-count: 1; column-gap: var(--space-lg);
+  margin: 0; padding: 0; list-style: none;
+}
+@media (min-width: 620px) { .mural__lista { column-count: 2; } }
+@media (min-width: 960px) { .mural__lista { column-count: 3; } }
+
+.mural__item {
+  break-inside: avoid; -webkit-column-break-inside: avoid;
+  margin-bottom: var(--space-lg);
+  overflow: clip;
+  background: var(--papel);
+  border: var(--border-neutral);
+  border-radius: var(--raio-caixa);
+  box-shadow: var(--elevacao);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.mural__item:hover { transform: translateY(-4px); }
+.mural__item img { width: 100%; height: auto; }
+
+/* Estado fechado: os extras somem e o pé do mural desbota.
+   O #000 da máscara é a única exceção à regra "nenhum HEX aqui":
+   em mask-image ele não é cor, é opacidade — preto quer dizer
+   "mostra" e transparente quer dizer "esconde". Trocar por um
+   token de cor não faria sentido nenhum. */
+.mural[data-colapsado] .mural__item[data-extra] { display: none; }
+.mural[data-colapsado] .mural__lista {
+  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 240px);
+  mask-image: linear-gradient(to top, transparent 0, #000 240px);
+}
+
+.mural__acao { display: flex; justify-content: center; margin-top: var(--space-xl); }
+.mural[data-colapsado] .mural__acao {
+  position: absolute; left: 0; right: 0; bottom: var(--space-xs);
+  margin-top: 0;
+}
+.mural__acao .icon { width: 18px; height: 18px; transition: transform var(--duration-fast) var(--ease-out); }
+.mural:not([data-colapsado]) .mural__acao .icon { transform: rotate(180deg); }
+
+/* Sem JS o mural abre inteiro e o botão não aparece: estado
+   honesto, nada escondido atrás de script que não rodou. */
+.mural__acao[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .mural__item, .mural__acao .icon { transition: none; }
+}
+
+/* =============================================================
+   12 · FAQ
+   ============================================================= */
+.faq { display: grid; gap: var(--space-sm); max-width: var(--measure); margin-inline: auto; }
+.faq details {
+  background: var(--papel);
+  border: var(--border-neutral);
+  border-radius: var(--raio-caixa);
+  padding: var(--space-sm) var(--space-lg);
+}
+.faq summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);
+  cursor: pointer; list-style: none;
+  padding-block: var(--space-sm);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--tinta);
+  min-height: var(--tap-target);
+}
+.faq summary::-webkit-details-marker { display: none; }
+/* A seta do template: disco de menta com o glifo em petróleo. */
+.faq summary::after {
+  content: "+";
+  display: grid; place-items: center;
+  width: 34px; height: 34px; flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-accent);
+  color: var(--color-brand-dark);
+  font-size: 1.25rem; line-height: 1;
+}
+.faq details[open] summary::after { content: "\2212"; }
+.faq details > p { padding-bottom: var(--space-md); color: var(--tinta-suave); max-width: 68ch; }
+
+/* =============================================================
+   13 · CONTATO
+   ============================================================= */
+/* 07/10/2026 · Pedido 16: ficou só o WhatsApp. O cartão de
+   e-mail saiu (o endereço de atendimento nunca foi confirmado, e
+   um canal a menos é um canal a menos para dar errado), então a
+   seção deixou de ser de duas colunas: um cartão só, centrado e
+   estreito, em vez de um cartão esticado na largura toda. */
+.contact { display: grid; gap: var(--space-lg); grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+.contact .panel { text-align: center; }
+.contact .panel__icon { margin-inline: auto; }
+.contact a { color: var(--verde-tinta); text-decoration: none; font-weight: var(--font-weight-bold); }
+.contact a:hover { text-decoration: underline; }
+
+/* =============================================================
+   RODAPÉ   (terceiro bloco inserido, este sangrando)
+   ============================================================= */
+.footer {
+  background: var(--bloco);
+  color: var(--tinta-clara-suave);
+  padding-block: var(--space-2xl);
+  font-size: var(--font-size-sm);
+}
+.footer__inner { display: grid; gap: var(--space-lg); }
+/* Mesma conta da faixa superior: o wordmark é quadrado, então a
+   altura aqui é a do bloco inteiro e 26px apagava o "educação". */
+.footer img { height: 40px; width: auto; }
+.footer__legal { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.footer a { color: var(--tinta-clara-suave); text-decoration: none; }
+.footer a:hover { color: var(--tinta-clara); }
+
+/* =============================================================
+   BARRA FIXA MOBILE
+   ============================================================= */
+.stickybar {
+  position: fixed; inset: auto 0 0 0; z-index: 60;
+  display: none;
+  gap: var(--space-md); align-items: center; justify-content: space-between;
+  padding: var(--space-sm) var(--gutter) calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
+  background: var(--papel-veu);
+  backdrop-filter: blur(12px);
+  border-top: var(--border-neutral);
+}
+.stickybar__price { font-size: var(--font-size-sm); line-height: 1.3; color: var(--tinta-suave); }
+.stickybar__price b { display: block; font-size: var(--font-size-body-lg); color: var(--verde-tinta); }
+.stickybar .btn { padding: 11px var(--space-lg); font-size: var(--font-size-sm); min-height: 40px; }
+@media (max-width: 720px) {
+  .stickybar { display: flex; }
+  body { padding-bottom: 84px; }
+}
+
+/* =============================================================
+   MOVIMENTO
+   O estado escondido só existe com JS ligado. Sem JS, a página
+   nasce visível.
+   ============================================================= */
+.js [data-reveal] {
+  opacity: 0; transform: translateY(var(--reveal-shift, 14px));
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- ÍCONES ---------- */
+.icon { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

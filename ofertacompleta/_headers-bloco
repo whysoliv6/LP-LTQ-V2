@@ -1,0 +1,61 @@
+# =====================================================================
+# BLOCO DE CABECALHOS DA ROTA /ofertacompleta/
+#
+# ESTE ARQUIVO NAO VAI PARA O AR. O workflow ANEXA o conteudo dele ao
+# `_headers` da raiz durante o build e depois o apaga.
+#
+# Por que anexar em vez de escrever direto no `_headers`: aquele arquivo
+# mora em `variante-b/`, que e SOBRESCRITO pelo
+# `scripts/publicar-em-lp.sh` do repo `ltq-lp-controle-financeiro-b`.
+# Um bloco escrito la seria apagado no proximo sync daquele repo, em
+# silencio, e esta rota perderia o noindex sem ninguem notar. Mantendo o
+# bloco aqui, numa pasta que so esta rota possui, nada de fora o alcanca.
+#
+# A REGRA ESTA PRESA A `/ofertacompleta/*`, NUNCA A `/*`. Um `/*` aqui
+# poria X-Robots-Tag: noindex na LP v1, que indexa e e a que paga o
+# trafego. E o mesmo motivo documentado no cabecalho do `_headers`.
+#
+# E A ROTA APARECE UMA VEZ SO. Padrao repetido no Cloudflare NAO soma: o
+# ultimo bloco substitui o anterior. Ja custou um deploy em 31/08/2026.
+# Tudo que valer para esta rota vai neste bloco unico.
+# =====================================================================
+/ofertacompleta/*
+  # A pagina ainda nao tem checkout: os CTA rolam ate a secao da oferta.
+  # Enquanto for assim ela nao pode indexar. O `<meta name="robots">` do
+  # proprio HTML diz o mesmo; este cabecalho e a segunda tranca, porque a
+  # meta se perde se alguem servir o HTML por outro caminho.
+  X-Robots-Tag: noindex
+  # CSP. ABERTA EM 09/10/2026 PARA AS QUATRO TAGS DE TRAFEGO.
+  #
+  # Ate aqui a pagina nao media nada e a CSP era fechada em 'self'. Com
+  # Meta, TikTok, Google Ads e Clarity entrando, cada origem precisa
+  # estar listada: o bloqueio de CSP e SILENCIOSO, a pagina funciona
+  # igual e os quatro paineis ficam vazios para sempre.
+  #
+  # 'unsafe-inline' em script-src continua obrigatorio: os snippets das
+  # tags sao inline, e tambem o script do <head> que poe a classe `js`.
+  #
+  # POR QUE `img-src` E `connect-src` SAO `https:` GENERICO, e isso e
+  # decisao e nao preguica: tag de campanha ENTREGA evento por imagem e
+  # por fetch, e o caminho muda por pais, por leilao e por versao do SDK
+  # (o Google Ads sozinho passeia por googleadservices, doubleclick,
+  # google.com e google.<pais>). Enumerar isso e assinar uma lista que
+  # envelhece sem avisar, e o modo de falha e o pior: o evento some EM
+  # SILENCIO. Mesma escolha ja feita na /v3 deste dominio.
+  #
+  # `script-src` NAO foi afrouxado: origem de script continua lista
+  # fechada, e e ela que importa contra injecao.
+  #
+  # `frame-src` deixou de ser 'none' por causa do Meta e do Google Ads,
+  # que abrem iframe de medicao.
+  #
+  # `form-action 'none'` continua: nao existe formulario nesta pagina.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://analytics.tiktok.com https://*.tiktokcdn.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.clarity.ms https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.facebook.com https://td.doubleclick.net https://bid.g.doubleclick.net; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  # O HTML e curto de proposito: e ele que muda a cada deploy.
+  Cache-Control: public, max-age=600

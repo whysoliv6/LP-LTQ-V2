@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tudo da LTQ em um acesso só | Sistema, planilhas, aulas, comunidade e suporte</title>
+<meta name="description" content="O Financeiro Diário, as planilhas de controle financeiro e de precificação, as aulas, a comunidade no WhatsApp e o suporte da LTQ. Tudo junto por um ano, por R$ 598,80.">
+<meta name="robots" content="noindex, nofollow">
+<!-- ATENÇÃO: o noindex acima é proposital enquanto a página não tem checkout.
+     Quando a oferta entrar no ar de verdade, TROQUE por "index, follow". -->
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Tudo da LTQ em um acesso só">
+<meta property="og:description" content="Sistema, planilhas, aulas, comunidade e suporte. Um ano de acesso por R$ 598,80.">
+<meta property="og:image" content="assets/logo/ltq-selo-gradiente-512.png">
+
+<link rel="icon" href="assets/logo/ltq-selo-gradiente.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/ltq-selo-gradiente-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- REBRANDING 2026. Archivo no eixo de largura 62,5 (o
+     ExtraCondensed que o DS pede) para os títulos, e Inter Tight
+     para o texto. A Manrope e a Inter saíram junto com a marca
+     antiga. A Archivo é variável: o `wdth` vem no próprio pedido,
+     então não baixa uma estática por largura. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5,600..900&family=Inter+Tight:wght@400..800&display=swap">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Marca o documento antes da primeira pintura: todo estado inicial escondido
+     mora atrás da classe .js. Sem JS, a página nasce visível. -->
+<script>document.documentElement.classList.add("js");</script>
+<!-- ============================================================
+     TAGS DE TRÁFEGO · entraram em 09/10/2026, a pedido do Thiago
+     ------------------------------------------------------------
+     As QUATRO da casa, com os IDs de conta (os mesmos de toda a LTQ):
+     Meta 1020100699335661 · TikTok CSPNDJ3C77U9T3GK0QHG ·
+     Google Ads AW-17490589345 · Clarity y4vyndnsr4.
+
+     Esta página é a única da fila de hoje que entra com as quatro, e
+     não só com o Clarity: ela VENDE. Sem pixel de conversão dá para
+     medir comportamento, mas não para otimizar campanha nem atribuir
+     venda. Os sites de parceira seguem só com Clarity, por decisão.
+
+     SÓ DISPARA EM lp.ltqeducacao.com. O repositório de origem também
+     publica um preview em `ltq-lp-oferta-completa.pages.dev`, e
+     PageView de preview caindo na conta real suja o número sem avisar.
+     A trava é por hostname porque esta página não tem build: não há
+     onde pôr variável de ambiente.
+
+     A ORDEM É A DO GUIA: Meta, TikTok, Google Ads, Clarity.
+
+     O META FICA FORA DO ADIAMENTO, de propósito, e isso DIVERGE do
+     guia (que manda adiar os quatro). O motivo é comparabilidade: a
+     /v1 deste mesmo domínio dispara o Meta imediato, e as duas páginas
+     recebem as mesmas campanhas. Se uma contasse PageView na primeira
+     pintura e a outra só na ociosidade, a diferença de bounce rápido
+     entraria no número e as duas deixariam de ser comparáveis.
+
+     >>> A CSP VIVE EM `_headers-bloco`, NO REPO LP-LTQ-V2, e foi
+     >>> aberta no mesmo commit. Sem as origens listadas lá o navegador
+     >>> bloqueia tudo isto SEM BARULHO NENHUM: a página funciona igual
+     >>> e os painéis ficam vazios para sempre.
+     ============================================================ -->
+<script>
+(function () {
+  if (location.hostname !== 'lp.ltqeducacao.com') return;
+
+  /* ---- Meta Pixel (imediato, ver nota acima) ---- */
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1020100699335661');
+  fbq('track', 'PageView');
+
+  /* ---- As outras três sobem na ociosidade ou na primeira interação,
+         para não disputar a primeira pintura. ---- */
+  var started = false;
+
+  function boot() {
+    if (started) return; started = true;
+
+    /* ---- TikTok Pixel ---- */
+    !function(w,d,t){
+      w.TiktokAnalyticsObject=t;
+      var ttq=w[t]=w[t]||[];
+      ttq.methods=["page","track","identify","instances","debug","on","off",
+        "once","ready","alias","group","enableCookie","disableCookie"];
+      ttq.setAndDefer=function(t,e){
+        t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};
+      };
+      for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+      ttq.instance=function(t){
+        for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)
+          ttq.setAndDefer(e,ttq.methods[n]);
+        return e;
+      };
+      ttq.load=function(e,n){
+        var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;
+        ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+        ttq._o=ttq._o||{};ttq._o[e]=n||{};
+        var o=d.createElement("script");
+        o.type="text/javascript";o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;
+        var a=d.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(o,a);
+      };
+    }(window, document, 'ttq');
+    ttq.load('CSPNDJ3C77U9T3GK0QHG');
+    ttq.page();
+
+    /* ---- Google Ads (gtag) ---- */
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17490589345';
+    document.head.appendChild(g);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'AW-17490589345');
+
+    /* ---- Microsoft Clarity ----
+       `y4vyndnsr4` é o projeto único da LTQ, que recebe a /v1, a /v3, os
+       dois upsells, o midoces e agora esta página. No painel a sessão
+       daqui chega misturada com a das outras: filtre por URL. */
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;
+      t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y4vyndnsr4");
+  }
+
+  function schedule() {
+    var fired = false;
+    function go(){ if (fired) return; fired = true; boot(); }
+    if ('requestIdleCallback' in window)
+      requestIdleCallback(go, { timeout: 3500 });
+    else setTimeout(go, 2000);
+    ['pointerdown','keydown','touchstart'].forEach(function(ev){
+      window.addEventListener(ev, go, { once:true, passive:true });
+    });
+  }
+
+  if (document.readyState === 'complete') schedule();
+  else window.addEventListener('load', schedule, { once:true });
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1020100699335661&amp;ev=PageView&amp;noscript=1"
+alt=""/></noscript>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============================================================
+     ÍCONES · sprite inline, nenhuma requisição externa
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-check"><polyline points="20 6 9 17 4 12"/></g>
+    <g id="i-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></g>
+    <g id="i-arrow"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></g>
+    <g id="i-monitor"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></g>
+    <g id="i-grid"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="9" x2="9" y2="21"/></g>
+    <g id="i-play"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></g>
+    <g id="i-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></g>
+    <g id="i-chat"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></g>
+    <g id="i-star"><polygon points="12 2 15.1 8.6 22 9.6 17 14.5 18.2 21.4 12 18.1 5.8 21.4 7 14.5 2 9.6 8.9 8.6 12 2"/></g>
+    <g id="i-trending"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></g>
+    <g id="i-tag"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></g>
+    <g id="i-calendar"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></g>
+    <g id="i-refresh"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></g>
+    <g id="i-smartphone"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></g>
+    <g id="i-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></g>
+    <g id="i-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g>
+    <g id="i-mail"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></g>
+    <g id="i-chevron"><polyline points="6 9 12 15 18 9"/></g>
+    <g id="i-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></g>
+    <g id="i-scissors"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></g>
+    <g id="i-gift"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></g>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     FAIXA SUPERIOR
+     Igual à do site de referência (planilhadobreno.com.br): marca
+     à esquerda, um item só à direita, e acompanha a página toda.
+     O item da direita aqui é a frase de preço por dia que estava
+     em cima do botão da headline.
+
+     Sem links além da marca, pela mesma razão que não existe menu
+     nesta página: link que não é o CTA é porta de saída.
+     ============================================================ -->
+<header class="topbar">
+  <div class="container topbar__inner">
+    <p class="topbar__brand">
+      <img src="assets/logo/ltq-logo-rebranding-2026.svg" alt="LTQ Educação" width="45" height="36">
+    </p>
+    <p class="topbar__price">
+      <b>R$ 1,64 por dia</b>
+      <span>é o que custa um ano com tudo incluso</span>
+    </p>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ==========================================================
+       1 · HERO
+       Sem barra de navegação: decisão de 17/09/2026. Numa página de
+       venda todo link que não é o CTA é porta de saída. A marca fica,
+       mas como assinatura, não como menu. O login de quem já é aluno
+       mudou para o rodapé.
+       ========================================================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <span class="eyebrow">Tudo da LTQ em um acesso só</span>
+          <h1>Descubra o <span class="accent">lucro real</span> do seu negócio e pare de trabalhar no escuro.</h1>
+          <p class="hero__lead">
+            O sistema, as planilhas, as aulas, a comunidade e o suporte no WhatsApp.
+            <b>Não é mais um produto avulso:</b> é o caminho inteiro, do primeiro
+            lançamento até o mês fechado com o lucro na mão.
+          </p>
+          <!-- O "R$ 1,64 por dia" subiu para a faixa superior em
+               07/10/2026 (pedido 4). -->
+          <div class="hero__actions">
+            <a class="btn btn--lg js-checkout" href="https://pay.ltqeducacao.com.br/checkout/9e19358c-ca9a-4fad-82eb-eca09b8ccb02?src=oferta_completa_Lucas&amp;utm_source=oferta_completa_Lucas">
+              Quero organizar meu financeiro
+              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <figure class="frame">
+          <img src="assets/img/fd-mockup-hero.webp"
+               alt="Financeiro Diário aberto no computador, no tablet e no celular, mostrando receitas, despesas e resultado"
+               width="860" height="600" fetchpriority="high">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       2 · NÚMEROS
+       Sem campo de cor próprio, por pedido: respiram sobre o branco.
+       Os três números são os que a LTQ já publica. O marco passou de
+       35 para 38 mil em 17/09/2026, por decisão da direção: quando
+       mudar de novo, mude aqui e nas outras páginas junto.
+       ========================================================== -->
+  <section class="section numbers" aria-label="Números da LTQ Educação">
+    <dl class="container numbers__grid">
+      <div class="numbers__item" data-reveal>
+        <div class="numbers__top">
+          <span class="numbers__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-users"/></svg></span>
+          <dt>38 mil</dt>
+        </div>
+        <dd>empreendedores já passaram pelas planilhas e treinamentos da LTQ</dd>
+      </div>
+      <div class="numbers__item" data-reveal>
+        <div class="numbers__top">
+          <span class="numbers__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-refresh"/></svg></span>
+          <dt>3 anos</dt>
+        </div>
+        <dd>de LTQ Educação no mercado, com o mesmo time atendendo no WhatsApp</dd>
+      </div>
+      <div class="numbers__item" data-reveal>
+        <div class="numbers__top">
+          <span class="numbers__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-star"/></svg></span>
+          <dt>4,89</dt>
+        </div>
+        <dd>é a nota média que a base dá para o nosso atendimento</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ==========================================================
+       3 · O QUE VOCÊ RECEBE
+       07/10/2026 · Pedidos 8 e 9 do PDF de alterações: a planilha
+       de controle financeiro e a de precificação são dois bons
+       produtos e merecem aparecer cada um por si; a comunidade e o
+       suporte também. Os quatro pilares viraram SEIS.
+       ========================================================== -->
+  <section class="section" id="o-que-recebe">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">O que você recebe</span>
+        <h2>Seis peças que só funcionam juntas</h2>
+        <p>
+          Ferramenta sem método vira planilha abandonada. Método sem ferramenta
+          vira caderno. Os dois sem alguém para tirar dúvida viram desistência.
+          Por isso a oferta é uma só.
+        </p>
+      </div>
+
+      <div>
+        <article class="pillar" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">01 · O sistema</p>
+            <h3>Financeiro Diário</h3>
+            <p class="lead">
+              O controle financeiro da sua empresa na nuvem, aberto no computador
+              ou no celular. Lance o que entrou e o que saiu em <b>quatro campos</b>,
+              e veja o resultado do mês se refazer na hora.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Fluxo de caixa, gráficos e relatórios prontos para o contador ou o banco</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Plano de contas já estruturado, editável quando a operação pedir</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Importa a planilha da LTQ e traz todo o histórico de uma vez</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media frame">
+            <img src="assets/img/fd-graficos-card-resultado.webp" loading="lazy"
+                 alt="Gráfico de resultado mensal dentro do Financeiro Diário" width="800" height="560">
+          </figure>
+        </article>
+
+        <article class="pillar pillar--flip" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">02 · A ferramenta de base</p>
+            <h3>Planilha de controle financeiro</h3>
+            <p class="lead">
+              A planilha que organizou dezenas de milhares de empresas. Ela mostra,
+              mês a mês, <b>para onde o dinheiro foi</b>, e quanto sobrou de verdade
+              depois que tudo foi lançado.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Fórmulas prontas: você só digita valores</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Versão pessoal inclusa, para separar o dinheiro da casa do dinheiro da empresa</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Funciona no seu computador, sem depender de internet</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media frame">
+            <img src="assets/img/mock-controle-financeiro.webp" loading="lazy"
+                 alt="Planilha de controle financeiro da LTQ aberta no notebook" width="820" height="461">
+          </figure>
+        </article>
+
+        <article class="pillar" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">03 · A ferramenta de base</p>
+            <h3>Planilha de precificação</h3>
+            <p class="lead">
+              A planilha que responde à outra pergunta: se o preço que você cobra
+              <b>paga o custo e ainda deixa lucro</b>. Produto a produto, serviço a
+              serviço, com o custo fixo rateado.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Todo custo entra na conta, inclusive os que costumam ficar de fora</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Mostra o ponto de equilíbrio e a margem de contribuição de cada item</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Aponta o produto ou serviço que está saindo no prejuízo</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media frame">
+            <img src="assets/img/mock-precificacao-tela.webp" loading="lazy"
+                 alt="Planilha de precificação da LTQ: resumo de preços, despesas fixas por categoria e a tela de custos fixos" width="1080" height="830">
+          </figure>
+        </article>
+
+        <article class="pillar pillar--flip" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">04 · O método</p>
+            <h3>As aulas do ABC das Finanças</h3>
+            <p class="lead">
+              O treinamento que traduz o financeiro para a linguagem de quem toca
+              o próprio negócio. <b>Sem contabilês</b>, organizado por fase, com o
+              conceito e a aplicação no seu número, não em exemplo de livro.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Do zero: a diferença entre faturamento, caixa e lucro</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Tutoriais mostrando o clique na tela, passo a passo</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Conteúdo novo entrando durante o ano de acesso</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media frame">
+            <img src="assets/img/abc-das-financas.webp" loading="lazy"
+                 alt="Capa do curso ABC das Finanças, treinamento básico de finanças da LTQ Educação" width="740" height="415">
+          </figure>
+        </article>
+
+        <article class="pillar" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">05 · A companhia</p>
+            <h3>Comunidade no WhatsApp</h3>
+            <p class="lead">
+              Um grupo com gente vivendo <b>o mesmo momento que você</b>: mesmo porte,
+              mesma dúvida, mesmo mês fechando. A primeira coisa que acontece quando
+              você entra é alguém perguntando em que pé está o seu financeiro.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Trocas reais entre empreendedores de comércio e de serviço</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Avisos de aulas ao vivo e desafios do mês caem ali</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Gente que já passou pelo que você está passando agora</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media pillar__media--alto frame">
+            <!-- PENDÊNCIA: print REAL da comunidade no WhatsApp. Este é um
+                 depoimento em foto reaproveitado e está aqui como marcador
+                 visual, igual aos quatro da seção "Você não vai fazer isso
+                 sozinho". Trocar antes de publicar. -->
+            <img src="assets/img/depoimento-7.webp" loading="lazy"
+                 alt="Conversa de clientes da LTQ Educação" width="506" height="1102">
+          </figure>
+        </article>
+
+        <article class="pillar pillar--flip" data-reveal>
+          <div class="pillar__body">
+            <p class="pillar__n">06 · A companhia</p>
+            <h3>Suporte da equipe no WhatsApp</h3>
+            <p class="lead">
+              <b>A equipe da LTQ do outro lado</b> quando travar. Sem chamado, sem robô,
+              sem fila de ticket: você manda mensagem e quem responde é gente que
+              conhece a ferramenta por dentro.
+            </p>
+            <ul class="pillar__list">
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Dúvida de uso respondida por quem usa a ferramenta todo dia</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Atendimento no WhatsApp de segunda a sexta, das 10h às 17h</span></li>
+              <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>O mesmo time que atende a base da LTQ há três anos</span></li>
+            </ul>
+          </div>
+          <figure class="pillar__media frame">
+            <img src="assets/img/time-ltq.webp" loading="lazy"
+                 alt="Equipe da LTQ Educação no escritório" width="669" height="421">
+          </figure>
+        </article>
+
+        <ul class="pillars__foot">
+          <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Você já aprende a usar na primeira aula</li>
+          <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg>Simples de usar, mesmo sem Excel</li>
+          <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-smartphone"/></svg>Funciona no celular</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       4 · O RESUMO FINAL
+       07/10/2026 · Pedidos 6 e 7. Esta faixa abria a página, logo
+       depois dos números. Ela desceu para DEPOIS de "o que você
+       recebe": ali ela não antecipa nada, ela FECHA — é a mesma
+       lista de seis peças dita em cinco palavras.
+
+       E o preço saiu dela (pedido 7). Preço nesta altura da página
+       disputa leitura com a seção da oferta, que é onde se compra.
+       ========================================================== -->
+  <section class="section section--nevoa">
+    <div class="container valueprop" data-reveal>
+      <div class="valueprop__stack">
+        <span class="valueprop__chip">Sistema</span>
+        <span class="valueprop__plus" aria-hidden="true">+</span>
+        <span class="valueprop__chip">Planilhas</span>
+        <span class="valueprop__plus" aria-hidden="true">+</span>
+        <span class="valueprop__chip">Aulas</span>
+        <span class="valueprop__plus" aria-hidden="true">+</span>
+        <span class="valueprop__chip">Comunidade</span>
+        <span class="valueprop__plus" aria-hidden="true">+</span>
+        <span class="valueprop__chip">Suporte</span>
+      </div>
+
+      <ul class="valueprop__checks">
+        <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Você não precisa saber Excel, nem entender de contabilidade</span></li>
+        <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Cinco minutos por dia bastam para manter tudo em dia</span></li>
+        <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Funciona no celular, do caixa ou da rua</span></li>
+        <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Serve para qualquer negócio pequeno, de qualquer ramo</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       5 · DEPOIMENTOS
+       07/10/2026 · Pedidos 10 e 15. A prova social subiu: ela
+       ficava entre a garantia e o FAQ, perto demais do fim, e
+       agora vem logo depois do resumo, enquanto a pessoa ainda
+       está decidindo se vale continuar lendo.
+
+       Ao lado das seis citações entrou o MURAL DE PRINTS, no
+       mesmo formato da variante B /v3 da LP de controle
+       financeiro: 36 prints reais de Instagram, Facebook e
+       WhatsApp, nove à mostra e o resto atrás de um botão. Os
+       arquivos e os textos alternativos vieram de lá como estão,
+       sem recorte nem reescrita.
+       ========================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Quem já usa</span>
+        <h2>Dá uma olhada no que a galera fala</h2>
+        <!-- Regra de honestidade herdada do site do FD: estes comentários são
+             de clientes das PLANILHAS da LTQ, que são a origem de tudo. Nenhum
+             foi reescrito, e a linha abaixo diz de onde eles vêm. Em 08/10/2026
+             saíram os seis depoimentos em texto que vinham antes do mural: a
+             prova agora é só o print, que é o que ninguém consegue inventar. -->
+        <p>Comentários reais de quem já comprou com a gente, como eles saíram nas publicações da LTQ.</p>
+      </div>
+
+      <!-- O mural abre inteiro sem JS: o atributo data-colapsado é
+           posto pelo main.js, e o botão só aparece junto com ele. -->
+      <div class="mural" data-mural>
+        <ul class="mural__lista" aria-label="Prints de comentários de clientes da LTQ">
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d01.webp" loading="lazy" decoding="async"
+                 width="760" height="244"
+                 alt="Robson Goes comenta: “Eu comprei, super top, bem simples de usar e atendeu minha necessidade”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d02.webp" loading="lazy" decoding="async"
+                 width="738" height="584"
+                 alt="@domclecioferreira comenta: “Estou usando e está me agradando bastante. Ver o quanto é organizado me deixa ver o quanto fica claro o que é arrecadado e os gastos”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d03.webp" loading="lazy" decoding="async"
+                 width="760" height="265"
+                 alt="@paulinhavieira281724 comenta: “Maravilhosa realmente, além do respaldo que os meninos nos dão. Às vezes usamos programas tão caros que não dá a metade das informações que precisamos”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d04.webp" loading="lazy" decoding="async"
+                 width="760" height="1058"
+                 alt="Cinco comentários no Instagram, entre eles @nutrijanicesalomao: “Planilha ótima, entrega o q promete mesmo. Parabéns. Aprovado” e @jbservicodejardinagem: “Planilha top, está me ajudando muito”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d05.webp" loading="lazy" decoding="async"
+                 width="760" height="244"
+                 alt="Matheus Cornélio comenta: “Muito bom, eu comprei e já estou usando. Fácil entendimento e rápido, valeu o investimento”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d06.webp" loading="lazy" decoding="async"
+                 width="739" height="1096"
+                 alt="Mensagem direta de uma cliente: “Nossa! A Planilha de Gestão e Controle Financeiro está me ajudando muito na organização financeira da empresa! Agora sim uma gestão eficiente e fácil”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d07.webp" loading="lazy" decoding="async"
+                 width="760" height="308"
+                 alt="@caik_insulfilm comenta: “Poucos dias que comprei, estava com receio. Os vídeos que eles mandam explica tudo certinho, até agora não tive nem dúvidas. Está me ajudando demais”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d08.webp" loading="lazy" decoding="async"
+                 width="760" height="1172"
+                 alt="Cinco comentários no Instagram, entre eles @ksbrokers: “Excelente, comprei e indico” e @kaiiioc: “Planilha perfeita”.">
+          </li>
+          <li class="mural__item">
+            <img src="assets/depoimentos-print/d09.webp" loading="lazy" decoding="async"
+                 width="739" height="725"
+                 alt="Mensagem direta de um cliente: “Estou colocando o meu em ordem, comprei semana passada. Estou fazendo a precificação e em fevereiro começo a lançar tudo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d10.webp" loading="lazy" decoding="async"
+                 width="760" height="179"
+                 alt="@lana.barros93 comenta: “Estou usando e realmente me surpreende! Vale muito a pena, é fácil de usar”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d11.webp" loading="lazy" decoding="async"
+                 width="760" height="1172"
+                 alt="Comentários no Instagram, entre eles @ateliegourmetdagi: “Planilha perfeita! Super indico” e @laudivinocunha: “Ótima planilha, me ajudou muito”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d12.webp" loading="lazy" decoding="async"
+                 width="760" height="347"
+                 alt="Rondnely Filippi comenta no Facebook: “Excelente planilha”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d13.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="Publicação no Facebook com nota 4.95/5 e comentários: Carlos Eduardo Oliveira, “Comprei e gostei”, e Robson Goes, “Eu comprei, super top, bem simples de usar”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d14.webp" loading="lazy" decoding="async"
+                 width="738" height="273"
+                 alt="@angelynna.0709 comenta: “A planilha é super fácil de fazer e o suporte é muito rápido. Gostei muito!”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d15.webp" loading="lazy" decoding="async"
+                 width="760" height="1138"
+                 alt="@afroflora comenta: “Tomei coragem, não me aguentei e hoje finalmente adquiri a planilha. Estou amando. Simples, prática, muito de boa de mexer”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d16.webp" loading="lazy" decoding="async"
+                 width="738" height="430"
+                 alt="@sbcustomizacoes comenta: “Estou usando a alguns dias, até agora estou gostando demais”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d17.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="Comentários no Facebook: Rose Queiroz, “Comprei, achei excelente, super prática e fácil”, e Marco Azevedo, “Empresa super honesta: devolveram o dinheiro mesmo passados os 7 dias de teste”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d18.webp" loading="lazy" decoding="async"
+                 width="760" height="695"
+                 alt="@cabralthallyta comenta: “Acabei adquirindo essa planilha para minha empresa e estou muito satisfeita. Super intuitiva, me ajudou bastante a ter clareza dos gastos”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d19.webp" loading="lazy" decoding="async"
+                 width="738" height="518"
+                 alt="@fabiano_cardoso1990 comenta: “Eu uso, precisei do suporte e eles prontamente me ajudaram. Vale a pena a planilha”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d20.webp" loading="lazy" decoding="async"
+                 width="760" height="1179"
+                 alt="Comentários no Instagram, entre eles @willymotoscwb: “Bem top! Fácil de usar e muito funcional” e @mauropozzifotografia: “Eu adquiri tbm, é ótimo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d21.webp" loading="lazy" decoding="async"
+                 width="739" height="532"
+                 alt="Mensagem direta de uma cliente: “Estou lançando, mas achei muito bom, simples, fácil de usar. Vou ter controle a partir do mês que vem”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d22.webp" loading="lazy" decoding="async"
+                 width="738" height="1441"
+                 alt="Comentários no Facebook: Claudio Souza Souza, “Comprei e recomendo, bem fácil de usar, estou aprendendo a cada dia”, e Adeilton Eletrotéc, “Super indico”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d23.webp" loading="lazy" decoding="async"
+                 width="467" height="309"
+                 alt="Mensagem do Instituto Prime Saúde no WhatsApp: “As planilhas de vocês são excelentes, salvam vidas”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d24.webp" loading="lazy" decoding="async"
+                 width="760" height="830"
+                 alt="@rael.mattoos comenta: “Comprei hoje e aprovei” e @jamesalencar.consultor: “Isso é muito bom para um começo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d25.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="Lica Santos comenta: “Eu recebi a minha, tenho suporte sempre que preciso, estou muito satisfeito, super recomendo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d26.webp" loading="lazy" decoding="async"
+                 width="760" height="326"
+                 alt="@lulisalma comenta: “Comprei e estou adorando! Super simples de usar. Minha confeitaria ficando organizadinha”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d27.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="Antonio Marco Silva comenta no Facebook: “Passando para falar: é um programa de gestão financeira top. Vale a pena”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d28.webp" loading="lazy" decoding="async"
+                 width="760" height="882"
+                 alt="@filhaisaurasantana comenta: “Eu adquiri, estou aprendendo a mexer, super fácil, recomendo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d29.webp" loading="lazy" decoding="async"
+                 width="760" height="960"
+                 alt="@apeliceri comenta: “Eu uso a 3 meses e acho muito boa e prática, super ajuda no controle de gastos” e @luciana.correagarces: “Ótima, adquiri ontem, estou amando”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d30.webp" loading="lazy" decoding="async"
+                 width="738" height="1469"
+                 alt="@graaciellycavalcante comenta: “Eu adquiri e facilitou muito minha vida!”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d31.webp" loading="lazy" decoding="async"
+                 width="760" height="775"
+                 alt="@leandro.siqueirals comenta: “Muito show a planilha, adquiri hoje, top”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d32.webp" loading="lazy" decoding="async"
+                 width="760" height="1648"
+                 alt="@darlene_rubibot comenta: “Comprem, pensa em um capricho. As aulas de finanças, as planilhas, a plataforma, equipe toda de parabéns”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d33.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="Mensagem direta de Alessandro Brandão: “Muito fácil de usar, comprei faz uma semana, já estou gostando, show de bola”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d34.webp" loading="lazy" decoding="async"
+                 width="738" height="1600"
+                 alt="@eli_dias16 comenta: “Comprei a minha e amei, salvou a minha vida, sensacional essa planilha”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d35.webp" loading="lazy" decoding="async"
+                 width="738" height="870"
+                 alt="Mensagem direta de um cliente: “Lanço todos os dias e agora, com a planilha, estou tendo uma visão geral. Super recomendo”.">
+          </li>
+          <li class="mural__item" data-extra>
+            <img src="assets/depoimentos-print/d36.webp" loading="lazy" decoding="async"
+                 width="760" height="1645"
+                 alt="@luciani_tomiozzo comenta: “Já tenho e amei a aquisição, ajuda muito, amo planilhas práticas”.">
+          </li>
+        </ul>
+        <div class="mural__acao" data-mural-acao hidden>
+          <button class="btn" type="button" data-mural-botao
+                  data-fechar="Mostrar menos depoimentos">
+            <span data-mural-rotulo>Ver mais depoimentos</span>
+            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       6 · SEGMENTOS
+       As três fotos são recortes da própria home da LTQ
+       (framerusercontent), então a página fala a mesma língua visual
+       do institucional. A régua abaixo existe porque a direção pediu
+       explicitamente para NÃO passar a ideia de que a LTQ atende só
+       três ramos: as fotos ilustram, a lista de pílulas amplia, e a
+       frase fecha dizendo que é qualquer negócio pequeno.
+       ========================================================== -->
+  <section class="section section--nevoa">
+    <div class="container">
+      <div class="section__head">
+        <h2>Serve para o seu negócio, seja ele qual for</h2>
+        <p>O mesmo método, no formato em que você se adapta melhor.</p>
+      </div>
+
+      <div class="segments">
+        <article class="segment" data-reveal>
+          <div class="segment__photo"><img src="assets/img/seg-confeitaria.webp" loading="lazy" alt="Confeiteira de avental" width="613" height="860"></div>
+          <div class="segment__body">
+            <h3>Quem produz</h3>
+            <p>Confeitaria, padaria, cozinha, artesanato. Quem faz com as próprias mãos e costuma esquecer de cobrar pelo próprio trabalho.</p>
+          </div>
+        </article>
+        <article class="segment" data-reveal>
+          <div class="segment__photo"><img src="assets/img/seg-servico.webp" loading="lazy" alt="Prestador de serviço de camisa polo" width="618" height="860"></div>
+          <div class="segment__body">
+            <h3>Quem presta serviço</h3>
+            <p>Oficina, salão, clínica, obra, manutenção, consultoria. Quem vende tempo e precisa saber quanto vale a própria hora.</p>
+          </div>
+        </article>
+        <article class="segment" data-reveal>
+          <div class="segment__photo"><img src="assets/img/seg-varejo.webp" loading="lazy" alt="Lojista de blazer" width="593" height="860"></div>
+          <div class="segment__body">
+            <h3>Quem revende</h3>
+            <p>Loja, mercearia, distribuição, venda pelo WhatsApp. Quem compra para revender e precisa enxergar a margem de cada item.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="segments__note">
+        E essas são só três. Se o seu negócio <b>tem dinheiro entrando e saindo</b>,
+        o método serve.
+      </p>
+      <ul class="segments__tags">
+        <li>Confeitaria</li><li>Padaria</li><li>Restaurante</li><li>Salão de beleza</li>
+        <li>Barbearia</li><li>Oficina</li><li>Pet shop</li><li>Loja de roupas</li>
+        <li>Mercearia</li><li>Artesanato</li><li>Clínica</li><li>Obra e reforma</li>
+        <li>Consultoria</li><li>Fotografia</li><li>Transporte</li><li>Venda pelo WhatsApp</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       7 · A GENTE TE MOSTRA O CAMINHO
+       ========================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Como começa</span>
+        <h2>A gente te mostra o caminho</h2>
+        <p>Você não entra numa biblioteca de vídeos e se vira. Tem ordem, e a primeira vitória vem no primeiro dia.</p>
+      </div>
+      <ol class="grid grid--3">
+        <li class="panel" data-reveal>
+          <p class="pillar__n">Dia 1</p>
+          <h4>O despertar</h4>
+          <p>Você assiste à aula de abertura, faz o primeiro lançamento e entende, de uma vez, a diferença entre faturar e lucrar.</p>
+        </li>
+        <li class="panel" data-reveal>
+          <p class="pillar__n">Dia 7</p>
+          <h4>A separação</h4>
+          <p>Você define seu pró-labore e para de pagar conta de casa pela empresa. É onde a maioria sente o primeiro alívio.</p>
+        </li>
+        <li class="panel" data-reveal>
+          <p class="pillar__n">Dia 30</p>
+          <h4>O raio-x</h4>
+          <p>Primeiro mês fechado com tudo lançado. Você olha o relatório e responde, com número, para onde foi o seu dinheiro.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       8 · TRILHAS
+       ========================================================== -->
+  <section class="section section--nevoa" id="trilhas">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Aulas</span>
+        <h2>Trilhas para cada fase do seu negócio</h2>
+        <p>Escolha uma trilha para ver o que você aprende nela.</p>
+      </div>
+
+      <!-- PENDÊNCIA: a grade de aulas abaixo é uma proposta editorial montada a
+           partir do P3 (base de conhecimento). Confirmar com a direção quais
+           aulas existem de fato no ABC das Finanças antes de publicar. -->
+      <div class="tabs" data-placeholder="true">
+        <div class="tabs__list" role="tablist" aria-label="Trilhas de conteúdo">
+          <button class="tabs__tab" role="tab" id="tab-1" aria-controls="painel-1" aria-selected="true">Saindo do caos</button>
+          <button class="tabs__tab" role="tab" id="tab-2" aria-controls="painel-2" aria-selected="false">Descobrindo o lucro</button>
+          <button class="tabs__tab" role="tab" id="tab-3" aria-controls="painel-3" aria-selected="false">Precificando certo</button>
+          <button class="tabs__tab" role="tab" id="tab-4" aria-controls="painel-4" aria-selected="false">Crescendo com previsibilidade</button>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="painel-1" aria-labelledby="tab-1">
+          <div>
+            <h3>Saindo do caos</h3>
+            <p class="lead">Para quem anota em caderno, no bloco do celular ou em lugar nenhum. O objetivo aqui é <b>parar de perder informação</b>.</p>
+          </div>
+          <ol class="trilha__aulas">
+            <li class="trilha__aula"><b>01</b><span>Por que empresa pequena quebra por caixa, e não por falta de venda</span></li>
+            <li class="trilha__aula"><b>02</b><span>Montando o seu primeiro registro de entradas e saídas</span></li>
+            <li class="trilha__aula"><b>03</b><span>O que é categoria, subcategoria e por que isso muda tudo</span></li>
+            <li class="trilha__aula"><b>04</b><span>A rotina de cinco minutos que mantém o financeiro em dia</span></li>
+          </ol>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="painel-2" aria-labelledby="tab-2" hidden>
+          <div>
+            <h3>Descobrindo o lucro</h3>
+            <p class="lead">Para quem já registra, mas ainda confunde <b>o dinheiro que passa pela conta</b> com o dinheiro que é seu.</p>
+          </div>
+          <ol class="trilha__aulas">
+            <li class="trilha__aula"><b>01</b><span>Faturamento, caixa e lucro: três coisas diferentes</span></li>
+            <li class="trilha__aula"><b>02</b><span>Separando a conta da empresa da conta da casa</span></li>
+            <li class="trilha__aula"><b>03</b><span>Definindo um pró-labore que o caixa aguenta</span></li>
+            <li class="trilha__aula"><b>04</b><span>Lendo o relatório do mês sem se enganar</span></li>
+          </ol>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="painel-3" aria-labelledby="tab-3" hidden>
+          <div>
+            <h3>Precificando certo</h3>
+            <p class="lead">Para quem vende bem e mesmo assim não vê o dinheiro sobrar. Quase sempre o problema está <b>no preço</b>.</p>
+          </div>
+          <ol class="trilha__aulas">
+            <li class="trilha__aula"><b>01</b><span>Todo custo que entra num preço, inclusive os que você esquece</span></li>
+            <li class="trilha__aula"><b>02</b><span>Custo fixo, custo variável e o rateio sem complicação</span></li>
+            <li class="trilha__aula"><b>03</b><span>Markup e margem: qual usar em cada tipo de negócio</span></li>
+            <li class="trilha__aula"><b>04</b><span>Descobrindo o produto ou serviço que dá prejuízo</span></li>
+          </ol>
+        </div>
+
+        <div class="tabs__panel" role="tabpanel" id="painel-4" aria-labelledby="tab-4" hidden>
+          <div>
+            <h3>Crescendo com previsibilidade</h3>
+            <p class="lead">Para quem já tem o controle na mão e quer <b>usar o que sobra</b> para crescer sem sustos.</p>
+          </div>
+          <ol class="trilha__aulas">
+            <li class="trilha__aula"><b>01</b><span>Montando a reserva de caixa da empresa</span></li>
+            <li class="trilha__aula"><b>02</b><span>Distribuição de lucros sem furar o caixa</span></li>
+            <li class="trilha__aula"><b>03</b><span>Quanto custa de verdade um funcionário CLT</span></li>
+            <li class="trilha__aula"><b>04</b><span>Planejando o ano com o histórico que você já tem</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       9 · TUDO QUE ENTRA NO ACESSO
+       07/10/2026 · Pedido 11. A seção prometia coisas que a LTQ
+       não entrega hoje: "aulas ao vivo" e "desafios mensais"
+       saíram riscadas no PDF e saíram daqui.
+
+       No lugar, ela passou a listar o que a pessoa REALMENTE
+       recebe, que é a soma de três entregas que já existem e já
+       estão descritas nos respectivos sites:
+
+         · a entrega do site da planilha de controle financeiro
+           (2-controle-financeiro/LP-LTQ-V2, seção "Tudo que você
+           leva"): suporte no WhatsApp, 20+ aulas, aula de cortar
+           custos, e-books bônus, tutoriais e o brinde da planilha
+           de finanças pessoais;
+         · a entrega do site da planilha de precificação
+           (3-precificacao/site-padrao-afiliado): a planilha, os
+           tutoriais, a comunidade VIP, o ABC das Finanças, a aula
+           bônus de custos e os e-books;
+         · o Financeiro Diário por 1 ano.
+
+       Os três e-books vêm do PDF de alterações (item 13). Os dois
+       sites falam em "02 e-books": se o número certo for dois, é
+       aqui e na tabela da oferta que ele muda.
+       ========================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">A entrega completa</span>
+        <h2>Tudo que entra no seu acesso</h2>
+        <p>
+          É o que o site da planilha de controle financeiro entrega, mais o que
+          o site da planilha de precificação entrega, mais o Financeiro Diário
+          por um ano. Junto, numa compra só.
+        </p>
+      </div>
+      <ul class="grid grid--3">
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-monitor"/></svg></span><h4>Financeiro Diário por 1 ano</h4><p>O sistema na nuvem, com fluxo de caixa, plano de contas e relatórios, aberto no computador ou no celular.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><h4>As duas planilhas, para sempre</h4><p>Controle financeiro e precificação. As planilhas não expiram com o acesso: ficam suas, no seu computador.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg></span><h4>Treinamento ABC das Finanças</h4><p>Mais de 20 aulas sobre o básico de finanças empresariais, na linguagem de quem toca o próprio negócio.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-monitor"/></svg></span><h4>Tutoriais de todas as ferramentas</h4><p>O passo a passo de cada planilha e de cada tela do sistema, mostrando exatamente onde clicar.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-scissors"/></svg></span><h4>Aula bônus: cortar custos na prática</h4><p>A aula que pega a sua lista de despesas e mostra onde dá para cortar sem derrubar a operação.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-book"/></svg></span><h4>Três e-books bônus</h4><p>Materiais de apoio para a jornada, para ler fora da tela e voltar quando a dúvida aparecer.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-gift"/></svg></span><h4>Brinde: planilha de finanças pessoais</h4><p>Para organizar o dinheiro de casa também, que é o outro lado de parar de misturar as duas contas.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-users"/></svg></span><h4>Comunidade no WhatsApp por 1 ano</h4><p>O grupo com gente no mesmo momento que você, e os avisos de aula ao vivo e desafio do mês caindo ali.</p></li>
+        <li class="panel" data-reveal><span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-chat"/></svg></span><h4>Suporte no WhatsApp com a equipe</h4><p>De segunda a sexta, das 10h às 17h. Sem chamado, sem robô, sem fila de ticket.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       10 · É PARA QUEM
+       ========================================================== -->
+  <section class="section section--nevoa">
+    <div class="container container--narrow">
+      <!-- Primeiro dos TRÊS blocos de petróleo da página. É ele que dá o
+           verde sem a página virar verde; ver o cabeçalho do styles.css. -->
+      <div class="bloco">
+        <div class="fit">
+          <div class="fit__col fit__col--yes" data-reveal>
+            <h3>Faz sentido se você</h3>
+            <ul>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Toca um negócio pequeno, de qualquer ramo</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Vende, mas não sabe dizer quanto sobrou no fim do mês</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Mistura o dinheiro da empresa com o dinheiro de casa</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Já tentou planilha genérica ou sistema caro e abandonou no meio</span></li>
+            </ul>
+          </div>
+          <div class="fit__col fit__col--no" data-reveal>
+            <h3>Não faz sentido se você</h3>
+            <ul>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-x"/></svg><span>Já tem departamento financeiro estruturado e procura um ERP com integração fiscal</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-x"/></svg><span>Quer aprender a investir ou operar no mercado financeiro</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-x"/></svg><span>Espera enriquecer rápido, sem olhar para os próprios números</span></li>
+              <li><svg class="icon fit__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-x"/></svg><span>Não pretende separar cinco minutos por dia para lançar o que entrou e o que saiu</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       11 · OFERTA
+       ========================================================== -->
+  <section class="section" id="oferta">
+    <div class="container">
+      <!-- Segundo bloco de petróleo. O cartão de preço dentro dele é
+           BRANCO: é o ponto mais claro da página, e é onde se compra. -->
+      <div class="bloco">
+        <div class="section__head">
+          <span class="eyebrow">A oferta</span>
+          <h2>Tudo isso, por um ano, em um pagamento só</h2>
+        </div>
+
+        <div class="offer">
+        <!-- 07/10/2026 · Pedido 13 do PDF. A tabela inteira foi substituída
+             pelos valores que a direção passou. O que mudou em relação à
+             versão anterior:
+
+               · as duas planilhas passaram a valer R$ 157,00 cada (eram
+                 R$ 297,00 e R$ 197,00). R$ 157,00 é o preço à vista que o
+                 site da planilha de precificação pratica hoje, então agora a
+                 ancoragem bate com o que a pessoa acha se procurar;
+               · entraram os 03 e-books bônus (R$ 97,00) e a aula bônus de
+                 cortar custos (R$ 57,00);
+               · comunidade e suporte deixaram de ter preço (eram R$ 297,00 e
+                 R$ 497,00) e passaram a "Inestimável", junto com os tutoriais;
+               · o total caiu de R$ 2.083,80 para R$ 1.263,80.
+
+             O total é a soma SÓ das linhas com número: 598,80 + 157 + 157 +
+             197 + 97 + 57 = 1.263,80. As três linhas "Inestimável" ficam
+             fora da conta de propósito — é isso que as torna honestas. -->
+        <div data-reveal>
+          <table class="stack-table">
+            <caption class="visually-hidden">Composição da oferta e valor de cada item vendido separadamente</caption>
+            <tbody>
+              <tr><td>Financeiro Diário, 1 ano de acesso</td><td>R$ 598,80</td></tr>
+              <tr><td>Planilha de controle financeiro</td><td>R$ 157,00</td></tr>
+              <tr><td>Planilha de precificação</td><td>R$ 157,00</td></tr>
+              <tr><td>Aulas do ABC das Finanças</td><td>R$ 197,00</td></tr>
+              <tr><td>03 e-books bônus</td><td>R$ 97,00</td></tr>
+              <tr><td>Aula bônus para cortar custos na prática</td><td>R$ 57,00</td></tr>
+              <tr><td>Aulas tutoriais de todas as ferramentas</td><td><em>Inestimável</em></td></tr>
+              <tr><td>Comunidade no WhatsApp por 1 ano</td><td><em>Inestimável</em></td></tr>
+              <tr><td>Suporte no WhatsApp com a equipe</td><td><em>Inestimável</em></td></tr>
+            </tbody>
+            <tfoot>
+              <tr><th scope="row">Valor total se comprado separado</th><td><s>R$ 1.263,80</s></td></tr>
+              <tr><th scope="row">Você paga</th><td>R$ 598,80</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="pricecard" data-reveal>
+          <p class="pricecard__from">De <s>R$ 1.263,80</s> por</p>
+          <p class="pricecard__value"><small>12x de</small>R$&nbsp;49,90</p>
+          <p class="pricecard__cash">ou R$ 598,80 à vista</p>
+
+          <hr>
+
+          <ul class="pricecard__items">
+            <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Acesso ao Financeiro Diário por 1 ano</span></li>
+            <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>As duas planilhas, sem custo adicional</span></li>
+            <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Todas as aulas, inclusive as que entrarem no ano</span></li>
+            <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Comunidade no WhatsApp por 1 ano</span></li>
+            <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-check"/></svg><span>Suporte direto com a equipe da LTQ</span></li>
+          </ul>
+
+          <hr>
+
+          <!-- ⚠ CHECKOUT PENDENTE. Enquanto não existir link da oferta combinada,
+               todo CTA .js-checkout rola para esta seção. Para ligar de verdade,
+               preencha CHECKOUT_URL em assets/js/main.js: é o único lugar. -->
+          <a class="btn btn--block js-checkout" href="https://pay.ltqeducacao.com.br/checkout/9e19358c-ca9a-4fad-82eb-eca09b8ccb02?src=oferta_completa_Lucas&amp;utm_source=oferta_completa_Lucas">Quero fazer parte</a>
+          <p class="btn-note">Pagamento único, sem renovação automática. Garantia de 7 dias.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       12 · GARANTIA
+       ========================================================== -->
+  <section class="section section--menta">
+    <div class="container warranty">
+      <!-- 07/10/2026 · Pedido 14: "colocar uma imagem bonita de 7 dias".
+           O selo era um círculo de CSS com um 7 dentro. Agora é um selo
+           desenhado: roseta de 14 lobos em verde vivo, miolo em verde-mata, o
+           7 no display condensado do rebranding e GARANTIA correndo na borda.
+
+           É SVG inline de propósito: não custa requisição, não embaça em tela
+           retina e as cores saem dos tokens, então ele acompanha a marca se a
+           paleta mudar de novo. O texto de verdade fica no <title>/aria. -->
+      <div class="warranty__seal" data-reveal>
+        <svg viewBox="0 0 220 220" role="img" aria-labelledby="selo-titulo">
+          <title id="selo-titulo">Selo de 7 dias de garantia</title>
+          <path class="selo__roseta" d="M 110.00 6.00 Q 120.75 14.60 133.14 8.61 Q 141.71 19.39 155.12 16.30 Q 161.08 28.71 174.84 28.69 Q 177.88 42.12 191.31 45.16 Q 191.29 58.92 203.70 64.88 Q 200.61 78.29 211.39 86.86 Q 205.40 99.25 214.00 110.00 Q 205.40 120.75 211.39 133.14 Q 200.61 141.71 203.70 155.12 Q 191.29 161.08 191.31 174.84 Q 177.88 177.88 174.84 191.31 Q 161.08 191.29 155.12 203.70 Q 141.71 200.61 133.14 211.39 Q 120.75 205.40 110.00 214.00 Q 99.25 205.40 86.86 211.39 Q 78.29 200.61 64.88 203.70 Q 58.92 191.29 45.16 191.31 Q 42.12 177.88 28.69 174.84 Q 28.71 161.08 16.30 155.12 Q 19.39 141.71 8.61 133.14 Q 14.60 120.75 6.00 110.00 Q 14.60 99.25 8.61 86.86 Q 19.39 78.29 16.30 64.88 Q 28.71 58.92 28.69 45.16 Q 42.12 42.12 45.16 28.69 Q 58.92 28.71 64.88 16.30 Q 78.29 19.39 86.86 8.61 Q 99.25 14.60 110.00 6.00 Z"/>
+          <!-- A palavra corre no anel de verde vivo, em verde-mata (9,3:1). -->
+          <defs>
+            <!-- O anel começa EMBAIXO e corre no sentido horário, para que o
+                 meio dele (startOffset 50%) caia no alto do selo, com a letra
+                 em pé. Começando no topo, metade da frase ficaria de cabeça
+                 para baixo ou cortada na emenda. -->
+            <path id="selo-anel" d="M 110 198 a 88 88 0 1 1 0.1 0" fill="none"/>
+          </defs>
+          <text class="selo__borda">
+            <textPath href="#selo-anel" startOffset="50%" text-anchor="middle">GARANTIA INCONDICIONAL</textPath>
+          </text>
+          <circle class="selo__miolo" cx="110" cy="110" r="78"/>
+          <circle class="selo__fio" cx="110" cy="110" r="70"/>
+          <text class="selo__n" x="110" y="118" text-anchor="middle">7</text>
+          <text class="selo__rotulo" x="110" y="146" text-anchor="middle">DIAS</text>
+        </svg>
+      </div>
+      <div class="warranty__body" data-reveal>
+        <span class="eyebrow">Garantia</span>
+        <h2>Sete dias para decidir sem risco nenhum</h2>
+        <p class="lead">
+          Entre, lance um mês inteiro, assista às aulas, entre na comunidade. Se
+          em 7 dias você achar que não é para você, devolvemos <b>100% do valor</b>.
+          Sem perguntas, sem burocracia, direto pelo WhatsApp.
+        </p>
+        <ul class="grid grid--3" style="margin-top:var(--space-lg)">
+          <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wallet"/></svg><span>100% do valor de volta, não é crédito nem desconto futuro</span></li>
+          <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-clock"/></svg><span>7 dias corridos, contados do dia da compra</span></li>
+          <li class="check"><svg class="icon check__icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-chat"/></svg><span>Uma mensagem no WhatsApp resolve, sem formulário</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       13 · FAQ
+       ========================================================== -->
+  <section class="section section--nevoa">
+    <div class="container">
+      <div class="section__head"><h2>Com dúvida? A gente responde.</h2></div>
+      <div class="faq">
+        <details>
+          <summary>Tem mensalidade depois?</summary>
+          <p>Não. O pagamento cobre um ano inteiro de acesso a tudo, e não renova sozinho. Quando o ano acabar, você decide se quer continuar.</p>
+        </details>
+        <details>
+          <summary>Preciso saber usar Excel?</summary>
+          <p>Não. As planilhas já vêm com todas as fórmulas prontas, e o Financeiro Diário é um sistema, não uma planilha. Se você sabe digitar números, você sabe usar.</p>
+        </details>
+        <details>
+          <summary>Funciona no celular?</summary>
+          <p>O Financeiro Diário sim, você abre pelo navegador do celular e lança de onde estiver. As planilhas são feitas para o computador, onde a tela comporta a tabela inteira.</p>
+        </details>
+        <details>
+          <summary>Já comprei a planilha da LTQ antes. Vale a pena?</summary>
+          <!-- PENDÊNCIA: hoje existe a /upgrade do Financeiro Diário, com desconto
+               de R$ 157 para quem já comprou a planilha. Definir com a direção se
+               esse desconto também vale nesta oferta combinada. -->
+          <p>Vale, porque aqui entram o sistema, as aulas e a comunidade, que a planilha sozinha não tem. Fale com a gente no WhatsApp antes de comprar: quem já é cliente da base costuma ter condição própria.</p>
+        </details>
+        <details>
+          <summary>Serve para a minha área?</summary>
+          <p>Serve. A base da LTQ tem confeitaria, oficina, salão, loja, clínica, obra, transporte e muita venda pelo WhatsApp. Se o seu negócio tem dinheiro entrando e saindo, o método se aplica. Na dúvida, chame a gente e a gente te diz com franqueza.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo por dia isso me toma?</summary>
+          <p>Cerca de cinco minutos para lançar o que entrou e o que saiu. O trabalho pesado, que é somar, categorizar e montar o relatório, a ferramenta já faz.</p>
+        </details>
+        <details>
+          <summary>Dá para usar para as minhas contas pessoais também?</summary>
+          <p>Dá. A versão pessoal da planilha vem junto, justamente para você parar de misturar o dinheiro da empresa com o de casa.</p>
+        </details>
+        <details>
+          <summary>E se eu não me adaptar?</summary>
+          <p>Você tem 7 dias para pedir o dinheiro de volta, 100% do valor, pelo WhatsApp. Sem formulário e sem justificativa.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       14 · CONTATO
+       ========================================================== -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section__head">
+        <h2>Quer falar com a gente antes?</h2>
+        <!-- 07/10/2026 · Pedido 16: ficou só o WhatsApp, e o nome "Ju" saiu
+             da página. O cartão de e-mail foi junto: o endereço de
+             atendimento nunca foi confirmado por ninguém, e um canal que
+             ninguém garante é pior do que canal nenhum. -->
+        <p>A gente está no WhatsApp para tirar a dúvida que for.</p>
+      </div>
+      <div class="contact" data-reveal>
+        <div class="panel">
+          <span class="panel__icon disco"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-chat"/></svg></span>
+          <h4>WhatsApp</h4>
+          <!-- Número da instância Comercial LTQ, em 12 dígitos, sem o nono.
+               Não "corrija" para 5585985978138: o wa.me abre conversa com um número
+               que não existe e o clique morre sem erro. A frase do texto é o que diz
+               ao atendimento de onde a pessoa veio; se mudar aqui, mude no prompt
+               do atendimento junto. -->
+          <p><a href="https://wa.me/558585978138?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20da%20oferta%20completa%20e%20quero%20saber%20mais.">Falar com a gente agora</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     RODAPÉ
+     ============================================================ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <img src="assets/logo/ltq-logo-rebranding-2026.svg" alt="LTQ Educação" width="50" height="40">
+    <nav class="footer__legal" aria-label="Links institucionais">
+      <!-- O login saiu do topo junto com a barra de navegação e vive aqui:
+           é para quem JÁ é cliente, nunca para quem está comprando. -->
+      <a href="https://app.financeirodiario.com">Já sou aluno</a>
+      <a href="https://ltqeducacao.com">Site da LTQ</a>
+      <a href="https://ltqeducacao.com/politicas-de-privacidade">Política de privacidade</a>
+      <a href="https://www.instagram.com/ltqeducacao/">Instagram</a>
+      <a href="https://www.youtube.com/@LTQEducacao">YouTube</a>
+    </nav>
+    <!-- A linha de razão social / CNPJ / endereço SAIU em 08/10/2026, a pedido
+         do Thiago. Ela era o marcador que lembrava da pendência.
+
+         O que ela lembrava CONTINUA valendo: esta página vende, e o Decreto
+         7.962/2013 (art. 2º, I) manda o site de venda trazer nome empresarial e
+         CNPJ em local de destaque. Tirar o marcador tira o lembrete, não a
+         obrigação. Quando a direção passar os dados, o bloco volta aqui. -->
+    <p>&copy; <span id="ano">2026</span> LTQ Educação. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Barra fixa só no mobile -->
+<div class="stickybar">
+  <p class="stickybar__price"><b>12x R$ 49,90</b>ou R$ 598,80 à vista</p>
+  <a class="btn js-checkout" href="https://pay.ltqeducacao.com.br/checkout/9e19358c-ca9a-4fad-82eb-eca09b8ccb02?src=oferta_completa_Lucas&amp;utm_source=oferta_completa_Lucas">Quero fazer parte</a>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
